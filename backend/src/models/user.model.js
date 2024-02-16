@@ -33,9 +33,12 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "Password is required"],
     },
+    currentBalance: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true },
 );
-
 
 export const User = mongoose.model("User", userSchema);
