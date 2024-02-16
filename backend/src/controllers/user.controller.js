@@ -4,9 +4,10 @@ import { ApiResponse } from "../utils/apiResponse.js";
 import { User } from "../models/user.model.js";
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { username, fullName, email, password } = req.body;
+  const { currentBalance, fullName, email, password } = req.body;
 
   if (!fullName) throw new ApiError(400, "Fullname is required");
+  if (!currentBalance) throw new ApiError(400, "Initial deposit is required")
   // if (!username) throw new ApiError(400, "Username is required");
   if (!password) throw new ApiError(400, "Password is required");
   if (!email) throw new ApiError(400, "Email is required");
@@ -22,6 +23,7 @@ const registerUser = asyncHandler(async (req, res) => {
     fullName,
     email,
     password,
+    currentBalance
     // username: username.toLowerCase(),
   });
 
