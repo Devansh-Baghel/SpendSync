@@ -12,23 +12,34 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { useState } from "react";
 // import { Icons } from "@/components/icons"
+import axios from "axios";
 
 function Register() {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   async function handleSubmit(e: SubmitEvent) {
-    e.preventDefault()
-    if (name.trim() === "") return
-    if (email.trim() === "") return
-    if (password.trim() === "") return
+    e.preventDefault();
+    if (name.trim() === "") return;
+    if (email.trim() === "") return;
+    if (password.trim() === "") return;
 
-
+    axios.post("/users/register", {
+      email,
+      password,
+      fullName: name,
+      currentBalance: 123,
+    });
   }
 
   return (
-    <form className="flex justify-center items-center h-screen">
+    <form
+      className="flex justify-center items-center h-screen"
+      onSubmit={(e) => {
+        handleSubmit(e);
+      }}
+    >
       <Card>
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl">Create an account</CardTitle>
@@ -60,21 +71,40 @@ function Register() {
           <div className="grid gap-2">
             {/* @ts-ignore */}
             <Label htmlFor="fullName">Full Name</Label>
-            <Input id="fullName" type="text" placeholder="Your Name" required onChange={(e) => setName(e.target.value)}/>
+            <Input
+              id="fullName"
+              type="text"
+              placeholder="Your Name"
+              required
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
           <div className="grid gap-2">
             {/* @ts-ignore */}
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="m@example.com" required onChange={e => setEmail(e.target.value)}/>
+            <Input
+              id="email"
+              type="email"
+              placeholder="m@example.com"
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className="grid gap-2">
             {/* @ts-ignore */}
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" required onChange={e => setPassword(e.target.value)}/>
+            <Input
+              id="password"
+              type="password"
+              required
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
         </CardContent>
         <CardFooter>
-          <Button className="w-full" type="submit" onSubmit={e => handleSubmit(e)}>Create account</Button>
+          <Button className="w-full" type="submit">
+            Create account
+          </Button>
         </CardFooter>
       </Card>
     </form>
