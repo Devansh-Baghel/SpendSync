@@ -1,5 +1,6 @@
 import Routing from "./Routing";
 import { ThemeProvider } from "./components/theme-provider";
+import { Toaster } from "./components/ui/toaster";
 import { ModeToggle } from "./components/mode-toggle";
 import { createContext, useState } from "react";
 import axios from "axios";
@@ -18,6 +19,7 @@ function App() {
       <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
         {/* <ModeToggle /> */}
         <Routing />
+        <Toaster />
       </AppContext.Provider>
     </ThemeProvider>
   );

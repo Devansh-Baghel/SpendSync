@@ -10,6 +10,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-dropdown-menu";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@radix-ui/react-toast";
 import { useContext, useEffect, useState } from "react";
 // import { Icons } from "@/components/icons"
 import axios from "axios";
@@ -21,6 +23,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { isLoggedIn } = useContext(AppContext);
+  const { toast } = useToast();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,14 +36,35 @@ function Register() {
     if (email.trim() === "") return;
     if (password.trim() === "") return;
 
-    axios.post("/users/register", {
-      email,
-      password,
-      fullName: name,
-      currentBalance: 123,
-    });
-
-    navigate("/login");
+    await axios
+      .post("/users/register", {
+        email,
+        password,
+        fullName: name,
+        currentBalance: 123,
+      })
+      .then((response) => {
+        navigate("/login");
+        return response.data;
+      })
+      .catch((error) => {
+        if (error.response?.status === 409) {
+          toast({
+            title: "Email is already in use",
+            description: "Did you mean to sign in?",
+            action: (
+              <ToastAction
+                altText="Try again"
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                Sign in
+              </ToastAction>
+            ),
+          });
+        }
+      });
   }
 
   return (

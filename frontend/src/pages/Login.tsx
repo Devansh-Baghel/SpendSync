@@ -36,9 +36,10 @@ function Login() {
         email,
         password,
       })
-      .then(localStorage.setItem("userStatus", "loggedIn"))
-      .then(setIsLoggedIn(true))
-      .then(navigate("/"));
+
+
+      // .then(localStorage.setItem("userStatus", "loggedIn"))
+      // .then(setIsLoggedIn(true))
   }
 
   return (
