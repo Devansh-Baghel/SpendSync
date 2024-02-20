@@ -11,26 +11,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { useState } from "react";
-// import { Icons } from "@/components/icons"
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function Register() {
-  const [name, setName] = useState("");
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   async function handleSubmit(e: SubmitEvent) {
     e.preventDefault();
-    if (name.trim() === "") return;
     if (email.trim() === "") return;
     if (password.trim() === "") return;
 
-    axios.post("/users/register", {
+    axios.post("/users/login", {
       email,
       password,
-      fullName: name,
-      currentBalance: 123,
     });
   }
 
@@ -41,11 +36,11 @@ function Register() {
         handleSubmit(e);
       }}
     >
-      <Card>
+      <Card className="max-w-[350px]">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl">Create an account</CardTitle>
+          <CardTitle className="text-2xl">Login to your account</CardTitle>
           <CardDescription>
-            Enter your email below to create your account
+            Enter your email and password to login to your account
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
@@ -71,17 +66,6 @@ function Register() {
           </div>
           <div className="grid gap-2">
             {/* @ts-ignore */}
-            <Label htmlFor="fullName">Full Name</Label>
-            <Input
-              id="fullName"
-              type="text"
-              placeholder="Your Name"
-              required
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="grid gap-2">
-            {/* @ts-ignore */}
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
@@ -104,15 +88,13 @@ function Register() {
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
           <Button className="w-full" type="submit">
-            Create account
+            Login
           </Button>
-          <CardDescription>
-            Already have an account? Login instead
-          </CardDescription>
+          <CardDescription>Don't have an account? Sign up instead</CardDescription>
         </CardFooter>
       </Card>
     </form>
   );
 }
 
-export default Register;
+export default Login;
