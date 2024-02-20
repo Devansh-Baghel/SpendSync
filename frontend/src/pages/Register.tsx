@@ -13,12 +13,13 @@ import { Label } from "@radix-ui/react-dropdown-menu";
 import { useState } from "react";
 // import { Icons } from "@/components/icons"
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   async function handleSubmit(e: any) {
     e.preventDefault();
@@ -32,6 +33,8 @@ function Register() {
       fullName: name,
       currentBalance: 123,
     });
+
+    navigate("/login");
   }
 
   return (

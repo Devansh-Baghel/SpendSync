@@ -3,23 +3,28 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Landing />,
-  },
-  {
-    path: "register",
-    element: <Register />,
-  },
-  {
-    path: "login",
-    element: <Login />,
-  },
-]);
+import { AppContext } from "./App";
+import { useContext } from "react";
+import Dashboard from "./pages/Dashboard";
 
 function Routing() {
+  const { isLoggedIn } = useContext(AppContext);
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: isLoggedIn ? <Dashboard /> : <Landing />,
+    },
+    {
+      path: "register",
+      element: <Register />,
+    },
+    {
+      path: "login",
+      element: <Login />,
+    },
+  ]);
+
   return <RouterProvider router={router} />;
 }
 
