@@ -41,7 +41,6 @@ function Register() {
         email,
         password,
         fullName: name,
-        currentBalance: 123,
       })
       .then((response) => {
         navigate("/login");

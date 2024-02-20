@@ -22,10 +22,9 @@ const generateAccessAndRefreshTokens = async (userId) => {
 };
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { currentBalance, fullName, email, password } = req.body;
+  const { fullName, email, password } = req.body;
 
   if (!fullName) throw new ApiError(400, "Fullname is required");
-  if (!currentBalance) throw new ApiError(400, "Initial deposit is required");
   if (!password) throw new ApiError(400, "Password is required");
   if (!email) throw new ApiError(400, "Email is required");
 
@@ -36,7 +35,7 @@ const registerUser = asyncHandler(async (req, res) => {
     fullName,
     email,
     password,
-    currentBalance,
+    currentBalance: 0,
   });
 
   const createdUser = await User.findById(user._id).select(
