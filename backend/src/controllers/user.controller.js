@@ -26,12 +26,8 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (!fullName) throw new ApiError(400, "Fullname is required");
   if (!currentBalance) throw new ApiError(400, "Initial deposit is required");
-  // if (!username) throw new ApiError(400, "Username is required");
   if (!password) throw new ApiError(400, "Password is required");
   if (!email) throw new ApiError(400, "Email is required");
-
-  // const usernameExists = await User.findOne({ username });
-  // if (usernameExists) throw new ApiError(409, "Username already exists");
 
   const emailExists = await User.findOne({ email });
   if (emailExists) throw new ApiError(409, "Email has already been used");
@@ -41,7 +37,6 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password,
     currentBalance,
-    // username: username.toLowerCase(),
   });
 
   const createdUser = await User.findById(user._id).select(
@@ -62,7 +57,7 @@ const loginUser = asyncHandler(async (req, res) => {
   if (!email) throw new ApiError(400, "Email required");
   if (!password) throw new ApiError(400, "Password required");
 
-  const user = User.findOne({ email });
+  const user = await User.findOne({ email });
 
   if (!user) throw new ApiError(404, "User not found");
 
