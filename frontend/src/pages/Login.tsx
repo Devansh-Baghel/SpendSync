@@ -90,7 +90,15 @@ function Login() {
           <Button className="w-full" type="submit">
             Login
           </Button>
-          <CardDescription>Don't have an account? Sign up instead</CardDescription>
+          <CardDescription>
+            Don't have an account?{" "}
+            <Link
+              to={"/register"}
+              className="text-accent-foreground underline"
+            >
+              Sign up
+            </Link>
+          </CardDescription>
         </CardFooter>
       </Card>
     </form>

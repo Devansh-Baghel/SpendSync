@@ -107,7 +107,13 @@ function Register() {
             Create account
           </Button>
           <CardDescription>
-            Already have an account? Login instead
+            Already have an account?{" "}
+            <Link
+              to={"/login"}
+              className="text-accent-foreground underline"
+            >
+              Sign in
+            </Link>
           </CardDescription>
         </CardFooter>
       </Card>
