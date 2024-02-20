@@ -20,7 +20,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function handleSubmit(e: SubmitEvent) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
     if (name.trim() === "") return;
     if (email.trim() === "") return;
@@ -108,10 +108,7 @@ function Register() {
           </Button>
           <CardDescription>
             Already have an account?{" "}
-            <Link
-              to={"/login"}
-              className="text-accent-foreground underline"
-            >
+            <Link to={"/login"} className="text-accent-foreground underline">
               Sign in
             </Link>
           </CardDescription>

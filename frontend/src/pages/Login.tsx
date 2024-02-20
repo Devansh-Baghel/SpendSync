@@ -18,7 +18,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function handleSubmit(e: SubmitEvent) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
     if (email.trim() === "") return;
     if (password.trim() === "") return;
@@ -92,10 +92,7 @@ function Login() {
           </Button>
           <CardDescription>
             Don't have an account?{" "}
-            <Link
-              to={"/register"}
-              className="text-accent-foreground underline"
-            >
+            <Link to={"/register"} className="text-accent-foreground underline">
               Sign up
             </Link>
           </CardDescription>
