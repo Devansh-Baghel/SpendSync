@@ -36,7 +36,7 @@ function Register() {
     if (email.trim() === "") return;
     if (password.trim() === "") return;
 
-    await axios
+    axios
       .post("/users/register", {
         email,
         password,
@@ -54,7 +54,7 @@ function Register() {
             description: "Did you mean to sign in?",
             action: (
               <ToastAction
-                altText="Try again"
+                altText="login"
                 onClick={() => {
                   navigate("/login");
                 }}

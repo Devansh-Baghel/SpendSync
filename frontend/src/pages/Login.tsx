@@ -14,12 +14,14 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "@/App";
-import { clear } from "console";
+import { ToastAction } from "@radix-ui/react-toast";
+import { useToast } from "@/components/ui/use-toast";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { isLoggedIn, setIsLoggedIn } = useContext(AppContext);
+  const { toast } = useToast();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,10 +38,34 @@ function Login() {
         email,
         password,
       })
+      .then((response) => {
+        localStorage.setItem("userStatus", "loggedIn");
+        setIsLoggedIn(true);
+        navigate("/");
+        return response.data;
+      })
+      .catch((error) => {
+        if (error.response?.status === 404) {
+          toast({
+            title: "User does not exist",
+            description: "Did you mean to sign up?",
+            action: (
+              <ToastAction
+                altText="register"
+                onClick={() => {
+                  navigate("/register");
+                }}
+              >
+                Sign up
+              </ToastAction>
+            ),
+          });
+        }
 
-
-      // .then(localStorage.setItem("userStatus", "loggedIn"))
-      // .then(setIsLoggedIn(true))
+        if (error.response?.status === 401) {
+          toast({ description: "Incorrect password" });
+        }
+      });
   }
 
   return (
