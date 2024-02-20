@@ -10,29 +10,35 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-dropdown-menu";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "@/App";
+import { clear } from "console";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsLoggedIn } = useContext(AppContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(AppContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) navigate("/");
+  }, []);
 
   async function handleSubmit(e: any) {
     e.preventDefault();
     if (email.trim() === "") return;
     if (password.trim() === "") return;
 
-    axios.post("/users/login", {
-      email,
-      password,
-    });
-
-    setIsLoggedIn(true);
-    navigate("/");
+    axios
+      .post("/users/login", {
+        email,
+        password,
+      })
+      .then(localStorage.setItem("userStatus", "loggedIn"))
+      .then(setIsLoggedIn(true))
+      .then(navigate("/"));
   }
 
   return (

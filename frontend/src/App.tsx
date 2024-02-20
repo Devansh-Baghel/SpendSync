@@ -7,9 +7,12 @@ import axios from "axios";
 export const AppContext = createContext();
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("userStatus") === "loggedIn",
+  );
 
   axios.defaults.baseURL = "http://localhost:3000/api/v1";
+
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
