@@ -1,7 +1,7 @@
 import { AppContext } from "@/App";
 import { useContext } from "react";
 import axios from "axios";
-import { Button } from "./ui/button";
+import { HiOutlineLogout as LogoutIcon } from "react-icons/hi";
 
 function LogoutButton() {
   const { setIsLoggedIn } = useContext(AppContext);
@@ -13,13 +13,15 @@ function LogoutButton() {
   }
 
   return (
-    <Button
+    <button
+      className="flex items-center gap-6"
       onClick={() => {
         handleLogout();
       }}
     >
+      <LogoutIcon className="w-6 h-6 text-accent-foreground"/>
       Log out
-    </Button>
+    </button>
   );
 }
 

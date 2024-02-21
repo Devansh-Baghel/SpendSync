@@ -19,11 +19,11 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-        <IconContext.Provider value={{ size: "2em" }}>
+        {/* <IconContext.Provider value={{ size: "2em" }}> */}
           {/* <ModeToggle /> */}
           <Routing />
           <Toaster />
-        </IconContext.Provider>
+        {/* </IconContext.Provider> */}
       </AppContext.Provider>
     </ThemeProvider>
   );
