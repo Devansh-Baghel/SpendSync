@@ -1,0 +1,2 @@
+- [x] logout controller
+- [x] logout frontend
