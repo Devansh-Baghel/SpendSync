@@ -6,6 +6,8 @@ import { RouterProvider } from "react-router-dom";
 import { AppContext } from "./App";
 import { useContext } from "react";
 import Dashboard from "./pages/Dashboard";
+import Settings from "./pages/Settings";
+import Transactions from "./pages/Transactions";
 
 function Routing() {
   const { isLoggedIn } = useContext(AppContext);
@@ -14,6 +16,16 @@ function Routing() {
     {
       path: "/",
       element: isLoggedIn ? <Dashboard /> : <Landing />,
+      children: [
+        {
+          path: "settings",
+          element: <Settings />,
+        },
+        {
+          path: "transactions",
+          element: <Transactions />,
+        },
+      ],
     },
     {
       path: "register",

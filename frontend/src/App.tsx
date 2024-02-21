@@ -4,6 +4,7 @@ import { Toaster } from "./components/ui/toaster";
 import { ModeToggle } from "./components/mode-toggle";
 import { createContext, useState } from "react";
 import axios from "axios";
+import { IconContext } from "react-icons";
 
 export const AppContext = createContext();
 
@@ -18,9 +19,11 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-        {/* <ModeToggle /> */}
-        <Routing />
-        <Toaster />
+        <IconContext.Provider value={{ size: "2em" }}>
+          {/* <ModeToggle /> */}
+          <Routing />
+          <Toaster />
+        </IconContext.Provider>
       </AppContext.Provider>
     </ThemeProvider>
   );
