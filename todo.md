@@ -1,2 +1,10 @@
 - [x] logout controller
 - [x] logout frontend
+- [ ] get Transactions controller + route
+- [ ] create Transaction controller + route
+- [ ] DashBoard
+  - [ ] SideBar
+    - [ ] Overview
+    - [ ] Transactions
+    - [ ] Settings / Account
+    - [ ] Logout at the bottom of the sidebar
