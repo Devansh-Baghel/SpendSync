@@ -2,9 +2,21 @@
 - [x] logout frontend
 - [ ] get Transactions controller + route
 - [ ] create Transaction controller + route
+- [ ] add initial deposit controller
+- [ ] add initial deposit frontend
+- [ ] add monthly recurring income
+- [ ] add hasSetIncome in user.model
+- [ ] add hasSetExpenses in user.model
+- [ ] add monthlyIncome in user.model
+- [ ] add monthlyExpenses in user.model
+- [ ] Add attachment feature in sidebar
+- [ ] filter Transactions feature
+- [ ] Demo user in register/login
+- [ ] Pro version of the thing with stripe integration
+- [ ] Oauth?
 - [ ] DashBoard
-  - [ ] SideBar
-    - [ ] Overview
-    - [ ] Transactions
-    - [ ] Settings / Account
-    - [ ] Logout at the bottom of the sidebar
+  - [x] SideBar
+    - [x] Logout at the bottom of the sidebar
+  - [ ] Overview
+  - [ ] Transactions
+  - [ ] Settings / Account
