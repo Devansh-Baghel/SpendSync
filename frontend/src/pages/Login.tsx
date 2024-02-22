@@ -41,7 +41,8 @@ function Login() {
       .then((response) => {
         localStorage.setItem("userStatus", "loggedIn");
         setIsLoggedIn(true);
-        setUserData(response.data.data.user);
+        localStorage.setItem("userData", JSON.stringify(response.data.data.user))
+        setUserData(response.data.data.user)
         navigate("/");
       })
       .catch((error) => {

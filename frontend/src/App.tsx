@@ -12,7 +12,9 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("userStatus") === "loggedIn",
   );
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(
+    JSON.parse(localStorage.getItem("userData")),
+  );
 
   axios.defaults.baseURL = "http://localhost:3000/api/v1";
   axios.defaults.withCredentials = true;
