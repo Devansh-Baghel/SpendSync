@@ -29,11 +29,27 @@ const userSchema = mongoose.Schema(
     },
     currentBalance: {
       type: Number,
-      required: true,
+      default: 0,
     },
     refershToken: {
       type: String,
     },
+    hasSetIncome: {
+      type: Boolean,
+      default: false
+    },
+    hasSetExpense: {
+      type: Boolean,
+      default: false
+    },
+    income: {
+      type: Number,
+      min: 0,
+    },
+    expense: {
+      type: Number,
+      min: 0,
+    }
   },
   { timestamps: true },
 );

@@ -35,7 +35,6 @@ export const registerUser = asyncHandler(async (req, res) => {
     fullName,
     email,
     password,
-    currentBalance: 0,
   });
 
   const createdUser = await User.findById(user._id).select(
@@ -117,4 +116,22 @@ export const logoutUser = asyncHandler(async (req, res) => {
     .clearCookie("accessToken", options)
     .clearCookie("refreshToken", options)
     .json(new ApiResponse(200, {}, "User logged out"));
+});
+
+export const addIncome = asyncHandler(async (req, res) => {
+  const { email, income } = req.body;
+
+  if (!email) throw new ApiError(400, "User email is required to add income");
+  if (!income)
+    throw new ApiError(400, "Income ammount is required to add income");
+
+  const user = await User.findOne({ email });
+  if (!user) throw new ApiError(404, "User not found");
+
+  await User.updateOne(
+    { _id: user._id },
+    { hasSetIncome: true, income: income },
+  );
+
+  return res.status(200).json(new ApiResponse(200, {}, "Added income"));
 });
