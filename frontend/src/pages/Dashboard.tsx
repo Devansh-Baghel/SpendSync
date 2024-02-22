@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 function Dashboard() {
   return (
-    <div className="m-5">
+    <div className="m-5 flex gap-32">
       <aside className="text-accent-foreground flex flex-col pl-10 w-52 justify-between h-[90vh]">
         <div className="flex flex-col gap-8">
           <Link to={"/"} className="flex items-center gap-2 mt-5 mb-10">

@@ -12,17 +12,20 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("userStatus") === "loggedIn",
   );
+  const [userData, setUserData] = useState({});
 
   axios.defaults.baseURL = "http://localhost:3000/api/v1";
   axios.defaults.withCredentials = true;
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+      <AppContext.Provider
+        value={{ isLoggedIn, setIsLoggedIn, userData, setUserData }}
+      >
         {/* <IconContext.Provider value={{ size: "2em" }}> */}
-          {/* <ModeToggle /> */}
-          <Routing />
-          <Toaster />
+        {/* <ModeToggle /> */}
+        <Routing />
+        <Toaster />
         {/* </IconContext.Provider> */}
       </AppContext.Provider>
     </ThemeProvider>

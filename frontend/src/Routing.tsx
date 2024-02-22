@@ -8,6 +8,7 @@ import { useContext } from "react";
 import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings";
 import Transactions from "./pages/Transactions";
+import Overview from "./pages/Overview";
 
 function Routing() {
   const { isLoggedIn } = useContext(AppContext);
@@ -17,6 +18,10 @@ function Routing() {
       path: "/",
       element: isLoggedIn ? <Dashboard /> : <Landing />,
       children: [
+        {
+          index: true,
+          element: <Overview />,
+        },
         {
           path: "settings",
           element: <Settings />,

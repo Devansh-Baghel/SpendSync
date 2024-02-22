@@ -20,7 +20,7 @@ import { useToast } from "@/components/ui/use-toast";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { isLoggedIn, setIsLoggedIn } = useContext(AppContext);
+  const { isLoggedIn, setIsLoggedIn, setUserData } = useContext(AppContext);
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -41,8 +41,8 @@ function Login() {
       .then((response) => {
         localStorage.setItem("userStatus", "loggedIn");
         setIsLoggedIn(true);
+        setUserData(response.data.data.user);
         navigate("/");
-        return response.data;
       })
       .catch((error) => {
         if (error.response?.status === 404) {
