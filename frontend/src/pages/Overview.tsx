@@ -2,6 +2,8 @@ import { useContext, useEffect } from "react";
 import { AppContext } from "@/App";
 import AccountBalance from "@/components/AccountBalance";
 import AddMoneyWhenBalanceZero from "@/components/AddMoneyWhenBalanceZero";
+import IncomeAndExpense from "@/components/IncomeAndExpense";
+import AddIncomeAndExpense from "@/components/AddIncomeAndExpense";
 
 function Overview() {
   const { userData } = useContext(AppContext);
@@ -15,6 +17,14 @@ function Overview() {
         <AddMoneyWhenBalanceZero />
       ) : (
         <AccountBalance />
+      )}
+      <h1 className="text-2xl font-bold text-background my-5">
+        Income and expense
+      </h1>
+      {userData.hasSetIncomeAndExpense ? (
+        <IncomeAndExpense />
+      ) : (
+        <AddIncomeAndExpense />
       )}
     </div>
   );
