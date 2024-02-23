@@ -23,6 +23,12 @@ const userSchema = mongoose.Schema(
         ref: "Transaction",
       },
     ],
+    goals: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Goal",
+      },
+    ],
     password: {
       type: String,
       required: [true, "Password is required"],

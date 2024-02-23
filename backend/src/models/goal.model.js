@@ -1,3 +1,4 @@
+import { Schema } from "mongoose";
 import mongoose from "mongoose";
 
 const goalSchema = mongoose.Schema(
@@ -19,7 +20,7 @@ const goalSchema = mongoose.Schema(
     },
     category: {
       type: String,
-      default: "other",
+      default: "Savings",
     },
     title: {
       type: String,

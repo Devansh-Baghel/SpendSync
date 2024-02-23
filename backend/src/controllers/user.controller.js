@@ -155,10 +155,8 @@ export const logoutUser = asyncHandler(async (req, res) => {
 // });
 
 export const addIncomeAndExpense = asyncHandler(async (req, res) => {
-  const { email, income, expense } = req.body;
+  const { income, expense } = req.body;
 
-  if (!email)
-    throw new ApiError(400, "User email is required to add income and expense");
   if (income === undefined)
     throw new ApiError(400, "Income is required to add income and expense");
   if (expense === undefined)
@@ -173,7 +171,7 @@ export const addIncomeAndExpense = asyncHandler(async (req, res) => {
   if (expense > income)
     throw new ApiError(400, "Expense can't be greater than income");
 
-  const user = await User.findOne({ email });
+  const user = await User.findById(req.user?._id);
   if (!user) throw new ApiError(404, "User not found");
 
   await User.updateOne(
