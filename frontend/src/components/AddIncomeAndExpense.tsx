@@ -12,15 +12,35 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "./ui/use-toast";
+import axios from "axios";
 
 function AddIncomeAndExpense() {
-  const { userData } = useContext(AppContext);
+  const { userData, setUserData } = useContext(AppContext);
   const [modalOpen, setModalOpen] = useState(false);
+  const [income, setIncome] = useState();
+  const [expense, setExpense] = useState();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log("a;sdf");
-    setModalOpen(false)
+    if (expense === undefined || income === undefined) return;
+    if (expense > income) {
+      toast({
+        description: "Expenses can't be greater than income.",
+      });
+      return;
+    }
+    await axios
+      .post("/users/add-income-and-expense", {
+        email: userData.email,
+        income,
+        expense,
+      })
+      .then((res) => {
+        localStorage.setItem("userData", JSON.stringify(res.data.data.user));
+        setUserData(res.data.data.user);
+        setModalOpen(false);
+      });
   }
 
   return (
@@ -51,6 +71,9 @@ function AddIncomeAndExpense() {
                   type="number"
                   min="0"
                   required
+                  onChange={(e) => {
+                    setIncome(+e.target.value);
+                  }}
                 />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
@@ -63,6 +86,9 @@ function AddIncomeAndExpense() {
                   type="number"
                   min="0"
                   required
+                  onChange={(e) => {
+                    setExpense(+e.target.value);
+                  }}
                 />
               </div>
             </div>
