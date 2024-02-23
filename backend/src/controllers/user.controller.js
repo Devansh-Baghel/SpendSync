@@ -153,3 +153,50 @@ export const addExpense = asyncHandler(async (req, res) => {
 
   return res.status(200).json(new ApiResponse(200, {}, "Added expense"));
 });
+
+export const addIncomeAndExpense = asyncHandler(async (req, res) => {
+  const { email, income, expense } = req.body;
+
+  if (!email)
+    throw new ApiError(400, "User email is required to add income and expense");
+  if (income === undefined)
+    throw new ApiError(400, "Income is required to add income and expense");
+  if (expense === undefined)
+    throw new ApiError(400, "Expense is required to add income and expense");
+
+  if (isNaN(income) || isNaN(expense))
+    throw new ApiError(400, "Income and Expense must be a number");
+
+  if (income < 0 || expense < 0)
+    throw new ApiError(400, "Income and Expense can't be less than zero");
+
+  if (expense > income)
+    throw new ApiError(400, "Expense can't be greater than income");
+
+  const user = await User.findOne({ email });
+  if (!user) throw new ApiError(404, "User not found");
+
+  await User.updateOne(
+    { _id: user._id },
+    {
+      hasSetIncome: true,
+      income: income,
+      hasSetExpense: true,
+      expense: expense,
+    },
+  );
+
+  const updatedUser = await User.findById(user._id).select(
+    "-password -refreshToken",
+  );
+
+  return res.status(200).json(
+    new ApiResponse(
+      200,
+      {
+        user: updatedUser,
+      },
+      "Income and expense added successfully",
+    ),
+  );
+});

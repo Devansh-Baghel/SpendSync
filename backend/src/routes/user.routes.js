@@ -5,6 +5,7 @@ import {
   logoutUser,
   addIncome,
   addExpense,
+  addIncomeAndExpense,
 } from "../controllers/user.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
@@ -18,5 +19,6 @@ router.route("/login").post(loginUser);
 router.route("/logout").post(verifyJWT, logoutUser);
 router.route("/add-income").post(verifyJWT, addIncome);
 router.route("/add-expense").post(verifyJWT, addExpense);
+router.route("/add-income-and-expense").post(verifyJWT, addIncomeAndExpense);
 
 export default router;

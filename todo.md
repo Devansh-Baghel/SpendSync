@@ -2,13 +2,13 @@
 - [x] logout frontend
 - [ ] get Transactions controller + route
 - [ ] create Transaction controller + route
-- [ ] add initial deposit controller
-- [ ] add initial deposit frontend
-- [ ] add monthly recurring income
-- [ ] add hasSetIncome in user.model
-- [ ] add hasSetExpenses in user.model
-- [ ] add monthlyIncome in user.model
-- [ ] add monthlyExpenses in user.model
+- [x] add initial deposit frontend
+- [x] add monthly recurring income
+- [x] add hasSetIncome in user.model
+- [x] add hasSetExpenses in user.model
+- [x] add monthlyIncome in user.model
+- [x] add monthlyExpenses in user.model
+- [ ] Merge income and expenses in a single route w/ controller as you can't have expense more than income
 - [ ] Add attachment feature in sidebar
 - [ ] filter Transactions feature
 - [ ] Demo user in register/login
