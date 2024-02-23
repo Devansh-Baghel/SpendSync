@@ -118,41 +118,41 @@ export const logoutUser = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, {}, "User logged out"));
 });
 
-export const addIncome = asyncHandler(async (req, res) => {
-  const { email, income } = req.body;
+// export const addIncome = asyncHandler(async (req, res) => {
+//   const { email, income } = req.body;
 
-  if (!email) throw new ApiError(400, "User email is required to add income");
-  if (!income)
-    throw new ApiError(400, "Income ammount is required to add income");
+//   if (!email) throw new ApiError(400, "User email is required to add income");
+//   if (!income)
+//     throw new ApiError(400, "Income ammount is required to add income");
 
-  const user = await User.findOne({ email });
-  if (!user) throw new ApiError(404, "User not found");
+//   const user = await User.findOne({ email });
+//   if (!user) throw new ApiError(404, "User not found");
 
-  await User.updateOne(
-    { _id: user._id },
-    { hasSetIncome: true, income: income },
-  );
+//   await User.updateOne(
+//     { _id: user._id },
+//     { hasSetIncome: true, income: income },
+//   );
 
-  return res.status(200).json(new ApiResponse(200, {}, "Added income"));
-});
+//   return res.status(200).json(new ApiResponse(200, {}, "Added income"));
+// });
 
-export const addExpense = asyncHandler(async (req, res) => {
-  const { email, expense } = req.body;
+// export const addExpense = asyncHandler(async (req, res) => {
+//   const { email, expense } = req.body;
 
-  if (!email) throw new ApiError(400, "User email is required to add income");
-  if (!expense)
-    throw new ApiError(400, "Expense ammount is required to add income");
+//   if (!email) throw new ApiError(400, "User email is required to add income");
+//   if (!expense)
+//     throw new ApiError(400, "Expense ammount is required to add income");
 
-  const user = await User.findOne({ email });
-  if (!user) throw new ApiError(404, "User not found");
+//   const user = await User.findOne({ email });
+//   if (!user) throw new ApiError(404, "User not found");
 
-  await User.updateOne(
-    { _id: user._id },
-    { hasSetExpense: true, expense: expense },
-  );
+//   await User.updateOne(
+//     { _id: user._id },
+//     { hasSetExpense: true, expense: expense },
+//   );
 
-  return res.status(200).json(new ApiResponse(200, {}, "Added expense"));
-});
+//   return res.status(200).json(new ApiResponse(200, {}, "Added expense"));
+// });
 
 export const addIncomeAndExpense = asyncHandler(async (req, res) => {
   const { email, income, expense } = req.body;
@@ -179,9 +179,8 @@ export const addIncomeAndExpense = asyncHandler(async (req, res) => {
   await User.updateOne(
     { _id: user._id },
     {
-      hasSetIncome: true,
+      hasSetIncomeAndExpense: true,
       income: income,
-      hasSetExpense: true,
       expense: expense,
     },
   );

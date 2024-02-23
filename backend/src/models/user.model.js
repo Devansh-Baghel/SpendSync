@@ -34,11 +34,7 @@ const userSchema = mongoose.Schema(
     refershToken: {
       type: String,
     },
-    hasSetIncome: {
-      type: Boolean,
-      default: false
-    },
-    hasSetExpense: {
+    hasSetIncomeAndExpense: {
       type: Boolean,
       default: false
     },
