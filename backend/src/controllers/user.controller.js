@@ -135,3 +135,21 @@ export const addIncome = asyncHandler(async (req, res) => {
 
   return res.status(200).json(new ApiResponse(200, {}, "Added income"));
 });
+
+export const addExpense = asyncHandler(async (req, res) => {
+  const { email, expense } = req.body;
+
+  if (!email) throw new ApiError(400, "User email is required to add income");
+  if (!expense)
+    throw new ApiError(400, "Expense ammount is required to add income");
+
+  const user = await User.findOne({ email });
+  if (!user) throw new ApiError(404, "User not found");
+
+  await User.updateOne(
+    { _id: user._id },
+    { hasSetExpense: true, expense: expense },
+  );
+
+  return res.status(200).json(new ApiResponse(200, {}, "Added expense"));
+});
