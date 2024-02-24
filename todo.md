@@ -20,3 +20,8 @@
   - [ ] Overview
   - [ ] Transactions
   - [ ] Settings / Account
+- [ ] Goals
+  - [ ] Goals not found frontend
+  - [ ] Goals model, finalAmount, currentAmount, title, desc, coverImge
+  - [ ] Each goal seperate page
+  - [ ] markdown mode in goal desc

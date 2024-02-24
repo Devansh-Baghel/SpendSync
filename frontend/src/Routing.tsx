@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings";
 import Transactions from "./pages/Transactions";
 import Overview from "./pages/Overview";
+import Goals from "./pages/Goals";
 
 function Routing() {
   const { isLoggedIn } = useContext(AppContext);
@@ -29,6 +30,10 @@ function Routing() {
         {
           path: "transactions",
           element: <Transactions />,
+        },
+        {
+          path: "goals",
+          element: <Goals />,
         },
       ],
     },
