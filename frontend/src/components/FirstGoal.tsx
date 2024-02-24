@@ -19,9 +19,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import axios from "axios";
 
 function FirstGoal() {
-  const { userData } = useContext(AppContext);
+  const { setUserData } = useContext(AppContext);
   const [title, setTitle] = useState();
   const [amount, setAmount] = useState();
   const [category, setCategory] = useState();
@@ -29,7 +30,20 @@ function FirstGoal() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(title, amount, category,  description);
+    console.log(title, amount, category, description);
+    if (title === undefined || amount === undefined) return;
+    await axios
+      .post("/goals/create-goal", {
+        title,
+        finalAmount: amount,
+        category,
+        description,
+      })
+      .then((res) => {
+      console.log(res)
+        localStorage.setItem("userData", JSON.stringify(res.data.data));
+        setUserData(res.data.data);
+      });
   }
 
   return (
@@ -76,19 +90,19 @@ function FirstGoal() {
               />
             </div>
             <div>
-            <Label>Category</Label>
-            <Select onValueChange={(value) => setCategory(value)}>
-              <SelectTrigger className="h-9 data-[placeholder]:text-muted-foreground">
-                <SelectValue placeholder="Optional Category" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Savings">Savings</SelectItem>
-                <SelectItem value="Investment">Investment</SelectItem>
-                <SelectItem value="Emergency">Emergency</SelectItem>
-                <SelectItem value="Travel">Travel</SelectItem>
-                <SelectItem value="Retirement">Retirement</SelectItem>
-              </SelectContent>
-            </Select>
+              <Label>Category</Label>
+              <Select onValueChange={(value) => setCategory(value)}>
+                <SelectTrigger className="h-9 data-[placeholder]:text-muted-foreground">
+                  <SelectValue placeholder="Optional Category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Savings">Savings</SelectItem>
+                  <SelectItem value="Investment">Investment</SelectItem>
+                  <SelectItem value="Emergency">Emergency</SelectItem>
+                  <SelectItem value="Travel">Travel</SelectItem>
+                  <SelectItem value="Retirement">Retirement</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             <div className="">
               <Label htmlFor="description" className="">

@@ -13,7 +13,7 @@ function Overview() {
   return (
     <div className="bg-primary rounded-[25px] w-screen h-[92vh] py-8 px-12">
       <h1 className="text-3xl font-bold text-background mb-5">Overview</h1>
-      {userData.currentBalance === 0 ? (
+      {userData.user.currentBalance === 0 ? (
         <AddMoneyWhenBalanceZero />
       ) : (
         <AccountBalance />
@@ -21,7 +21,7 @@ function Overview() {
       <h1 className="text-2xl font-bold text-background my-5">
         Income and expense
       </h1>
-      {userData.hasSetIncomeAndExpense ? (
+      {userData.user.hasSetIncomeAndExpense ? (
         <IncomeAndExpense />
       ) : (
         <AddIncomeAndExpense />

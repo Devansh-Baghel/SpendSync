@@ -32,13 +32,13 @@ function AddIncomeAndExpense() {
     }
     await axios
       .post("/users/add-income-and-expense", {
-        email: userData.email,
+        email: userData.user.email,
         income,
         expense,
       })
       .then((res) => {
-        localStorage.setItem("userData", JSON.stringify(res.data.data.user));
-        setUserData(res.data.data.user);
+        localStorage.setItem("userData", JSON.stringify(res.data.data));
+        setUserData(res.data.data);
         setModalOpen(false);
       });
   }

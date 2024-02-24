@@ -8,7 +8,7 @@ function Goals() {
   return (
     <div className="bg-primary rounded-[25px] w-screen h-[92vh] py-8 px-12">
       <h1 className="text-3xl font-bold text-background mb-5">Goals</h1>
-      {userData.goals.length === 0 ? (
+      {userData.user.goals.length === 0 ? (
         <FirstGoal />
       ) : (
         <h2>Here are your goals</h2>
