@@ -40,7 +40,7 @@ function FirstGoal() {
         description,
       })
       .then((res) => {
-      console.log(res)
+        console.log(res);
         localStorage.setItem("userData", JSON.stringify(res.data.data));
         setUserData(res.data.data);
       });
@@ -48,7 +48,11 @@ function FirstGoal() {
 
   return (
     <Card className="max-w-[400px]">
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+      >
         <CardHeader>
           <CardTitle>Add a New Goal</CardTitle>
           <CardDescription>

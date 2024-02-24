@@ -12,6 +12,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Button } from "./ui/button";
+import AddNewGoal from "./AddNewGoal";
 
 function GoalsDisplay() {
   const [goals, setGoals] = useState([]);
@@ -27,10 +28,10 @@ function GoalsDisplay() {
     <div className="flex gap-6">
     <ScrollArea className="h-[75vh] w-[500px] rounded-xl">
       {goals.map((goal) => (
-        <Card className="mt-4">
+        <Card className="mt-4" key={goal._id}>
           <CardHeader>
             <CardTitle className="text-lg">{goal.title}</CardTitle>
-            <CardDescription><Badge className="text-xs">{goal.category}</Badge></CardDescription>
+            <div><Badge className="text-xs">{goal.category}</Badge></div>
           </CardHeader>
           <CardContent>
             {/* <p>Current Amount: ${goal.currentAmount}</p> */}
@@ -50,8 +51,8 @@ function GoalsDisplay() {
 
     <div className="flex flex-col justify-end">
         <Card className="h-24 w-96 mb-2 flex items-center justify-center gap-6">
-          <Button>Create a New Goal</Button>
-          <Button>Add Money to a Goal</Button>
+          <AddNewGoal />
+          <Button className="font-bold">Add Money to a Goal</Button>
         </Card>
     </div>
     </div>

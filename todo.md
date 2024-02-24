@@ -25,3 +25,5 @@
   - [ ] Goals model, finalAmount, currentAmount, title, desc, coverImge
   - [ ] Each goal seperate page
   - [ ] markdown mode in goal desc
+  - [ ] when do you wan't this goal to finish? shadcn datetime in the frontend
+  - [ ] shadcn command box on frontend
