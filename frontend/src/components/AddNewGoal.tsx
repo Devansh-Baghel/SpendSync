@@ -22,6 +22,7 @@ import {
 import axios from "axios";
 import { useContext, useState, useEffect } from "react";
 import { AppContext } from "@/App";
+import { FaPlus as PlusIcon } from "react-icons/fa";
 
 function AddNewGoal() {
   const { setUserData } = useContext(AppContext);
@@ -53,7 +54,16 @@ function AddNewGoal() {
   return (
     <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
       {/* <SheetTrigger> */}
-        <Button className="font-bold " variant={"outline"} onClick={() => {setSheetOpen(true)}}>Create a New Goal</Button>
+      <Button
+        className="font-bold h-14 text-md w-72 flex gap-2"
+        variant={"outline"}
+        onClick={() => {
+          setSheetOpen(true);
+        }}
+      >
+        <PlusIcon className="w-5 h-5"/>
+        Create a New Goal
+      </Button>
       {/* </SheetTrigger> */}
       <SheetContent>
         <form

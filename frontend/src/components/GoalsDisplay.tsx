@@ -19,6 +19,7 @@ import { useParams, useNavigate } from "react-router-dom";
 function GoalsDisplay() {
   const [goals, setGoals] = useState([]);
   const [selectedGoal, setSelectedGoal] = useState({});
+  const [isSelected, setIsSelected] = useState(false);
   const { goalId } = useParams();
   const navigate = useNavigate();
 
@@ -29,6 +30,10 @@ function GoalsDisplay() {
     });
   }, []);
 
+  useEffect(() => {
+    if (!goalId) setIsSelected(false);
+  }, [goalId]);
+
   return (
     <div className="flex gap-6">
       <ScrollArea className="h-[75vh] w-[400px] rounded-xl">
@@ -38,6 +43,7 @@ function GoalsDisplay() {
             key={goal._id}
             onClick={() => {
               setSelectedGoal(goal);
+              setIsSelected(true);
               navigate(`/goals/${goal._id}`);
             }}
           >
@@ -66,9 +72,22 @@ function GoalsDisplay() {
         {goalId === selectedGoal._id && goalId !== undefined ? (
           <SingularGoalView goalData={selectedGoal} />
         ) : (
-          <h2 className="text-xl text-primary-foreground">Select a goal</h2>
+          <div className="flex flex-col justify-center items-center gap-6 flex-1">
+            <h2 className="text-2xl text-primary-foreground font-bold">
+              Select a goal to view
+            </h2>
+            <h2 className="text-xl font-bold text-primary-foreground">or</h2>
+            <AddNewGoal />
+          </div>
         )}
-          <AddNewGoal />
+
+        {isSelected ? (
+          <div className="flex justify-end">
+            <AddNewGoal />
+          </div>
+        ) : (
+          <span></span>
+        )}
       </div>
     </div>
   );
