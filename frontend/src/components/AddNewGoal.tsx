@@ -53,7 +53,7 @@ function AddNewGoal() {
   return (
     <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
       {/* <SheetTrigger> */}
-        <Button className="font-bold" onClick={() => {setSheetOpen(true)}}>Create a New Goal</Button>
+        <Button className="font-bold " variant={"outline"} onClick={() => {setSheetOpen(true)}}>Create a New Goal</Button>
       {/* </SheetTrigger> */}
       <SheetContent>
         <form

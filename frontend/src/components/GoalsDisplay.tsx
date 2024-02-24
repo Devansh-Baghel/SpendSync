@@ -31,7 +31,7 @@ function GoalsDisplay() {
 
   return (
     <div className="flex gap-6">
-      <ScrollArea className="h-[75vh] w-[500px] rounded-xl">
+      <ScrollArea className="h-[75vh] w-[400px] rounded-xl">
         {goals.map((goal) => (
           <Card
             className="mt-4 mr-4 hover:bg-accent hover:cursor-pointer"
@@ -62,16 +62,13 @@ function GoalsDisplay() {
           </Card>
         ))}
       </ScrollArea>
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-between flex-1">
         {goalId === selectedGoal._id && goalId !== undefined ? (
           <SingularGoalView goalData={selectedGoal} />
         ) : (
           <h2 className="text-xl text-primary-foreground">Select a goal</h2>
         )}
-        <Card className="h-24 w-96 mb-2 flex items-center justify-center gap-6">
           <AddNewGoal />
-          <Button className="font-bold">Add Money to a Goal</Button>
-        </Card>
       </div>
     </div>
   );
