@@ -10,6 +10,7 @@ import Settings from "./pages/Settings";
 import Transactions from "./pages/Transactions";
 import Overview from "./pages/Overview";
 import Goals from "./pages/Goals";
+import SingularGoalView from "./components/SingularGoalView";
 
 function Routing() {
   const { isLoggedIn } = useContext(AppContext);
@@ -34,6 +35,12 @@ function Routing() {
         {
           path: "goals",
           element: <Goals />,
+          children: [
+            {
+              path: ":goalId",
+              element: <SingularGoalView />
+            }
+          ]
         },
       ],
     },

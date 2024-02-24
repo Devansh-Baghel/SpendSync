@@ -27,3 +27,5 @@
   - [ ] markdown mode in goal desc
   - [ ] when do you wan't this goal to finish? shadcn datetime in the frontend
   - [ ] shadcn command box on frontend
+  - [ ] paginate goals display
+  - [ ] GoalsDisplay doesn't immideatly refresh to add the new goal after creating a new goal
