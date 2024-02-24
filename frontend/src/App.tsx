@@ -15,6 +15,7 @@ function App() {
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("userData")),
   );
+  const [selectedGoal, setSelectedGoal] = useState({});
 
   axios.defaults.baseURL = "http://localhost:3000/api/v1";
   axios.defaults.withCredentials = true;
@@ -22,7 +23,7 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <AppContext.Provider
-        value={{ isLoggedIn, setIsLoggedIn, userData, setUserData }}
+        value={{ isLoggedIn, setIsLoggedIn, userData, setUserData, selectedGoal, setSelectedGoal }}
       >
         {/* <IconContext.Provider value={{ size: "2em" }}> */}
         {/* <ModeToggle /> */}

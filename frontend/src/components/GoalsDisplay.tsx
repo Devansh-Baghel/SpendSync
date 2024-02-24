@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AppContext } from "@/App";
 import axios from "axios";
 import {
   Card,
@@ -18,7 +19,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 function GoalsDisplay() {
   const [goals, setGoals] = useState([]);
-  const [selectedGoal, setSelectedGoal] = useState({});
+  const { selectedGoal, setSelectedGoal } = useContext(AppContext);
   const [isSelected, setIsSelected] = useState(false);
   const { goalId } = useParams();
   const navigate = useNavigate();
@@ -62,9 +63,6 @@ function GoalsDisplay() {
                 $1300
               </div>
             </CardContent>
-            {/* <CardFooter> */}
-            {/*   <p></p> */}
-            {/* </CardFooter> */}
           </Card>
         ))}
       </ScrollArea>
