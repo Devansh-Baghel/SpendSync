@@ -1,10 +1,11 @@
 import { Router } from "express";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
-import { createGoal } from "../controllers/goal.controller.js";
+import { createGoal, getGoals } from "../controllers/goal.controller.js";
 
 const router = Router();
 
 // secure routes
 router.route("/create-goal").post(verifyJWT, createGoal);
+router.route("/get-goals").get(verifyJWT, getGoals);
 
-export default router
+export default router;

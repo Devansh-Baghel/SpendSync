@@ -28,3 +28,16 @@ export const createGoal = asyncHandler(async (req, res) => {
       new ApiResponse(201, { user, goal }, "New goal successfully created"),
     );
 });
+
+export const getGoals = asyncHandler(async (req, res) => {
+  const userGoals = req.user.goals;
+
+  if (!userGoals || userGoals.length === 0)
+    throw new ApiError(404, "User doesn't have any goals");
+
+  const goals = await Goal.find({ _id: { $in: userGoals } });
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, { goals }, "Goals sent successfully"));
+});
