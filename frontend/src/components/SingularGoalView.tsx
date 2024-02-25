@@ -13,6 +13,7 @@ import { Button } from "./ui/button";
 import UpdateGoal from "./UpdateGoal";
 import { useContext, useEffect } from "react";
 import { AppContext } from "@/App";
+import AddMoneyToGoal from "./AddMoneyToGoal";
 
 const formatter = new Intl.NumberFormat("en-US");
 
@@ -70,9 +71,8 @@ function SingularGoalView() {
         </div>
       </CardContent>
       <CardFooter className="flex gap-4 justify-self-end self-end absolute bottom-0">
-        {/* <Button variant={"outline"}>Update This Goal</Button> */}
         <UpdateGoal />
-        <Button>Add Money to This Goal</Button>
+        <AddMoneyToGoal />
       </CardFooter>
     </Card>
   );
