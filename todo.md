@@ -29,3 +29,5 @@
   - [ ] shadcn command box on frontend
   - [ ] paginate goals display
   - [ ] GoalsDisplay doesn't immideatly refresh to add the new goal after creating a new goal
+
+- [ ] update goal controller w/ endpoint

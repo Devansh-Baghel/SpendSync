@@ -22,6 +22,7 @@ import {
 import axios from "axios";
 import { useContext, useState, useEffect } from "react";
 import { AppContext } from "@/App";
+import { useToast } from "@/components/ui/use-toast";
 
 function UpdateGoal() {
   const { setUserData, selectedGoal } = useContext(AppContext);
@@ -30,6 +31,7 @@ function UpdateGoal() {
   const [amount, setAmount] = useState(selectedGoal.finalAmount);
   const [category, setCategory] = useState(selectedGoal.category);
   const [description, setDescription] = useState(selectedGoal.description);
+  const { toast } = useToast();
 
   useEffect(() => {
     setTitle(selectedGoal.title);
@@ -40,21 +42,36 @@ function UpdateGoal() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // console.log(title, amount, category, description);
-    // if (title === undefined || amount === undefined) return;
-    // await axios
-    //   .post("/goals/create-goal", {
-    //     title,
-    //     finalAmount: amount,
-    //     category,
-    //     description,
-    //   })
-    //   .then((res) => {
-    //     console.log(res);
-    //     localStorage.setItem("userData", JSON.stringify(res.data.data));
-    //     setUserData(res.data.data);
-    //     setSheetOpen(false);
-    //   });
+    console.log(title, amount, category, description);
+    if (title === undefined || amount === undefined) return;
+
+    if (
+      title === selectedGoal.title &&
+      amount === selectedGoal.finalAmount &&
+      category === selectedGoal.category &&
+      description === selectedGoal.description
+    ) {
+      toast({
+        // title: "Scheduled: Catch up",
+        description: "No Changes Made",
+      });
+      setSheetOpen(false);
+      return;
+    }
+    await axios
+      .post("/goals/update-goal", {
+        goalId: selectedGoal._id,
+        title,
+        finalAmount: amount,
+        category,
+        description,
+      })
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("userData", JSON.stringify(res.data.data));
+        setUserData(res.data.data);
+        setSheetOpen(false);
+      });
   }
 
   return (
@@ -143,9 +160,7 @@ function UpdateGoal() {
             </div>
           </div>
           <SheetFooter>
-            {/* <SheetClose asChild> */}
             <Button type="submit">Save changes</Button>
-            {/* </SheetClose> */}
           </SheetFooter>
         </form>
       </SheetContent>
