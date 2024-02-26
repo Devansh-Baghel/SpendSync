@@ -1,7 +1,6 @@
 import Routing from "./Routing";
 import { ThemeProvider } from "./components/theme-provider";
 import { Toaster } from "./components/ui/toaster";
-// import { ModeToggle } from "./components/mode-toggle";
 import { createContext, useState } from "react";
 import axios from "axios";
 // import { IconContext } from "react-icons";

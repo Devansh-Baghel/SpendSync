@@ -8,6 +8,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import DatePicker from "@/components/DatePicker";
 import SidebarPreferences from "@/components/SidebarPreferences";
+import MoreAccountOptions from "@/components/MoreAccountOptions";
+import { ModeToggle } from "@/components/mode-toggle";
 
 const getAvatarFallback = (name: string) =>
   name
@@ -77,11 +79,9 @@ function Account() {
           <Card className="p-10">
             <DatePicker />
             <SidebarPreferences />
+
           </Card>
-          <Card className="p-10 flex-1">
-            <DatePicker />
-            <SidebarPreferences />
-          </Card>
+          <MoreAccountOptions />
         </div>
       </div>
     </div>
