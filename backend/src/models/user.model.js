@@ -42,7 +42,7 @@ const userSchema = mongoose.Schema(
     },
     hasSetIncomeAndExpense: {
       type: Boolean,
-      default: false
+      default: false,
     },
     income: {
       type: Number,
@@ -51,7 +51,16 @@ const userSchema = mongoose.Schema(
     expense: {
       type: Number,
       min: 0,
-    }
+    },
+    avatar: {
+      type: String,
+    },
+    bio: {
+      type: String,
+    },
+    dateOfBirth: {
+      type: Date,
+    },
   },
   { timestamps: true },
 );
