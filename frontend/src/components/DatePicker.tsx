@@ -17,7 +17,7 @@ function DatePicker() {
 
   return (
     <div className="">
-      <div className="mt-10 ml-10 flex gap-4">
+      <div className="flex gap-4">
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="date" className="text-sm font-semibold">
             Date of Birth

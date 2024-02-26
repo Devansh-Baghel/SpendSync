@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import DatePicker from "@/components/DatePicker";
+import SidebarPreferences from "@/components/SidebarPreferences";
 
 const getAvatarFallback = (name: string) =>
   name
@@ -63,14 +64,25 @@ function Account() {
             <Label htmlFor="bio" className="txt-md">
               Bio
             </Label>
-            <Textarea id="bio" placeholder="Tell us about yourself..."  className=""/>
+            <Textarea
+              id="bio"
+              placeholder="Tell us about yourself..."
+              className=""
+            />
           </div>
 
-            <Button className="mt-2 self-center w-[290px]">Save Changes</Button>
+          <Button className="mt-2 self-center w-[290px]">Save Changes</Button>
         </Card>
-        <Card className="flex-1">
-          <DatePicker />
-        </Card>
+        <div className="flex-1 flex flex-col gap-6">
+          <Card className="p-10">
+            <DatePicker />
+            <SidebarPreferences />
+          </Card>
+          <Card className="p-10 flex-1">
+            <DatePicker />
+            <SidebarPreferences />
+          </Card>
+        </div>
       </div>
     </div>
   );
