@@ -10,6 +10,7 @@ import Settings from "./pages/Settings";
 import Transactions from "./pages/Transactions";
 import Overview from "./pages/Overview";
 import Goals from "./pages/Goals";
+import Account from "./pages/Account";
 import SingularGoalView from "./components/SingularGoalView";
 
 function Routing() {
@@ -31,6 +32,10 @@ function Routing() {
         {
           path: "transactions",
           element: <Transactions />,
+        },
+        {
+          path: "account",
+          element: <Account />,
         },
         {
           path: "goals",

@@ -9,9 +9,8 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Button } from "./ui/button";
 import UpdateGoal from "./UpdateGoal";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AppContext } from "@/App";
 import AddMoneyToGoal from "./AddMoneyToGoal";
 

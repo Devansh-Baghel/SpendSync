@@ -1,18 +1,10 @@
 import { useEffect, useState, useContext } from "react";
 import { AppContext } from "@/App";
 import axios from "axios";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Button } from "./ui/button";
 import AddNewGoal from "./AddNewGoal";
 import SingularGoalView from "./SingularGoalView";
 import { useParams, useNavigate } from "react-router-dom";
