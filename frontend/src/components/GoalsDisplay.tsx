@@ -31,7 +31,7 @@ function GoalsDisplay() {
       setGoals(res.data.data.goals.reverse());
       console.log(res.data);
     });
-  }, []);
+  }, [selectedGoal]);
 
   useEffect(() => {
     if (!goalId) setIsSelected(false);
@@ -70,7 +70,7 @@ function GoalsDisplay() {
       </ScrollArea>
       <div className="flex flex-col justify-between flex-1">
         {goalId === selectedGoal._id && goalId !== undefined ? (
-          <SingularGoalView goalData={selectedGoal} />
+          <SingularGoalView />
         ) : (
           <div className="flex flex-col justify-center items-center gap-6 flex-1">
             <h2 className="text-2xl text-primary-foreground font-bold">

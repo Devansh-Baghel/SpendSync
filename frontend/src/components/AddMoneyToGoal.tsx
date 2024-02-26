@@ -16,7 +16,8 @@ import axios from "axios";
 function AddMoneyToGoal() {
   const [modalOpen, setModalOpen] = useState(false);
   const [amountToAdd, setAmountToAdd] = useState();
-  const { selectedGoal, userData, setUserData } = useContext(AppContext);
+  const { selectedGoal, setSelectedGoal, userData, setUserData } =
+    useContext(AppContext);
   const { toast } = useToast();
 
   async function handleSubmit(e) {
@@ -49,6 +50,7 @@ function AddMoneyToGoal() {
         console.log(res);
         localStorage.setItem("userData", JSON.stringify(res.data.data));
         setUserData(res.data.data);
+        setSelectedGoal(res.data.data.goal);
         setModalOpen(false);
       });
   }

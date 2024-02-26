@@ -25,7 +25,7 @@ import { AppContext } from "@/App";
 import { useToast } from "@/components/ui/use-toast";
 
 function UpdateGoal() {
-  const { setUserData, selectedGoal } = useContext(AppContext);
+  const { setUserData, selectedGoal, setSelectedGoal } = useContext(AppContext);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [title, setTitle] = useState(selectedGoal.title);
   const [amount, setAmount] = useState(selectedGoal.finalAmount);
@@ -70,6 +70,7 @@ function UpdateGoal() {
         console.log(res);
         localStorage.setItem("userData", JSON.stringify(res.data.data));
         setUserData(res.data.data);
+        setSelectedGoal(res.data.data.goal);
         setSheetOpen(false);
       });
   }
