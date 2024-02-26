@@ -29,7 +29,6 @@ function AddMoneyToGoal() {
         description:
           "Amount to add can't be more than the final amount of the goal",
       });
-      setModalOpen(false);
       return;
     }
 
@@ -37,7 +36,6 @@ function AddMoneyToGoal() {
       toast({
         description: "You don't have enough balance to make this transaction",
       });
-      setModalOpen(false);
       return;
     }
 

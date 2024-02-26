@@ -6,6 +6,7 @@ import { Card, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import DatePicker from "@/components/DatePicker";
 
 const getAvatarFallback = (name: string) =>
   name
@@ -20,7 +21,7 @@ function Account() {
     <div className="bg-primary rounded-[25px] w-screen h-[92vh] py-8 px-12 flex flex-col">
       <h1 className="text-3xl font-bold text-background mb-5">Account</h1>
       <div className="flex flex-1 gap-6">
-        <Card className="w-[450px] py-8 flex flex-col items-center gap-5">
+        <Card className="w-[350px] py-8 flex flex-col items-center gap-5">
           <Avatar className="w-32 h-32">
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback className="text-3xl">
@@ -67,7 +68,9 @@ function Account() {
 
             <Button className="mt-2 self-center w-[290px]">Save Changes</Button>
         </Card>
-        <Card>asfd</Card>
+        <Card className="flex-1">
+          <DatePicker />
+        </Card>
       </div>
     </div>
   );
