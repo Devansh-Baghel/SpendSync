@@ -78,7 +78,7 @@ function AddMoneyToGoal() {
             <Label htmlFor="amount">Amount to Add</Label>
             <Input
               id="amount"
-              className="col-span-3"
+              className="mb-6"
               type="number"
               min={1}
               required

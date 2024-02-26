@@ -41,9 +41,13 @@ function SingularGoalView() {
           of your goal, keep going!
         </h3>
         <div className="flex justify-center items-center gap-6 font-semibold mb-4">
-          $728
-          <Progress value={56} />
-          $1300
+          ${formatter.format(selectedGoal.currentAmount)}
+          <Progress
+            value={
+              (selectedGoal.currentAmount * 100) / selectedGoal.finalAmount
+            }
+          />
+          ${formatter.format(selectedGoal.finalAmount)}
         </div>
         <div className="flex flex-col gap-2">
           <p>

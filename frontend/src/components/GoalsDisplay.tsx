@@ -17,6 +17,8 @@ import AddNewGoal from "./AddNewGoal";
 import SingularGoalView from "./SingularGoalView";
 import { useParams, useNavigate } from "react-router-dom";
 
+const formatter = new Intl.NumberFormat("en-US");
+
 function GoalsDisplay() {
   const [goals, setGoals] = useState([]);
   const { selectedGoal, setSelectedGoal } = useContext(AppContext);
@@ -55,12 +57,12 @@ function GoalsDisplay() {
               </div>
             </CardHeader>
             <CardContent>
-              {/* <p>Current Amount: ${goal.currentAmount}</p> */}
-              {/* <p>Final Amount: ${goal.finalAmount}</p> */}
               <div className="flex justify-center items-center gap-6 font-semibold">
-                $728
-                <Progress value={56} />
-                $1300
+                ${formatter.format(goal.currentAmount)}
+                <Progress
+                  value={(goal.currentAmount * 100) / goal.finalAmount}
+                />
+                ${formatter.format(goal.finalAmount)}
               </div>
             </CardContent>
           </Card>
