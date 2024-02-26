@@ -1,13 +1,13 @@
 - [x] logout controller
 - [x] logout frontend
-- [ ] get Transactions controller + route
-- [ ] create Transaction controller + route
 - [x] add initial deposit frontend
 - [x] add monthly recurring income
 - [x] add hasSetIncome in user.model
 - [x] add hasSetExpenses in user.model
 - [x] add monthlyIncome in user.model
 - [x] add monthlyExpenses in user.model
+- [ ] get Transactions controller + route
+- [ ] create Transaction controller + route
 - [ ] Merge income and expenses in a single route w/ controller as you can't have expense more than income
 - [ ] Add attachment feature in sidebar
 - [ ] filter Transactions feature
@@ -21,6 +21,7 @@
   - [ ] Transactions
   - [ ] Settings / Account
 - [ ] Goals
+
   - [ ] Goals not found frontend
   - [ ] Goals model, finalAmount, currentAmount, title, desc, coverImge
   - [ ] Each goal seperate page
@@ -31,3 +32,20 @@
   - [ ] GoalsDisplay doesn't immideatly refresh to add the new goal after creating a new goal
 
 - [ ] update goal controller w/ endpoint
+- [ ] show successfull toast messages whenever a req user makes is 200ok, for AddMoneyToGoal
+- [ ] user avatar
+- [ ] Setings page: theme switch
+- [ ] Setings page: delete all goals; this doesn't work for demo account
+- [ ] Setings page: delete all transactions; this doesn't work for demo account
+- [ ] Setings page: delete account permanantly; this doesn't work for demo account
+- [ ] change password
+- [ ] change email
+- [ ] add date of birth
+- [ ] update income and expense
+- [ ] export all transaction data as a csv
+- [ ] export all transaction data as a csv
+- [ ] in overview add option to control + k andd add "Tip: try ctrl + k"
+- [ ] update account balance
+- [ ] overview: you can update this in /account ; incomeAndExpense / accountBalance
+- [ ] give feedback controller to send email
+- [ ] update date-of-birth controller

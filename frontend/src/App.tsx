@@ -14,6 +14,13 @@ function App() {
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("userData")),
   );
+  const [showGoals, setShowGoals] = useState(
+    localStorage.getItem("showGoals") === "true",
+  );
+  const [showTransactions, setShowTransactions] = useState(
+    localStorage.getItem("showTransactions") === "true",
+  );
+
   const [selectedGoal, setSelectedGoal] = useState({});
 
   axios.defaults.baseURL = "http://localhost:3000/api/v1";
@@ -22,7 +29,18 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <AppContext.Provider
-        value={{ isLoggedIn, setIsLoggedIn, userData, setUserData, selectedGoal, setSelectedGoal }}
+        value={{
+          isLoggedIn,
+          setIsLoggedIn,
+          userData,
+          setUserData,
+          selectedGoal,
+          setSelectedGoal,
+          showGoals,
+          setShowGoals,
+          showTransactions,
+          setShowTransactions,
+        }}
       >
         {/* <IconContext.Provider value={{ size: "2em" }}> */}
         {/* <ModeToggle /> */}

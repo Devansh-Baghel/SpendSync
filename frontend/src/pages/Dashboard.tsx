@@ -7,8 +7,12 @@ import { IoSettingsOutline as SettingsIcon } from "react-icons/io5";
 import { TbTargetArrow as GoalsIcon } from "react-icons/tb";
 import { IoPerson as AccountIcon } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "@/App";
 
 function Dashboard() {
+  const { showGoals, showTransactions } = useContext(AppContext);
+
   return (
     <div className="m-5 mt-7 flex gap-32">
       <aside className="text-accent-foreground flex flex-col pl-10 w-52 justify-between h-[90vh]">
@@ -23,15 +27,23 @@ function Dashboard() {
             <h2 className="text-md">Overview</h2>
           </Link>
 
-          <Link to={"/transactions"} className="flex items-center gap-6">
-            <TransactionsIcon className="w-6 h-6" />
-            <h2 className="text-md">Transactions</h2>
-          </Link>
+          {showTransactions ? (
+            <Link to={"/transactions"} className="flex items-center gap-6">
+              <TransactionsIcon className="w-6 h-6" />
+              <h2 className="text-md">Transactions</h2>
+            </Link>
+          ) : (
+            ""
+          )}
 
-          <Link to={"/goals"} className="flex items-center gap-6">
-            <GoalsIcon className="w-6 h-6" />
-            <h2 className="text-md">Goals</h2>
-          </Link>
+          {showGoals ? (
+            <Link to={"/goals"} className="flex items-center gap-6">
+              <GoalsIcon className="w-6 h-6" />
+              <h2 className="text-md">Goals</h2>
+            </Link>
+          ) : (
+            ""
+          )}
 
           <Link to={"/account"} className="flex items-center gap-6">
             <AccountIcon className="w-6 h-6" />

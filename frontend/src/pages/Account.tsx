@@ -2,14 +2,13 @@ import { useContext } from "react";
 import { AppContext } from "@/App";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Card, CardFooter } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import DatePicker from "@/components/DatePicker";
 import SidebarPreferences from "@/components/SidebarPreferences";
 import MoreAccountOptions from "@/components/MoreAccountOptions";
-import { ModeToggle } from "@/components/mode-toggle";
 
 const getAvatarFallback = (name: string) =>
   name
