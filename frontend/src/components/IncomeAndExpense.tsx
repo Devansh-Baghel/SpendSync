@@ -1,5 +1,6 @@
 import { AppContext } from "@/App";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 const formatter = new Intl.NumberFormat("en-US");
 
@@ -7,7 +8,7 @@ function IncomeAndExpense() {
   const { userData } = useContext(AppContext);
 
   return (
-    <div className="bg-card w-80 h-48 rounded-[20px] p-5 flex flex-col items-center gap-4 justify-center text-center">
+    <div className="bg-card w-80 h-52 rounded-[20px] p-5 flex flex-col items-center gap-4 justify-center text-center">
       <h3>
         Your expenses are{" "}
         <span className="font-bold text-primary">
@@ -29,6 +30,7 @@ function IncomeAndExpense() {
           </p>
         </div>
       </div>
+      <p className=" text-sm">You can update this <Link className="text-primary font-bold" to={"/account"}>here.</Link> </p>
       {/* <Button className="">Make a transaction</Button> */}
     </div>
   );
