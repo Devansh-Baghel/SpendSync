@@ -29,7 +29,20 @@ import {
 const formatter = new Intl.NumberFormat("en-US");
 
 function SingularGoalView() {
-  const { selectedGoal } = useContext(AppContext);
+  const { selectedGoal, setUserData, setSelectedGoal } = useContext(AppContext);
+
+  async function deleteGoal() {
+    if (!selectedGoal) return;
+
+    await axios
+      .post("/goals/delete-goal", { goalId: selectedGoal._id })
+      .then((res) => {
+        console.log(res);
+        setUserData(res.data.data);
+        localStorage.setItem("userData", JSON.stringify(res.data.data));
+        setSelectedGoal({});
+      });
+  }
 
   return (
     <Card className="flex-1 mb-6 mt-3 flex flex-col relative">
@@ -51,7 +64,9 @@ function SingularGoalView() {
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction>Continue</AlertDialogAction>
+                <AlertDialogAction onClick={deleteGoal}>
+                  Continue
+                </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
@@ -94,15 +109,15 @@ function SingularGoalView() {
           </p>
           <p>
             <span className="font-bold text-primary">Date of Completion: </span>
-            {selectedGoal?.date === undefined ? (
-              <span>Not Set</span>
-            ) : (
-              selectedGoal.date
-            )}
+            {!selectedGoal.date ? <span>Not Set</span> : selectedGoal.date}
           </p>
           <p>
             <span className="font-bold text-primary">Description: </span>
-            {selectedGoal.description}
+            {!selectedGoal.description ? (
+              <span>Not Set</span>
+            ) : (
+              selectedGoal.description
+            )}
           </p>
         </div>
       </CardContent>

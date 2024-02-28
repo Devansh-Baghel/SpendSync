@@ -11,16 +11,18 @@ export const AppContext = createContext();
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("userStatus") === "loggedIn",
+    localStorage.getItem("userStatus") === "loggedIn"
   );
   const [userData, setUserData] = useState(
-    JSON.parse(localStorage.getItem("userData")),
+    JSON.parse(localStorage.getItem("userData"))
   );
   const [showGoals, setShowGoals] = useState(
-    localStorage.getItem("showGoals") === "true",
+    localStorage.getItem("showGoals") === "true" ||
+      !localStorage.getItem("showGoals")
   );
   const [showTransactions, setShowTransactions] = useState(
-    localStorage.getItem("showTransactions") === "true",
+    localStorage.getItem("showTransactions") === "true" ||
+      !localStorage.getItem("showTransactions")
   );
 
   const [selectedGoal, setSelectedGoal] = useState({});
@@ -31,26 +33,26 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       {/* <QueryClientProvider client={queryClient}> */}
-        <AppContext.Provider
-          value={{
-            isLoggedIn,
-            setIsLoggedIn,
-            userData,
-            setUserData,
-            selectedGoal,
-            setSelectedGoal,
-            showGoals,
-            setShowGoals,
-            showTransactions,
-            setShowTransactions,
-          }}
-        >
-          {/* <IconContext.Provider value={{ size: "2em" }}> */}
-          {/* <ModeToggle /> */}
-          <Routing />
-          <Toaster />
-          {/* </IconContext.Provider> */}
-        </AppContext.Provider>
+      <AppContext.Provider
+        value={{
+          isLoggedIn,
+          setIsLoggedIn,
+          userData,
+          setUserData,
+          selectedGoal,
+          setSelectedGoal,
+          showGoals,
+          setShowGoals,
+          showTransactions,
+          setShowTransactions,
+        }}
+      >
+        {/* <IconContext.Provider value={{ size: "2em" }}> */}
+        {/* <ModeToggle /> */}
+        <Routing />
+        <Toaster />
+        {/* </IconContext.Provider> */}
+      </AppContext.Provider>
       {/* </QueryClientProvider> */}
     </ThemeProvider>
   );

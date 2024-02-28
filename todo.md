@@ -49,3 +49,7 @@
 - [ ] overview: you can update this in /account ; incomeAndExpense / accountBalance
 - [ ] give feedback controller to send email
 - [ ] update date-of-birth controller
+- [ ] delete goal option w/ alert dialog shadcn
+- [ ] delete goal controller
+- [ ] register component immideatly logges user in
+- [ ] stripe integration w/ upgrade to pro
