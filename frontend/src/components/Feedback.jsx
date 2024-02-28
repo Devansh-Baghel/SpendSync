@@ -29,12 +29,12 @@ function Feedback() {
     if (!rating) return;
 
     await axios
-      .post("/feedback/create-feedback", { rating, description })
+      .post("/feedback/creatae-feedback", { rating, description })
       .then(() => {
         setDrawerOpen(false);
         toast.success("Thank you for your feedback!");
       })
-      .catch((error) => {
+      .catch(() => {
         setDrawerOpen(false);
         toast.error("Something went wrong");
       });
