@@ -17,7 +17,7 @@ const generateAccessAndRefreshTokens = async (userId) => {
   } catch (error) {
     throw new ApiError(
       500,
-      "Something went wrong while generating access and refresh tokens",
+      "Something went wrong while generating access and refresh tokens"
     );
   }
 };
@@ -39,7 +39,7 @@ export const registerUser = asyncHandler(async (req, res) => {
   });
 
   const createdUser = await User.findById(user._id).select(
-    "-password -refreshToken",
+    "-password -refreshToken"
   );
 
   if (!createdUser)
@@ -65,11 +65,11 @@ export const loginUser = asyncHandler(async (req, res) => {
   if (!isPasswordValid) throw new ApiError(401, "Invalid Password");
 
   const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
-    user._id,
+    user._id
   );
 
   const loggedInUser = await User.findById(user._id).select(
-    "-password -refreshToken",
+    "-password -refreshToken"
   );
 
   const options = {
@@ -89,8 +89,8 @@ export const loginUser = asyncHandler(async (req, res) => {
           accessToken,
           refreshToken,
         },
-        "User logged in successfully",
-      ),
+        "User logged in successfully"
+      )
     );
 });
 
@@ -104,7 +104,7 @@ export const logoutUser = asyncHandler(async (req, res) => {
     },
     {
       new: true,
-    },
+    }
   );
 
   const options = {
@@ -181,11 +181,11 @@ export const addIncomeAndExpense = asyncHandler(async (req, res) => {
       hasSetIncomeAndExpense: true,
       income: income,
       expense: expense,
-    },
+    }
   );
 
   const updatedUser = await User.findById(user._id).select(
-    "-password -refreshToken",
+    "-password -refreshToken"
   );
 
   return res.status(200).json(
@@ -194,8 +194,8 @@ export const addIncomeAndExpense = asyncHandler(async (req, res) => {
       {
         user: updatedUser,
       },
-      "Income and expense added successfully",
-    ),
+      "Income and expense added successfully"
+    )
   );
 });
 
@@ -206,7 +206,7 @@ export const refreshAccessToken = asyncHandler(async (req, res) => {
 
   const decodedToken = jwt.verify(
     incomingRefreshToken,
-    process.env.REFRESH_TOKEN_SECRET,
+    process.env.REFRESH_TOKEN_SECRET
   );
 
   const user = await User.findById(decodedToken?._id);
@@ -222,7 +222,7 @@ export const refreshAccessToken = asyncHandler(async (req, res) => {
   };
 
   const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
-    user._id,
+    user._id
   );
 
   return res
@@ -236,7 +236,34 @@ export const refreshAccessToken = asyncHandler(async (req, res) => {
           accessToken,
           refreshToken,
         },
-        "Access token refreshed",
-      ),
+        "Access token refreshed"
+      )
     );
+});
+
+export const initialDeposit = asyncHandler(async (req, res) => {
+  const user = req.user;
+  const { depositAmount } = req.body;
+
+  if (!depositAmount) throw new ApiError(400, "Deposit amount is required");
+  if (isNaN(depositAmount))
+    throw new ApiError(400, "Deposit amount must be a number");
+  if (depositAmount < 1)
+    throw new ApiError(400, "Deposit amount must be at least 1");
+  if (user.currentBalance !== 0)
+    throw new ApiError(400, "User already has money in their account");
+
+  const updatedUser = await User.findByIdAndUpdate(
+    user._id,
+    {
+      currentBalance: depositAmount,
+    },
+    {
+      new: true,
+    }
+  );
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, { user: updatedUser }, "Initial deposit added"));
 });

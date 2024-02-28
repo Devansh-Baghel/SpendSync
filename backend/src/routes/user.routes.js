@@ -7,6 +7,7 @@ import {
   // addExpense,
   addIncomeAndExpense,
   refreshAccessToken,
+  initialDeposit,
 } from "../controllers/user.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
@@ -22,5 +23,6 @@ router.route("/logout").post(verifyJWT, logoutUser);
 // router.route("/add-expense").post(verifyJWT, addExpense);
 router.route("/add-income-and-expense").post(verifyJWT, addIncomeAndExpense);
 router.route("/refresh-access-token").post(verifyJWT, refreshAccessToken);
+router.route("/initial-deposit").post(verifyJWT, initialDeposit);
 
 export default router;
