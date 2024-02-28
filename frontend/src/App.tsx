@@ -1,6 +1,7 @@
 import Routing from "./Routing";
 import { ThemeProvider } from "./components/theme-provider";
 import { Toaster } from "./components/ui/toaster";
+import { Toaster as RHToaster } from "react-hot-toast";
 import { createContext, useState } from "react";
 import axios from "axios";
 // import { IconContext } from "react-icons";
@@ -47,6 +48,7 @@ function App() {
         {/* <ModeToggle /> */}
         <Routing />
         <Toaster />
+        <RHToaster />
         {/* </IconContext.Provider> */}
       </AppContext.Provider>
     </ThemeProvider>
