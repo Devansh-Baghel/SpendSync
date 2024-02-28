@@ -4,10 +4,8 @@ import { Toaster } from "./components/ui/toaster";
 import { createContext, useState } from "react";
 import axios from "axios";
 // import { IconContext } from "react-icons";
-// import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
-
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 export const AppContext = createContext();
-// const queryClient = new QueryClient();
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -32,7 +30,6 @@ function App() {
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      {/* <QueryClientProvider client={queryClient}> */}
       <AppContext.Provider
         value={{
           isLoggedIn,
@@ -53,7 +50,6 @@ function App() {
         <Toaster />
         {/* </IconContext.Provider> */}
       </AppContext.Provider>
-      {/* </QueryClientProvider> */}
     </ThemeProvider>
   );
 }

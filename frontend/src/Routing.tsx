@@ -12,6 +12,9 @@ import Overview from "./pages/Overview";
 import Goals from "./pages/Goals";
 import Account from "./pages/Account";
 import SingularGoalView from "./components/SingularGoalView";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function Routing() {
   const { isLoggedIn } = useContext(AppContext);
@@ -43,9 +46,9 @@ function Routing() {
           children: [
             {
               path: ":goalId",
-              element: <SingularGoalView />
-            }
-          ]
+              element: <SingularGoalView />,
+            },
+          ],
         },
       ],
     },
@@ -59,7 +62,11 @@ function Routing() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <RouterProvider router={router}>
+      <QueryClientProvider client={queryClient}></QueryClientProvider>
+    </RouterProvider>
+  );
 }
 
 export default Routing;
