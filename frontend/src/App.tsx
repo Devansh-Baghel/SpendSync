@@ -48,7 +48,13 @@ function App() {
         {/* <ModeToggle /> */}
         <Routing />
         <Toaster />
-        <RHToaster />
+        <RHToaster
+          toastOptions={{
+            success: {
+              duration: 3000,
+            },
+          }}
+        />
         {/* </IconContext.Provider> */}
       </AppContext.Provider>
     </ThemeProvider>

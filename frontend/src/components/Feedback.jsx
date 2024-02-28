@@ -29,7 +29,7 @@ function Feedback() {
     if (!rating) return;
 
     await axios
-      .post("/feedback/creatae-feedback", { rating, description })
+      .post("/feedback/create-feedback", { rating, description })
       .then(() => {
         setDrawerOpen(false);
         toast.success("Thank you for your feedback!");

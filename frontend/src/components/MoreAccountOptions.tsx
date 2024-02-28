@@ -1,6 +1,7 @@
 import { Card, CardContent, CardTitle } from "./ui/card";
 import { Button } from "@/components/ui/button";
 import Feedback from "@/components/Feedback";
+import UpdateAccountBalance from "./UpdateAccountBalance";
 
 function MoreAccountOptions() {
   return (
@@ -8,7 +9,7 @@ function MoreAccountOptions() {
       <CardTitle className="text-xl font-medium">More Options</CardTitle>
       <CardContent className="flex flex-col ml-0 pl-0 mt-6 gap-6">
         <div className="flex gap-6">
-          <Button variant={"outline"}>Update Account Balance</Button>
+          <UpdateAccountBalance />
           <Button variant={"outline"} className="flex-1">
             Export Transactions Data
           </Button>

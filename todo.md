@@ -57,6 +57,9 @@
 - [ ] created-date in each goalDisplay + singularGoalView
 - [ ] deleting a goal add money back to the user's balance
 - [ ] danger zone in settings made with shadcn accordian:
+
   - [ ] delete all goals; this doesn't work for demo account
   - [ ] delete all transactions; this doesn't work for demo account
   - [ ] delete account permanantly; this doesn't work for demo account
+
+- [ ] add react-hot-toast

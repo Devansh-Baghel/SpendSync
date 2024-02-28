@@ -267,3 +267,28 @@ export const initialDeposit = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, { user: updatedUser }, "Initial deposit added"));
 });
+
+export const updateAccountBalance = asyncHandler(async (req, res) => {
+  const user = req.user;
+  const { newAmount } = req.body;
+
+  if (!newAmount) throw new ApiError(400, "New amount is required");
+  if (isNaN(newAmount)) throw new ApiError(400, "New amount must be a number");
+  if (newAmount < 1) throw new ApiError(400, "New amount must be at least 1");
+
+  const updatedUser = await User.findByIdAndUpdate(
+    user._id,
+    {
+      currentBalance: newAmount,
+    },
+    {
+      new: true,
+    }
+  );
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(200, { user: updatedUser }, "Updated account balance")
+    );
+});
