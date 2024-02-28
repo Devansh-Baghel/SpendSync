@@ -13,6 +13,18 @@ import UpdateGoal from "./UpdateGoal";
 import { useContext } from "react";
 import { AppContext } from "@/App";
 import AddMoneyToGoal from "./AddMoneyToGoal";
+import { MdDeleteForever as DeleteIcon } from "react-icons/md";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const formatter = new Intl.NumberFormat("en-US");
 
@@ -22,7 +34,28 @@ function SingularGoalView() {
   return (
     <Card className="flex-1 mb-6 mt-3 flex flex-col relative">
       <CardHeader>
-        <CardTitle className="text-lg">{selectedGoal.title}</CardTitle>
+        <CardTitle className="text-lg flex justify-between">
+          {selectedGoal.title}
+          <AlertDialog>
+            <AlertDialogTrigger>
+              <DeleteIcon className="w-8 h-8 text-destructive cursor-pointer" />
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete
+                  your goal, and all it's money will be added to your account
+                  balance.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction>Continue</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </CardTitle>
         <div>
           <Badge>{selectedGoal.category}</Badge>
         </div>
