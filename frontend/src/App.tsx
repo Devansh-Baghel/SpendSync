@@ -4,7 +4,6 @@ import { Toaster } from "./components/ui/toaster";
 import { createContext, useState } from "react";
 import axios from "axios";
 // import { IconContext } from "react-icons";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 export const AppContext = createContext();
 
 function App() {

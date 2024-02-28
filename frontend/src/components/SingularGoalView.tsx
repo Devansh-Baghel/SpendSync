@@ -35,7 +35,10 @@ function SingularGoalView() {
     if (!selectedGoal) return;
 
     await axios
-      .post("/goals/delete-goal", { goalId: selectedGoal._id })
+      .post("/goals/delete-goal", {
+        goalId: selectedGoal._id,
+        goalCurrentAmount: selectedGoal.currentAmount,
+      })
       .then((res) => {
         console.log(res);
         setUserData(res.data.data);

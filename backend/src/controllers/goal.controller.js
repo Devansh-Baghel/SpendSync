@@ -148,18 +148,21 @@ export const addMoneyToGoal = asyncHandler(async (req, res) => {
 });
 
 export const deleteGoal = asyncHandler(async (req, res) => {
-  const { goalId } = req.body;
+  const { goalId, goalCurrentAmount } = req.body;
   const user = req.user;
 
   if (user.goals.length === 0 || !user.goals)
     throw new ApiError(401, "User doesn't have any goals");
 
   if (!goalId) throw new ApiError(400, "Goal id is required to delete goal");
+  if (!goalCurrentAmount)
+    throw new ApiError(400, "Current goal amount is required");
 
   if (!user.goals.includes(goalId))
     throw new ApiError(400, "This goal isn't created by this user");
 
   user.goals = user.goals.filter((item) => item.toString() !== goalId);
+  user.currentBalance += +goalCurrentAmount;
 
   await user.save();
   await Goal.deleteOne({ _id: goalId });
