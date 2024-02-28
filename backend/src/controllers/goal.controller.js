@@ -159,7 +159,7 @@ export const deleteGoal = asyncHandler(async (req, res) => {
   if (!user.goals.includes(goalId))
     throw new ApiError(400, "This goal isn't created by this user");
 
-  user.goals = user.goals.filter((item) => item === goalId);
+  user.goals = user.goals.filter((item) => item.toString() !== goalId);
 
   await user.save();
   await Goal.deleteOne({ _id: goalId });
