@@ -1,9 +1,10 @@
-import { mongoose } from "mongoose";
+import { Schema } from "mongoose";
+import mongoose from "mongoose";
 
 const feedbackSchema = mongoose.Schema(
   {
     madeBy: {
-      type: Types.Schema.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
