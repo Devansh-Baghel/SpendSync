@@ -5,6 +5,7 @@ import {
   getGoals,
   updateGoal,
   addMoneyToGoal,
+  deleteGoal,
 } from "../controllers/goal.controller.js";
 
 const router = Router();
@@ -14,5 +15,6 @@ router.route("/create-goal").post(verifyJWT, createGoal);
 router.route("/get-goals").get(verifyJWT, getGoals);
 router.route("/update-goal").post(verifyJWT, updateGoal);
 router.route("/add-money-to-goal").post(verifyJWT, addMoneyToGoal);
+router.route("/delete-goal").delete(verifyJWT, deleteGoal);
 
 export default router;

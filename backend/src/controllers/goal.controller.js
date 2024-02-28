@@ -27,7 +27,7 @@ export const createGoal = asyncHandler(async (req, res) => {
   return res
     .status(201)
     .json(
-      new ApiResponse(201, { user, goal }, "New goal successfully created"),
+      new ApiResponse(201, { user, goal }, "New goal successfully created")
     );
 });
 
@@ -68,8 +68,8 @@ export const updateGoal = asyncHandler(async (req, res) => {
       new ApiResponse(
         200,
         { user, goal: updatedGoal },
-        "Goal updated successfully",
-      ),
+        "Goal updated successfully"
+      )
     );
 });
 
@@ -88,7 +88,7 @@ export const addMoneyToGoal = asyncHandler(async (req, res) => {
   if (currentAmount > user.currentBalance)
     throw new ApiError(
       403,
-      "Goal current amount can't be greater than user's balance",
+      "Goal current amount can't be greater than user's balance"
     );
 
   if (!user.goals.includes(goalId))
@@ -102,7 +102,7 @@ export const addMoneyToGoal = asyncHandler(async (req, res) => {
     {
       new: true,
       session,
-    },
+    }
   );
 
   if (!updatedGoal) {
@@ -116,7 +116,7 @@ export const addMoneyToGoal = asyncHandler(async (req, res) => {
     session.endSession();
     throw new ApiError(
       400,
-      "The amount that you are trying to add can't be greater than the final amount of this goal",
+      "The amount that you are trying to add can't be greater than the final amount of this goal"
     );
   }
 
@@ -128,7 +128,7 @@ export const addMoneyToGoal = asyncHandler(async (req, res) => {
     {
       new: true,
       session,
-    },
+    }
   );
 
   if (!updatedUser) throw new ApiError(404, "User doesn't exist");
@@ -142,7 +142,29 @@ export const addMoneyToGoal = asyncHandler(async (req, res) => {
       new ApiResponse(
         200,
         { user: updatedUser, goal: updatedGoal },
-        "Added money to goal",
-      ),
+        "Added money to goal"
+      )
     );
+});
+
+export const deleteGoal = asyncHandler(async (req, res) => {
+  const { goalId } = req.body;
+  const user = req.user;
+
+  if (user.goals.length === 0 || !user.goals)
+    throw new ApiError(401, "User doesn't have any goals");
+
+  if (!goalId) throw new ApiError(400, "Goal id is required to delete goal");
+
+  if (!user.goals.includes(goalId))
+    throw new ApiError(400, "This goal isn't created by this user");
+
+  user.goals = user.goals.filter((item) => item === goalId);
+
+  await user.save();
+  await Goal.deleteOne({ _id: goalId });
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, { user }, "Goal deleted successfully"));
 });
