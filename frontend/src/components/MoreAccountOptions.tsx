@@ -1,5 +1,6 @@
 import { Card, CardContent, CardTitle } from "./ui/card";
 import { Button } from "@/components/ui/button";
+import Feedback from "@/components/Feedback";
 
 function MoreAccountOptions() {
   return (
@@ -7,14 +8,19 @@ function MoreAccountOptions() {
       <CardTitle className="text-xl font-medium">More Options</CardTitle>
       <CardContent className="flex flex-col ml-0 pl-0 mt-6 gap-6">
         <div className="flex gap-6">
-          <Button>Update Account Balance</Button>
-          <Button className="flex-1">Export Transactions Data</Button>
+          <Button variant={"outline"}>Update Account Balance</Button>
+          <Button variant={"outline"} className="flex-1">
+            Export Transactions Data
+          </Button>
         </div>
         <div className="flex gap-6">
-          <Button>Update Income and Expense</Button>
-          <Button className="flex-1">Export Goals Data</Button>
+          <Button variant={"outline"}>Update Income and Expense</Button>
+          <Button variant={"outline"} className="flex-1">
+            Export Goals Data
+          </Button>
         </div>
-        <Button variant={"outline"} className="h-10">Give Feedback</Button>
+
+        <Feedback></Feedback>
       </CardContent>
     </Card>
   );
