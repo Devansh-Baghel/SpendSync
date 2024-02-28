@@ -4,8 +4,10 @@ import { Toaster } from "./components/ui/toaster";
 import { createContext, useState } from "react";
 import axios from "axios";
 // import { IconContext } from "react-icons";
+// import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 export const AppContext = createContext();
+// const queryClient = new QueryClient();
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -28,26 +30,28 @@ function App() {
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <AppContext.Provider
-        value={{
-          isLoggedIn,
-          setIsLoggedIn,
-          userData,
-          setUserData,
-          selectedGoal,
-          setSelectedGoal,
-          showGoals,
-          setShowGoals,
-          showTransactions,
-          setShowTransactions,
-        }}
-      >
-        {/* <IconContext.Provider value={{ size: "2em" }}> */}
-        {/* <ModeToggle /> */}
-        <Routing />
-        <Toaster />
-        {/* </IconContext.Provider> */}
-      </AppContext.Provider>
+      {/* <QueryClientProvider client={queryClient}> */}
+        <AppContext.Provider
+          value={{
+            isLoggedIn,
+            setIsLoggedIn,
+            userData,
+            setUserData,
+            selectedGoal,
+            setSelectedGoal,
+            showGoals,
+            setShowGoals,
+            showTransactions,
+            setShowTransactions,
+          }}
+        >
+          {/* <IconContext.Provider value={{ size: "2em" }}> */}
+          {/* <ModeToggle /> */}
+          <Routing />
+          <Toaster />
+          {/* </IconContext.Provider> */}
+        </AppContext.Provider>
+      {/* </QueryClientProvider> */}
     </ThemeProvider>
   );
 }

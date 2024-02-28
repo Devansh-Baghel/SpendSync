@@ -8,6 +8,7 @@ import { Progress } from "@/components/ui/progress";
 import AddNewGoal from "./AddNewGoal";
 import SingularGoalView from "./SingularGoalView";
 import { useParams, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const formatter = new Intl.NumberFormat("en-US");
 
@@ -17,6 +18,10 @@ function GoalsDisplay() {
   const [isSelected, setIsSelected] = useState(false);
   const { goalId } = useParams();
   const navigate = useNavigate();
+
+  // const {data, error, isError, isLoading} = useQuery("get-goals", () => {
+  //   return axios.get("/goals/get-goals")
+  // })
 
   useEffect(() => {
     axios.get("/goals/get-goals").then((res) => {
@@ -28,6 +33,8 @@ function GoalsDisplay() {
   useEffect(() => {
     if (!goalId) setIsSelected(false);
   }, [goalId]);
+
+  // if (isLoading) return <h1>Loading...</h1>
 
   return (
     <div className="flex gap-6">
