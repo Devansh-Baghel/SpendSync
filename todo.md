@@ -22,8 +22,8 @@
   - [ ] Settings / Account
 - [ ] Goals
 
-  - [ ] Goals not found frontend
-  - [ ] Goals model, finalAmount, currentAmount, title, desc, coverImge
+  - [x] Goals not found frontend
+  - [x] Goals model, finalAmount, currentAmount, title, desc
   - [ ] Each goal seperate page
   - [ ] markdown mode in goal desc
   - [ ] when do you wan't this goal to finish? shadcn datetime in the frontend
@@ -31,13 +31,11 @@
   - [ ] paginate goals display
   - [ ] GoalsDisplay doesn't immideatly refresh to add the new goal after creating a new goal
 
-- [ ] update goal controller w/ endpoint
+- [x] update goal controller w/ endpoint
 - [ ] show successfull toast messages whenever a req user makes is 200ok, for AddMoneyToGoal
 - [ ] user avatar
 - [ ] Setings page: theme switch
-- [ ] Setings page: delete all goals; this doesn't work for demo account
-- [ ] Setings page: delete all transactions; this doesn't work for demo account
-- [ ] Setings page: delete account permanantly; this doesn't work for demo account
+
 - [ ] change password
 - [ ] change email
 - [ ] add date of birth
@@ -49,7 +47,16 @@
 - [ ] overview: you can update this in /account ; incomeAndExpense / accountBalance
 - [ ] give feedback controller to send email
 - [ ] update date-of-birth controller
-- [ ] delete goal option w/ alert dialog shadcn
-- [ ] delete goal controller
+- [x] delete goal option w/ alert dialog shadcn
+- [x] delete goal controller
 - [ ] register component immideatly logges user in
 - [ ] stripe integration w/ upgrade to pro
+- [ ] max 5 goals for free user, unlimited goals for paid user
+- [ ] add more categories for goals, user model: categories-default [1, 2, 3, 4, 5 ]
+- [ ] submit feedback button will open a shadcn drawer
+- [ ] created-date in each goalDisplay + singularGoalView
+- [ ] deleting a goal add money back to the user's balance
+- [ ] danger zone in settings made with shadcn accordian:
+  - [ ] delete all goals; this doesn't work for demo account
+  - [ ] delete all transactions; this doesn't work for demo account
+  - [ ] delete account permanantly; this doesn't work for demo account
