@@ -63,3 +63,4 @@
   - [ ] delete account permanantly; this doesn't work for demo account
 
 - [ ] add react-hot-toast
+- [ ] remove password from all findByIdAndUpdateQueries

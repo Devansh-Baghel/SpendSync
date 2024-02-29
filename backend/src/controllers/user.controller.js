@@ -3,6 +3,7 @@ import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { User } from "../models/user.model.js";
 import jwt from "jsonwebtoken";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
@@ -329,5 +330,31 @@ export const updateUserDetails = asyncHandler(async (req, res) => {
         { user: updatedUser },
         "Updated user fields successfully"
       )
+    );
+});
+
+export const uploadAvatar = asyncHandler(async (req, res) => {
+  const avatarLocalPath = req.file.path;
+  const user = req.user;
+
+  if (!avatarLocalPath) throw new ApiError(400, "Avatar file is required");
+
+  const avatar = await uploadOnCloudinary(avatarLocalPath);
+
+  if (!avatar) throw new ApiError(400, "Avatar file is required");
+
+  const updatedUser = await User.findByIdAndUpdate(
+    user._id,
+    { avatar: avatar.url },
+    { new: true }
+  ).select("-password -refreshToken");
+
+  if (!updatedUser)
+    throw new ApiError(500, "Something went wrong uploading avatar");
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(200, { user: updatedUser }, "Avatar uploaded sucessfully")
     );
 });

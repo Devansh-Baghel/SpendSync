@@ -22,7 +22,7 @@ function Account() {
   const { userData, setUserData } = useContext(AppContext);
   const [name, setName] = useState(userData.user.fullName);
   const [bio, setBio] = useState(userData.user.bio || undefined);
-  const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState(userData.user.avatar || undefined);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -34,6 +34,45 @@ function Account() {
     if (avatar) {
       // upload avatar query
       // no return or duplicate the next if check and return then we can also send a toast!
+      const formData = new FormData();
+      formData.append("avatar", avatar);
+
+      const toastPromise = axios
+        .post("/users/upload-avatar", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          localStorage.setItem("userData", JSON.stringify(res.data.data));
+          setUserData(res.data.data);
+        });
+
+      toast.promise(toastPromise, {
+        loading: "Saving Avatar",
+        success: "Saved Avatar",
+        error: "Error when fetching",
+      });
+
+      if (name === userData.user.fullName && bio === userData.user.bio) {
+        return;
+      }
+
+      const detailsPromise = axios
+        .post("/users/update-details", { name, bio })
+        .then((res) => {
+          localStorage.setItem("userData", JSON.stringify(res.data.data));
+          setUserData(res.data.data);
+        });
+
+      toast.promise(detailsPromise, {
+        loading: "Saving user details",
+        success: "Saved user details",
+        error: "Error when fetching",
+      });
+
+      return;
     }
 
     if (name === userData.user.fullName && bio === userData.user.bio) {
@@ -49,8 +88,8 @@ function Account() {
       });
 
     toast.promise(toastPromise, {
-      loading: "Saving",
-      success: "Saved",
+      loading: "Saving user details",
+      success: "Saved user details",
       error: "Error when fetching",
     });
   }
@@ -65,7 +104,7 @@ function Account() {
             onSubmit={handleSubmit}
           >
             <Avatar className="w-32 h-32">
-              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarImage src={userData.user.avatar} />
               <AvatarFallback className="text-3xl">
                 {getAvatarFallback(userData.user.fullName)}
               </AvatarFallback>
@@ -78,7 +117,9 @@ function Account() {
                 <Input
                   id="avatar"
                   type="file"
+                  name="avatar"
                   className="file:text-primary h-10 file:mt-1 cursor-pointer"
+                  onChange={(e) => setAvatar(e.target.files[0])}
                 />
               </div>
             ) : (
@@ -89,7 +130,9 @@ function Account() {
                 <Input
                   id="avatar"
                   type="file"
+                  name="avatar"
                   className="file:text-primary h-12 file:mt-2"
+                  onChange={(e) => setAvatar(e.target.files[0])}
                 />
               </div>
             )}
