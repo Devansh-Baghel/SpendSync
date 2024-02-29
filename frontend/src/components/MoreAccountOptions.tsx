@@ -2,6 +2,7 @@ import { Card, CardContent, CardTitle } from "./ui/card";
 import { Button } from "@/components/ui/button";
 import Feedback from "@/components/Feedback";
 import UpdateAccountBalance from "./UpdateAccountBalance";
+import UpdateIncomeAndExpense from "./UpdateIncomeAndExpense";
 
 function MoreAccountOptions() {
   return (
@@ -15,7 +16,8 @@ function MoreAccountOptions() {
           </Button>
         </div>
         <div className="flex gap-6">
-          <Button variant={"outline"}>Update Income and Expense</Button>
+          {/* <Button variant={"outline"}>Update Income and Expense</Button> */}
+          <UpdateIncomeAndExpense />
           <Button variant={"outline"} className="flex-1">
             Export Goals Data
           </Button>

@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
 import { useContext, useState } from "react";
 import { AppContext } from "@/App";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -12,37 +12,40 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import axios from "axios";
 import { toast } from "react-hot-toast";
+import axios from "axios";
 
 const formatter = new Intl.NumberFormat("en-US");
 
-function UpdateAccountBalance() {
+function UpdateIncomeAndExpense() {
   const { userData, setUserData } = useContext(AppContext);
   const [modalOpen, setModalOpen] = useState(false);
-  const [amount, setAmount] = useState();
+  const [income, setIncome] = useState();
+  const [expense, setExpense] = useState();
 
-  async function updateAccountBalance(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    if (amount === undefined) {
-      toast.error("New account balance is required");
+    if (expense === undefined || income === undefined) {
+      toast.error("Income and expense is required");
       return;
     }
-    if (amount < 1) {
-      toast.error("Account balance can't be less than $1");
+    if (expense > income) {
+      toast.error("Expenses can't be greater than income.");
       return;
     }
-
     await axios
-      .post("/users/update-account-balance", {
-        newAmount: amount,
+      .post("/users/add-income-and-expense", {
+        income,
+        expense,
       })
       .then((res) => {
         localStorage.setItem("userData", JSON.stringify(res.data.data));
         setUserData(res.data.data);
         setModalOpen(false);
         toast.success(
-          `Account balance updated to $${formatter.format(amount)}`
+          `Income and expenses updated to $${formatter.format(
+            income
+          )} and $${formatter.format(expense)}`
         );
       });
   }
@@ -50,29 +53,44 @@ function UpdateAccountBalance() {
   return (
     <Dialog open={modalOpen} onOpenChange={setModalOpen}>
       <DialogTrigger asChild>
-        <Button variant={"outline"}>Update Account Balance</Button>
+        <Button variant="outline">Update Income and Expense</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
-        <form onSubmit={updateAccountBalance}>
+        <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle>Update Account Balance</DialogTitle>
+            <DialogTitle>Update Income and Expense</DialogTitle>
             <DialogDescription>
-              Add your new account balance. Click save when you're done.
+              Add your income and expenses here. Click save when you're done.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="amount" className="text-right">
-                New Account Balance
+              <Label htmlFor="income" className="text-right">
+                Income
               </Label>
               <Input
-                id="amount"
+                id="income"
                 className="col-span-3"
                 type="number"
-                min="1"
+                min="0"
                 required
                 onChange={(e) => {
-                  setAmount(+e.target.value);
+                  setIncome(+e.target.value);
+                }}
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="expense" className="text-right">
+                Expense
+              </Label>
+              <Input
+                id="expense"
+                className="col-span-3"
+                type="number"
+                min="0"
+                required
+                onChange={(e) => {
+                  setExpense(+e.target.value);
                 }}
               />
             </div>
@@ -86,4 +104,4 @@ function UpdateAccountBalance() {
   );
 }
 
-export default UpdateAccountBalance;
+export default UpdateIncomeAndExpense;
