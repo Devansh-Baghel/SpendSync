@@ -41,7 +41,7 @@ function DatePicker() {
     if (date === userData.user.dateOfBirth) {
       toast.error("This date of birth has already been set by you", {
         id: "date-already-set",
-        icon: "ℹ️",
+        icon: "📌",
       });
       return;
     }

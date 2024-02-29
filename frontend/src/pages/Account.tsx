@@ -22,61 +22,15 @@ function Account() {
   const { userData, setUserData } = useContext(AppContext);
   const [name, setName] = useState(userData.user.fullName);
   const [bio, setBio] = useState(userData.user.bio || undefined);
-  const [avatar, setAvatar] = useState(userData.user.avatar || undefined);
+  const [avatar, setAvatar] = useState(userData.user.avatar);
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    if (!name) {
-      toast.error("Full name is required");
-      return;
-    }
-
-    if (avatar) {
-      // upload avatar query
-      // no return or duplicate the next if check and return then we can also send a toast!
-      const formData = new FormData();
-      formData.append("avatar", avatar);
-
-      const toastPromise = axios
-        .post("/users/upload-avatar", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((res) => {
-          console.log(res);
-          localStorage.setItem("userData", JSON.stringify(res.data.data));
-          setUserData(res.data.data);
-        });
-
-      toast.promise(toastPromise, {
-        loading: "Saving Avatar",
-        success: "Saved Avatar",
-        error: "Error when fetching",
-      });
-
-      if (name === userData.user.fullName && bio === userData.user.bio) {
-        return;
-      }
-
-      const detailsPromise = axios
-        .post("/users/update-details", { name, bio })
-        .then((res) => {
-          localStorage.setItem("userData", JSON.stringify(res.data.data));
-          setUserData(res.data.data);
-        });
-
-      toast.promise(detailsPromise, {
-        loading: "Saving user details",
-        success: "Saved user details",
-        error: "Error when fetching",
-      });
-
-      return;
-    }
-
+  function updateUserDetails() {
     if (name === userData.user.fullName && bio === userData.user.bio) {
-      // maybe toast
+      if (avatar !== userData.user.avatar) return;
+      toast.error("Nothing changed", {
+        id: "nothing-changed",
+        icon: "📌",
+      });
       return;
     }
 
@@ -92,6 +46,50 @@ function Account() {
       success: "Saved user details",
       error: "Error when fetching",
     });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!name) {
+      toast.error("Full name is required");
+      return;
+    }
+
+    if (avatar !== userData.user.avatar) {
+      const formData = new FormData();
+      formData.append("avatar", avatar);
+
+      const toastPromise = axios
+        .post("/users/upload-avatar", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          localStorage.setItem("userData", JSON.stringify(res.data.data));
+          setUserData(res.data.data);
+          setAvatar(userData.user.avatar);
+        });
+
+      toast.promise(
+        toastPromise,
+        {
+          loading: "Saving Avatar",
+          success: "Saved Avatar",
+          error: "Nothing changed",
+        },
+        {
+          id: "saving-avatar",
+          error: {
+            icon: "📌",
+          },
+        }
+      );
+
+      updateUserDetails();
+      return;
+    }
+    updateUserDetails();
   }
 
   return (
