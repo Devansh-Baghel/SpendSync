@@ -16,8 +16,8 @@ import { AppContext } from "@/App";
 import axios from "axios";
 
 function DatePicker() {
-  const [date, setDate] = useState<Date>();
   const { userData, setUserData } = useContext(AppContext);
+  const [date, setDate] = useState<Date>(userData.user.dateOfBirth);
 
   // const { mutate, mutateAsync } = useMutation({
   //   mutationKey: ["userData"],
@@ -32,7 +32,17 @@ function DatePicker() {
     }
 
     if (date > new Date()) {
-      toast.error("Date of birth can't be in the future");
+      toast.error("Date of birth can't be in the future", {
+        id: "date-in-future",
+      });
+      return;
+    }
+
+    if (date === userData.user.dateOfBirth) {
+      toast.error("This date of birth has already been set by you", {
+        id: "date-already-set",
+        icon: "ℹ️",
+      });
       return;
     }
 
@@ -56,21 +66,7 @@ function DatePicker() {
         <form onSubmit={updateDate} className="flex gap-4">
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="date" className="text-sm font-semibold">
-              Date of Birth{" "}
-              {userData.user.dateOfBirth && (
-                <span>
-                  (
-                  {new Date(userData.user.dateOfBirth).toLocaleDateString(
-                    "en-US",
-                    {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    }
-                  )}
-                  )
-                </span>
-              )}
+              Date of Birth
             </Label>
             <Popover>
               <PopoverTrigger asChild>
@@ -89,7 +85,7 @@ function DatePicker() {
               <PopoverContent className="w-auto p-0" align="start">
                 <Calendar
                   mode="single"
-                  selected={date || userData.user.dateOfBirth}
+                  selected={date}
                   onSelect={setDate}
                   initialFocus
                   id="date"

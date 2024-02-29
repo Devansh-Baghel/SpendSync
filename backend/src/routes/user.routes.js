@@ -10,6 +10,7 @@ import {
   initialDeposit,
   updateAccountBalance,
   updateDate,
+  updateUserDetails,
 } from "../controllers/user.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
@@ -28,5 +29,6 @@ router.route("/refresh-access-token").post(verifyJWT, refreshAccessToken);
 router.route("/initial-deposit").post(verifyJWT, initialDeposit);
 router.route("/update-account-balance").post(verifyJWT, updateAccountBalance);
 router.route("/update-date").post(verifyJWT, updateDate);
+router.route("/update-details").post(verifyJWT, updateUserDetails);
 
 export default router;

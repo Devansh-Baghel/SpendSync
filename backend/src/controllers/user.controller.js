@@ -307,3 +307,27 @@ export const updateDate = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, { user: updatedUser }, "Date of birth added"));
 });
+
+export const updateUserDetails = asyncHandler(async (req, res) => {
+  const user = req.user;
+  const { name, bio } = req.body;
+
+  const updateFields = {};
+  if (name) updateFields.fullName = name;
+  if (bio) updateFields.bio = bio;
+
+  const updatedUser = await User.findByIdAndUpdate(user._id, updateFields, {
+    new: true,
+  });
+  if (!updatedUser) throw new ApiError(404, "User doesn't exist");
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(
+        200,
+        { user: updatedUser },
+        "Updated user fields successfully"
+      )
+    );
+});
