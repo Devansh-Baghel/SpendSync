@@ -289,3 +289,21 @@ export const updateAccountBalance = asyncHandler(async (req, res) => {
       new ApiResponse(200, { user: updatedUser }, "Updated account balance")
     );
 });
+
+export const updateDate = asyncHandler(async (req, res) => {
+  const { date } = req.body;
+  const user = req.user;
+
+  if (!date) throw new ApiError(400, "Date is required");
+
+  const updatedUser = await User.findByIdAndUpdate(
+    user._id,
+    { dateOfBirth: date },
+    { new: true }
+  );
+  if (!updatedUser) throw new ApiError(404, "User not found");
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, { user: updatedUser }, "Date of birth added"));
+});
