@@ -17,7 +17,7 @@ import axios from "axios";
 
 function DatePicker() {
   const [date, setDate] = useState<Date>();
-  const { setUserData } = useContext(AppContext);
+  const { userData, setUserData } = useContext(AppContext);
 
   // const { mutate, mutateAsync } = useMutation({
   //   mutationKey: ["userData"],
@@ -56,7 +56,21 @@ function DatePicker() {
         <form onSubmit={updateDate} className="flex gap-4">
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="date" className="text-sm font-semibold">
-              Date of Birth
+              Date of Birth{" "}
+              {userData.user.dateOfBirth && (
+                <span>
+                  (
+                  {new Date(userData.user.dateOfBirth).toLocaleDateString(
+                    "en-US",
+                    {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    }
+                  )}
+                  )
+                </span>
+              )}
             </Label>
             <Popover>
               <PopoverTrigger asChild>
@@ -75,7 +89,7 @@ function DatePicker() {
               <PopoverContent className="w-auto p-0" align="start">
                 <Calendar
                   mode="single"
-                  selected={date}
+                  selected={date || userData.user.dateOfBirth}
                   onSelect={setDate}
                   initialFocus
                   id="date"
