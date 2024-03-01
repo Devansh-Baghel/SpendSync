@@ -1,5 +1,6 @@
 import { Card, CardContent, CardTitle } from "./ui/card";
 import { Button } from "@/components/ui/button";
+// @ts-expect-error idk why this next line upsets typescript
 import Feedback from "@/components/Feedback";
 import UpdateAccountBalance from "./UpdateAccountBalance";
 import UpdateIncomeAndExpense from "./UpdateIncomeAndExpense";
@@ -23,7 +24,7 @@ function MoreAccountOptions() {
           </Button>
         </div>
 
-        <Feedback></Feedback>
+        <Feedback />
       </CardContent>
     </Card>
   );

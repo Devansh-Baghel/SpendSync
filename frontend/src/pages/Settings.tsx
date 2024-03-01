@@ -33,7 +33,7 @@ function Settings() {
           </CardHeader>
           <CardContent className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="old-password">Old Password</Label>
+              <Label>Old Password</Label>
               <Input
                 id="old-password"
                 type="password"
@@ -42,7 +42,7 @@ function Settings() {
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="password">New Password</Label>
+              <Label>New Password</Label>
               <Input
                 id="password"
                 type="password"

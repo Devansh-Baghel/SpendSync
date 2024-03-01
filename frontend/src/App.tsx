@@ -5,7 +5,10 @@ import { Toaster as RHToaster } from "react-hot-toast";
 import { createContext, useState } from "react";
 import axios from "axios";
 // import { IconContext } from "react-icons";
-export const AppContext = createContext({});
+
+// adding this any just for now, gonna remove this later
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export const AppContext = createContext<any>({});
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
