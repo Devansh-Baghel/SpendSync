@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AppContext } from "@/App";
 import AccountBalance from "@/components/AccountBalance";
 import InitialDeposit from "@/components/InitialDeposit";

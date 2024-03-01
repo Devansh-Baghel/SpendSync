@@ -8,9 +8,17 @@ import { Progress } from "@/components/ui/progress";
 import AddNewGoal from "./AddNewGoal";
 import SingularGoalView from "./SingularGoalView";
 import { useParams, useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 
 const formatter = new Intl.NumberFormat("en-US");
+
+type GoalType = {
+  _id: string;
+  title: string;
+  description: string;
+  category: string;
+  currentAmount: number;
+  finalAmount: number;
+};
 
 function GoalsDisplay() {
   const [goals, setGoals] = useState([]);
@@ -39,7 +47,7 @@ function GoalsDisplay() {
   return (
     <div className="flex gap-6">
       <ScrollArea className="h-[75vh] w-[400px] rounded-xl">
-        {goals.map((goal) => (
+        {goals.map((goal: GoalType) => (
           <Card
             className="mt-4 mr-4 hover:bg-accent hover:cursor-pointer"
             key={goal._id}

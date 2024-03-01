@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { AppContext } from "@/App";
 import {
   Dialog,
@@ -18,11 +18,11 @@ import { toast } from "react-hot-toast";
 const formatter = new Intl.NumberFormat("en-US");
 
 function UpdateAccountBalance() {
-  const { userData, setUserData } = useContext(AppContext);
+  const { setUserData } = useContext(AppContext);
   const [modalOpen, setModalOpen] = useState(false);
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState<number>();
 
-  async function updateAccountBalance(e) {
+  async function updateAccountBalance(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (amount === undefined) {
       toast.error("New account balance is required");

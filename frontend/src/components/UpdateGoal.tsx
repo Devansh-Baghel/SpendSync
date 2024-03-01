@@ -4,9 +4,7 @@ import {
   SheetDescription,
   SheetHeader,
   SheetFooter,
-  SheetClose,
   SheetTitle,
-  SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "./ui/button";
 import { Label } from "@radix-ui/react-dropdown-menu";
@@ -20,7 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import axios from "axios";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, FormEvent } from "react";
 import { AppContext } from "@/App";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -40,7 +38,7 @@ function UpdateGoal() {
     setDescription(selectedGoal.description);
   }, [selectedGoal]);
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(title, amount, category, description);
     if (title === undefined || amount === undefined) return;
@@ -99,7 +97,7 @@ function UpdateGoal() {
           </SheetHeader>
           <div className="grid gap-4 py-4">
             <div className="">
-              <Label htmlFor="title">Title</Label>
+              <Label>Title</Label>
               <Input
                 id="title"
                 className="col-span-3"
@@ -114,7 +112,7 @@ function UpdateGoal() {
               />
             </div>
             <div className="">
-              <Label htmlFor="amount">Amount</Label>
+              <Label>Amount</Label>
               <Input
                 id="amount"
                 className="col-span-3"
@@ -147,9 +145,7 @@ function UpdateGoal() {
               </Select>
             </div>
             <div className="">
-              <Label htmlFor="description" className="">
-                Description
-              </Label>
+              <Label>Description</Label>
               <Textarea
                 id="description"
                 placeholder="Optional description here"

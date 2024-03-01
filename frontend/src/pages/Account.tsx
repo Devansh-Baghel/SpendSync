@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { AppContext } from "@/App";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -20,8 +20,8 @@ const getAvatarFallback = (name: string) =>
 
 function Account() {
   const { userData, setUserData } = useContext(AppContext);
-  const [name, setName] = useState(userData.user.fullName);
-  const [bio, setBio] = useState(userData.user.bio || undefined);
+  const [name, setName] = useState<string>(userData.user.fullName);
+  const [bio, setBio] = useState<string>(userData.user.bio || undefined);
   const [avatar, setAvatar] = useState(userData.user.avatar);
 
   function updateUserDetails() {
@@ -48,7 +48,7 @@ function Account() {
     });
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!name) {
       toast.error("Full name is required");
@@ -76,13 +76,10 @@ function Account() {
         {
           loading: "Saving Avatar",
           success: "Saved Avatar",
-          error: "Nothing changed",
+          error: "Eror when fetching",
         },
         {
           id: "saving-avatar",
-          error: {
-            icon: "📌",
-          },
         }
       );
 
@@ -117,7 +114,10 @@ function Account() {
                   type="file"
                   name="avatar"
                   className="file:text-primary h-10 file:mt-1 cursor-pointer"
-                  onChange={(e) => setAvatar(e.target.files[0])}
+                  onChange={(e) => {
+                    if (!e.target.files) return;
+                    setAvatar(e.target.files[0]);
+                  }}
                 />
               </div>
             ) : (
@@ -130,7 +130,10 @@ function Account() {
                   type="file"
                   name="avatar"
                   className="file:text-primary h-12 file:mt-2"
-                  onChange={(e) => setAvatar(e.target.files[0])}
+                  onChange={(e) => {
+                    if (!e.target.files) return;
+                    setAvatar(e.target.files[0]);
+                  }}
                 />
               </div>
             )}

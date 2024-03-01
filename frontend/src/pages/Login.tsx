@@ -10,7 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-dropdown-menu";
-import { useContext, useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "@/App";
@@ -26,9 +26,9 @@ function Login() {
 
   useEffect(() => {
     if (isLoggedIn) navigate("/");
-  }, []);
+  });
 
-  async function handleSubmit(e: any) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (email.trim() === "") return;
     if (password.trim() === "") return;
@@ -41,8 +41,8 @@ function Login() {
       .then((response) => {
         localStorage.setItem("userStatus", "loggedIn");
         setIsLoggedIn(true);
-        localStorage.setItem("userData", JSON.stringify(response.data.data))
-        setUserData(response.data.data)
+        localStorage.setItem("userData", JSON.stringify(response.data.data));
+        setUserData(response.data.data);
         navigate("/");
       })
       .catch((error) => {
@@ -105,8 +105,7 @@ function Login() {
             </div>
           </div>
           <div className="grid gap-2">
-            {/* @ts-ignore */}
-            <Label htmlFor="email">Email</Label>
+            <Label>Email</Label>
             <Input
               id="email"
               type="email"
@@ -116,8 +115,7 @@ function Login() {
             />
           </div>
           <div className="grid gap-2">
-            {/* @ts-ignore */}
-            <Label htmlFor="password">Password</Label>
+            <Label>Password</Label>
             <Input
               id="password"
               type="password"

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { AppContext } from "@/App";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,10 +18,10 @@ import axios from "axios";
 function AddIncomeAndExpense() {
   const { userData, setUserData } = useContext(AppContext);
   const [modalOpen, setModalOpen] = useState(false);
-  const [income, setIncome] = useState();
-  const [expense, setExpense] = useState();
+  const [income, setIncome] = useState<number>();
+  const [expense, setExpense] = useState<number>();
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (expense === undefined || income === undefined) return;
     if (expense > income) {

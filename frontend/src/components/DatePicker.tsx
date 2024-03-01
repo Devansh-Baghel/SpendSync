@@ -9,7 +9,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { toast } from "react-hot-toast";
 import { AppContext } from "@/App";
@@ -17,14 +17,14 @@ import axios from "axios";
 
 function DatePicker() {
   const { userData, setUserData } = useContext(AppContext);
-  const [date, setDate] = useState<Date>(userData.user.dateOfBirth);
+  const [date, setDate] = useState(userData.user.dateOfBirth);
 
   // const { mutate, mutateAsync } = useMutation({
   //   mutationKey: ["userData"],
   //   mutationFn: (date) => axios.post("/user/update-date", { date }),
   // });
 
-  async function updateDate(e) {
+  async function updateDate(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!date) {
       toast.error("Date is required", { id: "date-required" });
@@ -65,9 +65,7 @@ function DatePicker() {
       <div className="">
         <form onSubmit={updateDate} className="flex gap-4">
           <div className="flex flex-col gap-1.5">
-            <Label htmlFor="date" className="text-sm font-semibold">
-              Date of Birth
-            </Label>
+            <Label className="text-sm font-semibold">Date of Birth</Label>
             <Popover>
               <PopoverTrigger asChild>
                 <Button

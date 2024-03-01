@@ -5,14 +5,14 @@ import { Toaster as RHToaster } from "react-hot-toast";
 import { createContext, useState } from "react";
 import axios from "axios";
 // import { IconContext } from "react-icons";
-export const AppContext = createContext();
+export const AppContext = createContext({});
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("userStatus") === "loggedIn"
   );
   const [userData, setUserData] = useState(
-    JSON.parse(localStorage.getItem("userData"))
+    JSON.parse(localStorage.getItem("userData") || "{}")
   );
   const [showGoals, setShowGoals] = useState(
     localStorage.getItem("showGoals") === "true" ||

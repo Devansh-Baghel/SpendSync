@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { AppContext } from "@/App";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
 const formatter = new Intl.NumberFormat("en-US");
 

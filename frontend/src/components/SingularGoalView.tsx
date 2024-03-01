@@ -6,7 +6,6 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import UpdateGoal from "./UpdateGoal";

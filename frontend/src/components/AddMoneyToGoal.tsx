@@ -5,7 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useState, useContext } from "react";
+import { useState, useContext, FormEvent } from "react";
 import { Button } from "./ui/button";
 import { AppContext } from "@/App";
 import { Input } from "./ui/input";
@@ -15,12 +15,12 @@ import axios from "axios";
 
 function AddMoneyToGoal() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [amountToAdd, setAmountToAdd] = useState();
+  const [amountToAdd, setAmountToAdd] = useState<number>();
   const { selectedGoal, setSelectedGoal, userData, setUserData } =
     useContext(AppContext);
   const { toast } = useToast();
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!amountToAdd) return;
 
@@ -75,7 +75,7 @@ function AddMoneyToGoal() {
           }}
         >
           <div className="">
-            <Label htmlFor="amount">Amount to Add</Label>
+            <Label>Amount to Add</Label>
             <Input
               id="amount"
               className="mb-6"

@@ -4,9 +4,7 @@ import {
   SheetDescription,
   SheetHeader,
   SheetFooter,
-  SheetClose,
   SheetTitle,
-  SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "./ui/button";
 import { Label } from "@radix-ui/react-dropdown-menu";
@@ -20,19 +18,19 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import axios from "axios";
-import { useContext, useState, useEffect } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { AppContext } from "@/App";
 import { FaPlus as PlusIcon } from "react-icons/fa";
 
 function AddNewGoal() {
   const { setUserData } = useContext(AppContext);
-  const [title, setTitle] = useState();
-  const [amount, setAmount] = useState();
-  const [category, setCategory] = useState();
-  const [description, setDescription] = useState();
+  const [title, setTitle] = useState<string>();
+  const [amount, setAmount] = useState<number>();
+  const [category, setCategory] = useState<string | null>();
+  const [description, setDescription] = useState<string | null>();
   const [sheetOpen, setSheetOpen] = useState(false);
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(title, amount, category, description);
     if (title === undefined || amount === undefined) return;
@@ -61,16 +59,12 @@ function AddNewGoal() {
           setSheetOpen(true);
         }}
       >
-        <PlusIcon className="w-5 h-5"/>
+        <PlusIcon className="w-5 h-5" />
         Create a New Goal
       </Button>
       {/* </SheetTrigger> */}
       <SheetContent>
-        <form
-          onSubmit={(e) => {
-            handleSubmit(e);
-          }}
-        >
+        <form onSubmit={handleSubmit}>
           <SheetHeader>
             <SheetTitle>Create a New Goal</SheetTitle>
             <SheetDescription>
@@ -79,7 +73,7 @@ function AddNewGoal() {
           </SheetHeader>
           <div className="grid gap-4 py-4">
             <div className="">
-              <Label htmlFor="title">Title</Label>
+              <Label>Title</Label>
               <Input
                 id="title"
                 className="col-span-3"
@@ -93,7 +87,7 @@ function AddNewGoal() {
               />
             </div>
             <div className="">
-              <Label htmlFor="amount">Amount</Label>
+              <Label>Amount</Label>
               <Input
                 id="amount"
                 className="col-span-3"
@@ -102,7 +96,7 @@ function AddNewGoal() {
                 required
                 placeholder="How much do you want to save?"
                 onChange={(e) => {
-                  setAmount(e.target.value);
+                  setAmount(+e.target.value);
                 }}
               />
             </div>
@@ -122,9 +116,7 @@ function AddNewGoal() {
               </Select>
             </div>
             <div className="">
-              <Label htmlFor="description" className="">
-                Description
-              </Label>
+              <Label>Description</Label>
               <Textarea
                 id="description"
                 placeholder="Optional description here"

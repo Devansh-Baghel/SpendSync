@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { AppContext } from "@/App";
 import {
   Dialog,
@@ -18,13 +18,16 @@ import { toast } from "react-hot-toast";
 const formatter = new Intl.NumberFormat("en-US");
 
 function InitialDeposit() {
-  const { userData, setUserData } = useContext(AppContext);
+  const { setUserData } = useContext(AppContext);
   const [modalOpen, setModalOpen] = useState(false);
-  const [deposit, setDeposit] = useState();
+  const [deposit, setDeposit] = useState<number>();
 
-  async function addInitialDeposit(e) {
+  async function addInitialDeposit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (deposit === undefined) toast.error("Initial deposit is required");
+    if (deposit === undefined) {
+      toast.error("Initial deposit is required");
+      return;
+    }
     if (deposit < 1) toast.error("Initial deposit can't be less than $1");
 
     await axios

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { AppContext } from "@/App";
 import {
   Card,
@@ -23,12 +23,12 @@ import axios from "axios";
 
 function FirstGoal() {
   const { setUserData } = useContext(AppContext);
-  const [title, setTitle] = useState();
-  const [amount, setAmount] = useState();
-  const [category, setCategory] = useState();
-  const [description, setDescription] = useState();
+  const [title, setTitle] = useState<string>();
+  const [amount, setAmount] = useState<number>();
+  const [category, setCategory] = useState<string>();
+  const [description, setDescription] = useState<string>();
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(title, amount, category, description);
     if (title === undefined || amount === undefined) return;
@@ -89,7 +89,7 @@ function FirstGoal() {
                 required
                 placeholder="How much do you want to save?"
                 onChange={(e) => {
-                  setAmount(e.target.value);
+                  setAmount(+e.target.value);
                 }}
               />
             </div>
