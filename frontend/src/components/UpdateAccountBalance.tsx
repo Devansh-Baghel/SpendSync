@@ -60,22 +60,18 @@ function UpdateAccountBalance() {
               Add your new account balance. Click save when you're done.
             </DialogDescription>
           </DialogHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="amount" className="text-right">
-                New Account Balance
-              </Label>
-              <Input
-                id="amount"
-                className="col-span-3"
-                type="number"
-                min="1"
-                required
-                onChange={(e) => {
-                  setAmount(+e.target.value);
-                }}
-              />
-            </div>
+          <div className="grid gap-1.5 py-4">
+            <Label htmlFor="amount">New Account Balance</Label>
+            <Input
+              id="amount"
+              className="col-span-3"
+              type="number"
+              min="1"
+              required
+              onChange={(e) => {
+                setAmount(+e.target.value);
+              }}
+            />
           </div>
           <DialogFooter>
             <Button type="submit">Save changes</Button>

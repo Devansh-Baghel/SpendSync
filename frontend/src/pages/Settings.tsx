@@ -1,15 +1,6 @@
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
-
+import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import UpdatePassword from "@/components/UpdatePassword";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@radix-ui/react-dropdown-menu";
 import {
   Select,
   SelectContent,
@@ -24,40 +15,7 @@ function Settings() {
       <h1 className="text-3xl font-bold text-background mb-5">Settings</h1>
 
       <div className="flex flex-col gap-6">
-        <Card className="max-w-[350px]">
-          <CardHeader className="space-y-1">
-            <CardTitle className="text-xl">Update Password</CardTitle>
-            <CardDescription>
-              Enter your old password and create a new password to update.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="grid gap-4">
-            <div className="grid gap-2">
-              <Label>Old Password</Label>
-              <Input
-                id="old-password"
-                type="password"
-                required
-                // onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="grid gap-2">
-              <Label>New Password</Label>
-              <Input
-                id="password"
-                type="password"
-                required
-                // onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-          </CardContent>
-          <CardFooter className="flex flex-col gap-4">
-            <Button className="w-full" type="submit">
-              Update Password
-            </Button>
-          </CardFooter>
-        </Card>
-
+        <UpdatePassword />
         <Card className="max-w-[350px]">
           <CardHeader className="space-y-1">
             <CardTitle className="text-xl">Change Currency</CardTitle>
