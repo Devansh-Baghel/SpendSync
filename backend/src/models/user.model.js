@@ -61,8 +61,13 @@ const userSchema = mongoose.Schema(
     dateOfBirth: {
       type: Date,
     },
+    currency: {
+      type: String,
+      default: "$",
+      enum: ["$", "€", "¥", "₹", "A$", "C$"],
+    },
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 userSchema.pre("save", async function (next) {
@@ -85,7 +90,7 @@ userSchema.methods.generateAccessToken = function () {
     process.env.ACCESS_TOKEN_SECRET,
     {
       expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
-    },
+    }
   );
 };
 
@@ -97,7 +102,7 @@ userSchema.methods.generateRefreshToken = function () {
     process.env.REFRESH_TOKEN_SECRET,
     {
       expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
-    },
+    }
   );
 };
 

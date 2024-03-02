@@ -13,6 +13,7 @@ import {
   updateUserDetails,
   uploadAvatar,
   changeCurrentPassword,
+  updateCurrency,
 } from "../controllers/user.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
@@ -37,5 +38,6 @@ router
   .route("/upload-avatar")
   .post(verifyJWT, upload.single("avatar"), uploadAvatar);
 router.route("/update-password").post(verifyJWT, changeCurrentPassword);
+router.route("/update-currency").post(verifyJWT, updateCurrency);
 
 export default router;

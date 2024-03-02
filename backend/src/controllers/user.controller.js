@@ -379,3 +379,20 @@ export const changeCurrentPassword = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, {}, "Password changed successfully"));
 });
+
+export const updateCurrency = asyncHandler(async (req, res) => {
+  const user = req.user;
+  const { newCurrency } = req.body;
+
+  if (!newCurrency) throw new ApiError(400, "New currency is required");
+
+  if (!["$", "€", "¥", "₹", "A$", "C$"].includes(newCurrency))
+    throw new ApiError(400, "Currency is not supported");
+
+  user.currency = newCurrency;
+  await user.save();
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, { user }, "Currency updated successfully"));
+});
