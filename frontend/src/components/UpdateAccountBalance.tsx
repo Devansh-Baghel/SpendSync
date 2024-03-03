@@ -18,7 +18,7 @@ import { toast } from "react-hot-toast";
 const formatter = new Intl.NumberFormat("en-US");
 
 function UpdateAccountBalance() {
-  const { setUserData } = useContext(AppContext);
+  const { userData, setUserData } = useContext(AppContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [amount, setAmount] = useState<number>();
 
@@ -29,7 +29,9 @@ function UpdateAccountBalance() {
       return;
     }
     if (amount < 1) {
-      toast.error("Account balance can't be less than $1");
+      toast.error(
+        `Account balance can't be less than ${userData.user.currency}1`
+      );
       return;
     }
 
@@ -42,7 +44,9 @@ function UpdateAccountBalance() {
         setUserData(res.data.data);
         setModalOpen(false);
         toast.success(
-          `Account balance updated to $${formatter.format(amount)}`
+          `Account balance updated to ${
+            userData.user.currency
+          }${formatter.format(amount)}`
         );
       });
   }

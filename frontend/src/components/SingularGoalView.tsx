@@ -28,7 +28,8 @@ import {
 const formatter = new Intl.NumberFormat("en-US");
 
 function SingularGoalView() {
-  const { selectedGoal, setUserData, setSelectedGoal } = useContext(AppContext);
+  const { userData, selectedGoal, setUserData, setSelectedGoal } =
+    useContext(AppContext);
 
   async function deleteGoal() {
     if (!selectedGoal) return;
@@ -90,24 +91,28 @@ function SingularGoalView() {
           of your goal, keep going!
         </h3>
         <div className="flex justify-center items-center gap-6 font-semibold mb-4">
-          ${formatter.format(selectedGoal.currentAmount)}
+          {userData.user.currency}
+          {formatter.format(selectedGoal.currentAmount)}
           <Progress
             value={
               (selectedGoal.currentAmount * 100) / selectedGoal.finalAmount
             }
           />
-          ${formatter.format(selectedGoal.finalAmount)}
+          {userData.user.currency}
+          {formatter.format(selectedGoal.finalAmount)}
         </div>
         <div className="flex flex-col gap-2">
           <p>
-            <span className="font-bold text-primary">Final Target: </span>$
+            <span className="font-bold text-primary">Final Target: </span>
+            {userData.user.currency}
             {formatter.format(selectedGoal.finalAmount)}
           </p>
           <p>
             <span className="font-bold text-primary">
               Current Saved Amount:{" "}
             </span>
-            ${formatter.format(selectedGoal.currentAmount)}
+            {userData.user.currency}
+            {formatter.format(selectedGoal.currentAmount)}
           </p>
           <p>
             <span className="font-bold text-primary">Date of Completion: </span>

@@ -20,17 +20,24 @@ function IncomeAndExpense() {
         <div className="bg-primary w-32 h-20 rounded-xl text-center text-background p-2">
           <p className="">Income</p>
           <p className="font-bold text-2xl">
-            ${formatter.format(userData.user.income)}
+            {userData.user.currency}
+            {formatter.format(userData.user.income)}
           </p>
         </div>
         <div className="bg-primary w-32 h-20 rounded-xl text-center text-background p-2">
           <p className="">Expense</p>
           <p className="font-bold text-2xl">
-            ${formatter.format(userData.user.expense)}
+            {userData.user.currency}
+            {formatter.format(userData.user.expense)}
           </p>
         </div>
       </div>
-      <p className=" text-sm">You can update this <Link className="text-primary font-bold" to={"/account"}>here.</Link> </p>
+      <p className=" text-sm">
+        You can update this{" "}
+        <Link className="text-primary font-bold" to={"/account"}>
+          here.
+        </Link>{" "}
+      </p>
       {/* <Button className="">Make a transaction</Button> */}
     </div>
   );

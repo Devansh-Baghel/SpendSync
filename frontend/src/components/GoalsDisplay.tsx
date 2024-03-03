@@ -22,7 +22,7 @@ type GoalType = {
 
 function GoalsDisplay() {
   const [goals, setGoals] = useState([]);
-  const { selectedGoal, setSelectedGoal } = useContext(AppContext);
+  const { userData, selectedGoal, setSelectedGoal } = useContext(AppContext);
   const [isSelected, setIsSelected] = useState(false);
   const { goalId } = useParams();
   const navigate = useNavigate();
@@ -65,11 +65,13 @@ function GoalsDisplay() {
             </CardHeader>
             <CardContent>
               <div className="flex justify-center items-center gap-6 font-semibold">
-                ${formatter.format(goal.currentAmount)}
+                {userData.user.currency}
+                {formatter.format(goal.currentAmount)}
                 <Progress
                   value={(goal.currentAmount * 100) / goal.finalAmount}
                 />
-                ${formatter.format(goal.finalAmount)}
+                {userData.user.currency}
+                {formatter.format(goal.finalAmount)}
               </div>
             </CardContent>
           </Card>

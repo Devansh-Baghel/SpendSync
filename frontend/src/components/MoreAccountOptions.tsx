@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Feedback from "@/components/Feedback";
 import UpdateAccountBalance from "./UpdateAccountBalance";
 import UpdateIncomeAndExpense from "./UpdateIncomeAndExpense";
+import toast from "react-hot-toast";
 
 function MoreAccountOptions() {
   return (
@@ -12,14 +13,22 @@ function MoreAccountOptions() {
       <CardContent className="flex flex-col ml-0 pl-0 mt-6 gap-6">
         <div className="flex gap-6">
           <UpdateAccountBalance />
-          <Button variant={"outline"} className="flex-1">
+          <Button
+            variant={"outline"}
+            className="flex-1"
+            onClick={() => toast("Work in progress...")}
+          >
             Export Transactions Data
           </Button>
         </div>
         <div className="flex gap-6">
           {/* <Button variant={"outline"}>Update Income and Expense</Button> */}
           <UpdateIncomeAndExpense />
-          <Button variant={"outline"} className="flex-1">
+          <Button
+            variant={"outline"}
+            className="flex-1"
+            onClick={() => toast("Work in progress...")}
+          >
             Export Goals Data
           </Button>
         </div>
