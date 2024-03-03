@@ -12,6 +12,7 @@ import Overview from "./pages/Overview";
 import Goals from "./pages/Goals";
 import Account from "./pages/Account";
 import SingularGoalView from "./components/SingularGoalView";
+import NewTransaction from "./pages/NewTransaction";
 
 function Routing() {
   const { isLoggedIn } = useContext(AppContext);
@@ -46,6 +47,10 @@ function Routing() {
               element: <SingularGoalView />,
             },
           ],
+        },
+        {
+          path: "create-transaction",
+          element: <NewTransaction />,
         },
       ],
     },

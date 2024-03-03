@@ -64,3 +64,5 @@
 
 - [ ] add react-hot-toast
 - [ ] remove password from all findByIdAndUpdateQueries
+- [ ] Demo user - as a paid user
+- [ ] insights page: only for paid users, has the ui blurred, says "Upgrade to premium or login as a paid user"
