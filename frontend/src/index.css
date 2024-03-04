@@ -146,6 +146,55 @@
   }
 } */
 
+/* This kinna works!, maybe tweak it a little bit */
+/* PowerShell ISE */
+/* @layer base {
+  :root {
+    --background: 60 100% 100%;
+    --foreground: 0 0% 20%;
+    --muted: 60 12% 90%;
+    --muted-foreground: 60 12% 30%;
+    --popover: 60 100% 97%;
+    --popover-foreground: 0 0% 10%;
+    --card: 60 100% 98%;
+    --card-foreground: 0 0% 15%;
+    --border: 60 90% 95%;
+    --input: 60 90% 92%;
+    --primary: 213 67% 93%;
+    --primary-foreground: 213 67% 33%;
+    --secondary: 213 30% 25%;
+    --secondary-foreground: 213 30% 85%;
+    --accent: 60 100% 85%;
+    --accent-foreground: 60 100% 5%;
+    --destructive: 10 81% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --ring: 213 67% 93%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 60 100% 100%;
+    --foreground: 0 0% 20%;
+    --muted: 60 12% 90%;
+    --muted-foreground: 60 12% 30%;
+    --popover: 60 100% 97%;
+    --popover-foreground: 0 0% 10%;
+    --card: 60 100% 98%;
+    --card-foreground: 0 0% 15%;
+    --border: 60 90% 95%;
+    --input: 60 90% 92%;
+    --primary: 213 67% 93%;
+    --primary-foreground: 213 67% 33%;
+    --secondary: 213 30% 25%;
+    --secondary-foreground: 213 30% 85%;
+    --accent: 60 100% 85%;
+    --accent-foreground: 60 100% 5%;
+    --destructive: 10 81% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --ring: 213 67% 93%;
+  }
+} */
+
 @layer base {
   * {
     @apply border-border;

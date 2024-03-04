@@ -9,13 +9,15 @@ import { IoPerson as AccountIcon } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "@/App";
+import HamburgerMenu from "@/components/HamburgerMenu";
 
 function Dashboard() {
   const { showGoals, showTransactions } = useContext(AppContext);
 
   return (
     <div className="m-5 mt-7 flex gap-32">
-      <aside className="text-accent-foreground flex flex-col pl-10 w-52 justify-between h-[90vh]">
+      <HamburgerMenu />
+      <aside className="text-accent-foreground md:flex flex-col pl-10 w-52 justify-between h-[90vh] hidden">
         <div className="flex flex-col gap-8">
           <Link to={"/"} className="flex items-center gap-2 mt-5 mb-10">
             <HomeIcon className="w-12 h-12 text-primary" />
