@@ -15,9 +15,9 @@ const transactionSchema = mongoose.Schema(
       type: String,
       default: "other",
     },
-    typeOfTransaction: {
+    type: {
       type: String,
-      emun: ["add-money", "subtract-money"],
+      emun: ["increment", "decrement"],
       required: true,
     },
     title: {
@@ -29,8 +29,15 @@ const transactionSchema = mongoose.Schema(
       type: String,
       trim: true,
     },
+    receipt: { type: String },
+    date: { type: Date, default: new Date() },
+    wallet: {
+      type: String,
+      enum: ["Cash", "Credit card", "Debit card", "Bank"],
+      required: true,
+    },
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 export const Transaction = mongoose.model("Transaction", transactionSchema);
