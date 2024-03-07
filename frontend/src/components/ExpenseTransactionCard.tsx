@@ -36,7 +36,7 @@ function ExpenseTransactionCard() {
   const [date, setDate] = useState<Date | undefined>();
   const [wallet, setWallet] = useState<string>("Cash");
   const [receipt, setReceipt] = useState<File | undefined>();
-  const { setUserData } = useContext(AppContext);
+  const { userData, setUserData } = useContext(AppContext);
 
   function createExpense(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -51,6 +51,13 @@ function ExpenseTransactionCard() {
     }
     if (!wallet) {
       toast.error("Wallet is required");
+      return;
+    }
+
+    if (amount > userData.user.currentBalance && wallet === "Cash") {
+      toast.error("You don't have enough balance to make this transaction", {
+        id: "not-enough-balance",
+      });
       return;
     }
 

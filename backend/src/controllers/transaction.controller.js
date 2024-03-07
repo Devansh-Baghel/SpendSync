@@ -13,6 +13,13 @@ export const createExpense = asyncHandler(async (req, res) => {
   if (!amount) throw new ApiError(400, "Amount is required");
   if (!wallet) throw new ApiError(400, "Wallet is required");
 
+  if (amount > user.currentBalance && wallet === "Cash") {
+    throw new ApiError(
+      400,
+      "You don't have enough balance to make this transaction"
+    );
+  }
+
   const receiptLocalPath = req?.file?.path;
 
   const receipt = await uploadOnCloudinary(receiptLocalPath);
@@ -30,15 +37,18 @@ export const createExpense = asyncHandler(async (req, res) => {
 
   const transactionHistory = user.transactionHistory || [];
 
-  const updatedUser = await User.findByIdAndUpdate(
-    user._id,
-    {
-      transactionHistory: [...transactionHistory, transaction._id],
-    },
-    {
-      new: true,
-    }
-  ).select("-password -refreshToken");
+  let updateQuery = {
+    transactionHistory: [...transactionHistory, transaction._id],
+  };
+
+  // Check if the wallet is set to "Cash"
+  if (wallet === "Cash") {
+    updateQuery.$inc = { currentBalance: -amount }; // Decrement the current balance
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(user._id, updateQuery, {
+    new: true,
+  }).select("-password -refreshToken");
 
   if (!updatedUser)
     throw new ApiError(
