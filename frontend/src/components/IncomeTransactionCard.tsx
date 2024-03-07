@@ -32,7 +32,7 @@ import { AppContext } from "@/App";
 function IncomeTransactionCard() {
   const [title, setTitle] = useState<string>();
   const [amount, setAmount] = useState<number>();
-  const [category, setCategory] = useState<string>();
+  const [category, setCategory] = useState<string>("Salary");
   const [date, setDate] = useState<Date | undefined>();
   const [receipt, setReceipt] = useState<File | undefined>();
   const { setUserData } = useContext(AppContext);
@@ -146,18 +146,12 @@ function IncomeTransactionCard() {
                 <SelectValue placeholder="Optional Category" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Electricity">Electricity</SelectItem>
-                <SelectItem value="Food & Drinks">Food & Drinks</SelectItem>
-                <SelectItem value="Shopping">Shopping</SelectItem>
-                <SelectItem value="Movie">Movie</SelectItem>
-                <SelectItem value="Office">Office</SelectItem>
-                <SelectItem value="Entertainment">Entertainment</SelectItem>
-                <SelectItem value="Healthcare">Healthcare</SelectItem>
-                <SelectItem value="Bills & Fees">Bills & Fees</SelectItem>
-                <SelectItem value="Education">Education</SelectItem>
-                <SelectItem value="Travel">Travel</SelectItem>
-                <SelectItem value="Groceries">Groceries</SelectItem>
-                <SelectItem value="Work">Work</SelectItem>
+                <SelectItem value="Salary">Salary</SelectItem>
+                <SelectItem value="Business">Business</SelectItem>
+                <SelectItem value="Extra Income">Extra Income</SelectItem>
+                <SelectItem value="Loan">Loan</SelectItem>
+                <SelectItem value="Gifts">Gifts</SelectItem>
+                <SelectItem value="Other">Other</SelectItem>
               </SelectContent>
             </Select>
           </div>

@@ -3,6 +3,7 @@ import { User } from "../models/user.model.js";
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 export const createExpense = asyncHandler(async (req, res) => {
   const { title, amount, wallet, category, date } = req.body;
@@ -12,19 +13,22 @@ export const createExpense = asyncHandler(async (req, res) => {
   if (!amount) throw new ApiError(400, "Amount is required");
   if (!wallet) throw new ApiError(400, "Wallet is required");
 
-  const receiptLocalPath = req.file.path;
+  const receiptLocalPath = req?.file?.path;
 
   const receipt = await uploadOnCloudinary(receiptLocalPath);
 
   const transaction = await Transaction.create({
     madeBy: user._id,
+    type: "decrement",
     title,
     receipt: receipt?.url || "",
     amount,
     wallet,
-    // category: category || "",
+    category: category || "",
     date: date || "",
   });
+
+  const transactionHistory = user.transactionHistory || [];
 
   const updatedUser = await User.findByIdAndUpdate(
     user._id,

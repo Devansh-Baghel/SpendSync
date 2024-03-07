@@ -57,6 +57,11 @@ function ExpenseTransactionCard() {
     if (receipt) {
       const formData = new FormData();
       formData.append("receipt", receipt);
+      formData.append("title", title);
+      formData.append("amount", amount.toString());
+      if (category !== undefined) formData.append("category", category);
+      formData.append("date", date?.toISOString() || "");
+      formData.append("wallet", wallet);
 
       const toastPromise = axios
         .post("/transaction/create-expense", formData, {
@@ -72,12 +77,39 @@ function ExpenseTransactionCard() {
       toast.promise(
         toastPromise,
         {
-          loading: "Saving Avatar",
-          success: "Saved Avatar",
-          error: "Eror when fetching",
+          loading: "Saving expense...",
+          success: "Expense saved successfully!",
+          error: "Failed to save expense. Please try again.",
         },
         {
-          id: "saving-avatar",
+          id: "saving-expense",
+        }
+      );
+    } else {
+      const data = {
+        title,
+        amount,
+        category,
+        date,
+        wallet,
+      };
+
+      const toastPromise = axios
+        .post("/transaction/create-expense", data)
+        .then((res) => {
+          localStorage.setItem("userData", JSON.stringify(res.data.data));
+          setUserData(res.data.data);
+        });
+
+      toast.promise(
+        toastPromise,
+        {
+          loading: "Saving expense...",
+          success: "Expense saved successfully!",
+          error: "Failed to save expense. Please try again.",
+        },
+        {
+          id: "saving-expense",
         }
       );
     }
@@ -184,6 +216,7 @@ function ExpenseTransactionCard() {
                   <SelectItem value="Travel">Travel</SelectItem>
                   <SelectItem value="Groceries">Groceries</SelectItem>
                   <SelectItem value="Work">Work</SelectItem>
+                  <SelectItem value="Other">Other</SelectItem>
                 </SelectContent>
               </Select>
             </div>

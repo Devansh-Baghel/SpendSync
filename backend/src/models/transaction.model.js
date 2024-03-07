@@ -13,7 +13,7 @@ const transactionSchema = mongoose.Schema(
     },
     category: {
       type: String,
-      default: "other",
+      default: "Other",
     },
     type: {
       type: String,
