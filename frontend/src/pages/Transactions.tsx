@@ -1,4 +1,5 @@
 import { AppContext } from "@/App";
+import TransactionDisplay from "@/components/TransactionDisplay";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -8,8 +9,8 @@ function Transactions() {
 
   useEffect(() => {
     if (
-      !userData.user?.transactions ||
-      userData.user.transactions?.length === 0
+      !userData.user?.transactionHistory ||
+      userData.user.transactionHistory?.length === 0
     ) {
       navigate("/create-transaction");
     }
@@ -20,9 +21,10 @@ function Transactions() {
       <h1 className="text-3xl font-bold text-background mb-5">Transactions</h1>
 
       {/*  */}
-      <h1 className="text-3xl font-bold text-background mb-5 text-center mt-56">
+      {/* <h1 className="text-3xl font-bold text-background mb-5 text-center mt-56">
         Work in Progress here <br /> ¯\_(ツ)_/¯
-      </h1>
+      </h1> */}
+      <TransactionDisplay />
 
       {/*  */}
     </div>
