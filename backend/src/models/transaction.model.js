@@ -17,7 +17,7 @@ const transactionSchema = mongoose.Schema(
     },
     type: {
       type: String,
-      emun: ["increment", "decrement"],
+      emun: ["Income", "Expense"],
       required: true,
     },
     title: {

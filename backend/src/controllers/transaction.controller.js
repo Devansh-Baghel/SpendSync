@@ -26,7 +26,7 @@ export const createExpense = asyncHandler(async (req, res) => {
 
   const transaction = await Transaction.create({
     madeBy: user._id,
-    type: "decrement",
+    type: "Expense",
     title,
     receipt: receipt?.url || "",
     amount,
@@ -65,4 +65,19 @@ export const createExpense = asyncHandler(async (req, res) => {
         "Created transaction successfully"
       )
     );
+});
+
+export const getTransactions = asyncHandler(async (req, res) => {
+  const userTransactions = req.user.transactionHistory;
+
+  if (!userTransactions || userTransactions.length === 0)
+    throw new ApiError(404, "User doesn't have any goals");
+
+  const transactions = await Transaction.find({
+    _id: { $in: userTransactions },
+  });
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, { transactions }, "Goals sent successfully"));
 });
