@@ -8,7 +8,7 @@ function IncomeAndExpense() {
   const { userData } = useContext(AppContext);
 
   return (
-    <div className="bg-card w-80 h-52 rounded-[20px] p-5 flex flex-col items-center gap-4 justify-center text-center">
+    <div className="bg-card max-w-80 h-52 rounded-[20px] p-5 flex flex-col items-center gap-4 justify-center text-center">
       <h3>
         Your expenses are{" "}
         <span className="font-bold text-primary">
@@ -17,14 +17,14 @@ function IncomeAndExpense() {
         of your income
       </h3>
       <div className="flex gap-4">
-        <div className="bg-primary w-32 h-20 rounded-xl text-center text-background p-2">
+        <div className="bg-primary w-28 md:w-32 h-20 rounded-xl text-center text-background p-2">
           <p className="">Income</p>
           <p className="font-bold text-2xl">
             {userData.user.currency}
             {formatter.format(userData.user.income)}
           </p>
         </div>
-        <div className="bg-primary w-32 h-20 rounded-xl text-center text-background p-2">
+        <div className="bg-primary w-28 md:w-32 h-20 rounded-xl text-center text-background p-2">
           <p className="">Expense</p>
           <p className="font-bold text-2xl">
             {userData.user.currency}
