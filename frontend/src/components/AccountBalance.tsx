@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "@/App";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const formatter = new Intl.NumberFormat("en-US");
 
@@ -14,7 +15,9 @@ function AccountBalance() {
         {userData.user.currency}
         {formatter.format(userData.user.currentBalance)}
       </h2>
-      <Button className="">Make a transaction</Button>
+      <Link to={"/create-transaction"}>
+        <Button className="">Make a transaction</Button>
+      </Link>
     </div>
   );
 }
