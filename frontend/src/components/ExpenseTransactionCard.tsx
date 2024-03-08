@@ -137,7 +137,7 @@ function ExpenseTransactionCard() {
             <Input
               id="title"
               placeholder="Paid rent"
-              maxLength={20}
+              maxLength={40}
               required
               onChange={(e) => setTitle(e.target.value)}
             />

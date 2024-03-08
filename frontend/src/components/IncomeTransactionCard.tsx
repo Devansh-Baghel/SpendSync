@@ -52,9 +52,13 @@ function IncomeTransactionCard() {
     if (receipt) {
       const formData = new FormData();
       formData.append("receipt", receipt);
+      formData.append("title", title);
+      formData.append("amount", amount.toString());
+      if (category !== undefined) formData.append("category", category);
+      formData.append("date", date?.toISOString() || "");
 
       const toastPromise = axios
-        .post("/transaction/create-expense", formData, {
+        .post("/transaction/create-income", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -67,12 +71,38 @@ function IncomeTransactionCard() {
       toast.promise(
         toastPromise,
         {
-          loading: "Saving Avatar",
-          success: "Saved Avatar",
-          error: "Eror when fetching",
+          loading: "Saving income...",
+          success: "Income saved successfully!",
+          error: "Failed to save income. Please try again.",
         },
         {
-          id: "saving-avatar",
+          id: "saving-income",
+        }
+      );
+    } else {
+      const data = {
+        title,
+        amount,
+        category,
+        date,
+      };
+
+      const toastPromise = axios
+        .post("/transaction/create-income", data)
+        .then((res) => {
+          localStorage.setItem("userData", JSON.stringify(res.data.data));
+          setUserData(res.data.data);
+        });
+
+      toast.promise(
+        toastPromise,
+        {
+          loading: "Saving income...",
+          success: "Income saved successfully!",
+          error: "Failed to save income. Please try again.",
+        },
+        {
+          id: "saving-income",
         }
       );
     }
@@ -90,7 +120,7 @@ function IncomeTransactionCard() {
             <Input
               id="title"
               placeholder="Salary!"
-              maxLength={20}
+              maxLength={40}
               required
               onChange={(e) => setTitle(e.target.value)}
             />

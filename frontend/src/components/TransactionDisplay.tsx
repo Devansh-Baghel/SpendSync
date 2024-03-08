@@ -38,7 +38,7 @@ function TransactionDisplay() {
 
   return (
     <div className="flex flex-col h-[75vh]">
-      <ScrollArea className="rounded-xl bg-background p-5">
+      <ScrollArea className="rounded-xl bg-background p-5 max-h-[450px]">
         <Table>
           {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
           <TableHeader>
@@ -67,7 +67,7 @@ function TransactionDisplay() {
         </Table>
       </ScrollArea>
 
-      <div className="mt-6 self-end">
+      <div className="absolute bottom-6 right-10">
         <Link to={"/create-transaction"}>
           <Button
             className="font-bold h-14 text-md w-72 flex gap-2"
