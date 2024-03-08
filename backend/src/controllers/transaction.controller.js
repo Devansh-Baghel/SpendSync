@@ -81,3 +81,56 @@ export const getTransactions = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, { transactions }, "Goals sent successfully"));
 });
+
+export const createIncome = asyncHandler(async (req, res) => {
+  const { title, amount, category, date } = req.body;
+  const user = req.user;
+
+  if (!title) throw new ApiError(400, "Title is required");
+  if (!amount) throw new ApiError(400, "Amount is required");
+  if (amount < 1) throw new ApiError(400, "Amount can't be less than 1");
+
+  const receiptLocalPath = req?.file?.path;
+
+  const receipt = await uploadOnCloudinary(receiptLocalPath);
+
+  const transaction = await Transaction.create({
+    madeBy: user._id,
+    type: "Income",
+    title,
+    receipt: receipt?.url || "",
+    amount,
+    wallet: "Cash",
+    category: category || "",
+    date: date || "",
+  });
+
+  const transactionHistory = user.transactionHistory || [];
+
+  const updatedUser = await User.findByIdAndUpdate(
+    user._id,
+    {
+      transactionHistory: [...transactionHistory, transaction._id],
+      $inc: { currentBalance: +amount }, // Increment the current balance
+    },
+    {
+      new: true,
+    }
+  ).select("-password -refreshToken");
+
+  if (!updatedUser)
+    throw new ApiError(
+      500,
+      "Something went wrong while creating the transaction"
+    );
+
+  return res
+    .status(201)
+    .json(
+      new ApiResponse(
+        200,
+        { user: updatedUser },
+        "Created transaction successfully"
+      )
+    );
+});
