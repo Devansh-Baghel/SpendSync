@@ -129,7 +129,7 @@ export const addMoneyToGoal = asyncHandler(async (req, res) => {
       new: true,
       session,
     }
-  );
+  ).select("-password -refreshToken");
 
   if (!updatedUser) throw new ApiError(404, "User doesn't exist");
 

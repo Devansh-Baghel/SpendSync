@@ -259,7 +259,7 @@ export const initialDeposit = asyncHandler(async (req, res) => {
     {
       new: true,
     }
-  );
+  ).select("-password -refreshToken");
 
   return res
     .status(200)
@@ -282,7 +282,7 @@ export const updateAccountBalance = asyncHandler(async (req, res) => {
     {
       new: true,
     }
-  );
+  ).select("-password -refreshToken");
 
   return res
     .status(200)
@@ -301,7 +301,7 @@ export const updateDate = asyncHandler(async (req, res) => {
     user._id,
     { dateOfBirth: date },
     { new: true }
-  );
+  ).select("-password -refreshToken");
   if (!updatedUser) throw new ApiError(404, "User not found");
 
   return res
@@ -319,7 +319,8 @@ export const updateUserDetails = asyncHandler(async (req, res) => {
 
   const updatedUser = await User.findByIdAndUpdate(user._id, updateFields, {
     new: true,
-  });
+  }).select("-password -refreshToken");
+
   if (!updatedUser) throw new ApiError(404, "User doesn't exist");
 
   return res
