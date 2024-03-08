@@ -6,23 +6,22 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
-import { useContext, useEffect, useState } from "react";
-// import { Icons } from "@/components/icons"
+import { FormEvent, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "@/App";
+import { toast as RHT } from "react-hot-toast";
 
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { isLoggedIn } = useContext(AppContext);
+  const { isLoggedIn, setIsLoggedIn, setUserData } = useContext(AppContext);
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -30,7 +29,28 @@ function Register() {
     if (isLoggedIn) navigate("/");
   }, []);
 
-  async function handleSubmit(e: any) {
+  async function demoLogin() {
+    const toastPromise = axios
+      .post("/users/login", {
+        email: "demo@demo.demo",
+        password: "demo123",
+      })
+      .then((response) => {
+        localStorage.setItem("userStatus", "loggedIn");
+        setIsLoggedIn(true);
+        localStorage.setItem("userData", JSON.stringify(response.data.data));
+        setUserData(response.data.data);
+        navigate("/");
+      });
+
+    RHT.promise(toastPromise, {
+      loading: "Logging in...",
+      success: "Logged in as a demo user",
+      error: "Error logging you in",
+    });
+  }
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (name.trim() === "") return;
     if (email.trim() === "") return;
@@ -81,16 +101,13 @@ function Register() {
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
-          {/* <div className="grid grid-cols-2 gap-6"> */}
-          {/*   <Button variant="outline"> */}
-          {/*     <Icons.gitHub className="mr-2 h-4 w-4" /> */}
-          {/*     Github */}
-          {/*   </Button> */}
-          {/*   <Button variant="outline"> */}
-          {/*     <Icons.google className="mr-2 h-4 w-4" /> */}
-          {/*     Google */}
-          {/*   </Button> */}
-          {/* </div> */}
+          <Button
+            className="w-full mt-4 rounded-[20px]"
+            onClick={demoLogin}
+            type="button"
+          >
+            Login as a demo user
+          </Button>
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t" />
@@ -102,8 +119,7 @@ function Register() {
             </div>
           </div>
           <div className="grid gap-2">
-            {/* @ts-ignore */}
-            <Label htmlFor="fullName">Full Name</Label>
+            <Label>Full Name</Label>
             <Input
               id="fullName"
               type="text"
@@ -113,8 +129,7 @@ function Register() {
             />
           </div>
           <div className="grid gap-2">
-            {/* @ts-ignore */}
-            <Label htmlFor="email">Email</Label>
+            <Label>Email</Label>
             <Input
               id="email"
               type="email"
@@ -124,8 +139,7 @@ function Register() {
             />
           </div>
           <div className="grid gap-2">
-            {/* @ts-ignore */}
-            <Label htmlFor="password">Password</Label>
+            <Label>Password</Label>
             <Input
               id="password"
               type="password"

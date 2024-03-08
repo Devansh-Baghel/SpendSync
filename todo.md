@@ -11,7 +11,7 @@
 - [x] Merge income and expenses in a single route w/ controller as you can't have expense more than income
 <!-- - [ ] Add attachment feature in sidebar -->
 - [ ] filter Transactions feature
-- [ ] Demo user in register/login
+- [x] Demo user in register/login
 - [ ] Pro version of the thing with stripe integration
 <!-- - [ ] Oauth? -->
 - [x] DashBoard

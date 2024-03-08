@@ -58,6 +58,11 @@ function TransactionDisplay() {
                 <TableCell>{transaction.wallet}</TableCell>
                 <TableCell>{transaction.title}</TableCell>
                 <TableCell className="">
+                  {transaction.type === "Expense" ? (
+                    <span>&minus; </span>
+                  ) : (
+                    <span>+ </span>
+                  )}
                   {userData.user.currency}
                   {formatter.format(transaction.amount)}
                 </TableCell>

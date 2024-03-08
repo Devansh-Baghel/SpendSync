@@ -1,4 +1,4 @@
-import Landing from "./pages/Landing";
+// import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { createBrowserRouter } from "react-router-dom";
@@ -20,7 +20,7 @@ function Routing() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: isLoggedIn ? <Dashboard /> : <Landing />,
+      element: isLoggedIn ? <Dashboard /> : <Register />,
       children: [
         {
           index: true,
