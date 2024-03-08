@@ -16,7 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "@/App";
 import { ToastAction } from "@radix-ui/react-toast";
 import { useToast } from "@/components/ui/use-toast";
-import { toast as RHT } from "react-hot-toast";
+import DemoLoginButton from "@/components/DemoLoginButton";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -28,27 +28,6 @@ function Login() {
   useEffect(() => {
     if (isLoggedIn) navigate("/");
   });
-
-  async function demoLogin() {
-    const toastPromise = axios
-      .post("/users/login", {
-        email: "demo@demo.demo",
-        password: "demo123",
-      })
-      .then((response) => {
-        localStorage.setItem("userStatus", "loggedIn");
-        setIsLoggedIn(true);
-        localStorage.setItem("userData", JSON.stringify(response.data.data));
-        setUserData(response.data.data);
-        navigate("/");
-      });
-
-    RHT.promise(toastPromise, {
-      loading: "Logging in...",
-      success: "Logged in as a demo user",
-      error: "Error logging you in",
-    });
-  }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -106,13 +85,7 @@ function Login() {
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
-          <Button
-            className="w-full mt-4 rounded-[20px]"
-            onClick={demoLogin}
-            type="button"
-          >
-            Login as a demo user
-          </Button>
+          <DemoLoginButton />
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t" />

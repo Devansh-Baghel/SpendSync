@@ -20,7 +20,7 @@ function Routing() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: isLoggedIn ? <Dashboard /> : <Register />,
+      element: isLoggedIn ? <Dashboard /> : <Login />,
       children: [
         {
           index: true,
