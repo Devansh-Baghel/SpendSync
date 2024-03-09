@@ -51,7 +51,7 @@ function UpdateCurrency() {
         <CardHeader className="space-y-1">
           <CardTitle className="text-xl">Change Currency</CardTitle>
         </CardHeader>
-        <CardFooter className="flex gap-4">
+        <CardFooter className="flex gap-4 flex-col sm:flex-row">
           <Select onValueChange={(item) => setCurrency(item)}>
             <SelectTrigger className="h-9 data-[placeholder]:text-muted-foreground">
               <SelectValue placeholder="Select Currency" />
@@ -66,7 +66,7 @@ function UpdateCurrency() {
             </SelectContent>
           </Select>
 
-          <Button className="" type="submit">
+          <Button className="w-full sm:w-32" type="submit">
             Save Changes
           </Button>
         </CardFooter>
