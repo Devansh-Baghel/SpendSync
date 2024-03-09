@@ -10,9 +10,10 @@ import {
 } from "@/components/ui/table";
 import { AppContext } from "@/App";
 import { ScrollArea } from "./ui/scroll-area";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { FaPlus as PlusIcon } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const formatter = new Intl.NumberFormat("en-US");
 
@@ -28,6 +29,7 @@ type TransactionType = {
 function TransactionDisplay() {
   const [transactions, setTransactions] = useState([]);
   const { userData } = useContext(AppContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("/transaction/get-transactions").then((res) => {
@@ -73,15 +75,14 @@ function TransactionDisplay() {
       </ScrollArea>
 
       <div className="">
-        <Link to={"/create-transaction"}>
-          <Button
-            className="font-bold h-14 text-md md:w-72 flex gap-2 w-full mt-6"
-            variant={"outline"}
-          >
-            <PlusIcon className="w-5 h-5" />
-            New Transaction
-          </Button>
-        </Link>
+        <Button
+          className="font-bold h-14 text-md md:w-72 flex gap-2 w-full mt-6"
+          variant={"outline"}
+          onClick={() => navigate("/create-transaction")}
+        >
+          <PlusIcon className="w-5 h-5" />
+          New Transaction
+        </Button>
       </div>
     </div>
   );
