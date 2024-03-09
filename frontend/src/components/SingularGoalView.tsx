@@ -48,7 +48,7 @@ function SingularGoalView() {
   }
 
   return (
-    <Card className="flex-1 mb-6 mt-3 flex flex-col relative">
+    <Card className="flex-1 mb-6 sm:mt-3 flex flex-col relative">
       <CardHeader>
         <CardTitle className="text-lg flex justify-between">
           {selectedGoal.title}
@@ -90,7 +90,7 @@ function SingularGoalView() {
           </span>{" "}
           of your goal, keep going!
         </h3>
-        <div className="flex justify-center items-center gap-6 font-semibold mb-4">
+        <div className="flex justify-center items-center gap-2 sm:gap-6 font-semibold mb-4">
           {userData.user.currency}
           {formatter.format(selectedGoal.currentAmount)}
           <Progress
@@ -128,7 +128,7 @@ function SingularGoalView() {
           </p>
         </div>
       </CardContent>
-      <CardFooter className="flex gap-4 justify-self-end self-end absolute bottom-0">
+      <CardFooter className="flex gap-4 md:justify-self-end md:self-end bottom-0 flex-col md:flex-row items-start md:items-end h-full">
         <UpdateGoal />
         <AddMoneyToGoal />
       </CardFooter>

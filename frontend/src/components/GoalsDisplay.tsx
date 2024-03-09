@@ -45,11 +45,11 @@ function GoalsDisplay() {
   // if (isLoading) return <h1>Loading...</h1>
 
   return (
-    <div className="flex gap-6">
-      <ScrollArea className="h-[75vh] w-[400px] rounded-xl">
+    <div className="flex gap-6 flex-col md:flex-row">
+      <ScrollArea className="h-[75vh] sm:w-[400px] rounded-xl">
         {goals.map((goal: GoalType) => (
           <Card
-            className="mt-4 mr-4 hover:bg-accent hover:cursor-pointer"
+            className="mt-4 sm:mr-4 hover:bg-accent hover:cursor-pointer"
             key={goal._id}
             onClick={() => {
               setSelectedGoal(goal);
@@ -64,7 +64,7 @@ function GoalsDisplay() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="flex justify-center items-center gap-6 font-semibold">
+              <div className="flex justify-center items-center gap-2 sm:gap-6 font-semibold">
                 {userData.user.currency}
                 {formatter.format(goal.currentAmount)}
                 <Progress

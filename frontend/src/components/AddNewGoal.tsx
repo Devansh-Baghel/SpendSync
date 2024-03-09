@@ -53,7 +53,7 @@ function AddNewGoal() {
     <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
       {/* <SheetTrigger> */}
       <Button
-        className="font-bold h-14 text-md w-72 flex gap-2"
+        className="font-bold h-14 text-md sm:w-72 flex gap-2"
         variant={"outline"}
         onClick={() => {
           setSheetOpen(true);
