@@ -143,8 +143,8 @@ function ExpenseTransactionCard() {
             />
           </div>
 
-          <div className="flex gap-6">
-            <div className="w-[150px] space-y-1">
+          <div className="flex gap-4 sm:gap-6 flex-col sm:flex-row">
+            <div className="sm:w-[150px] space-y-1">
               <Label htmlFor="amount">Amount</Label>
               <Input
                 id="amount"
@@ -173,7 +173,7 @@ function ExpenseTransactionCard() {
               </Select>
             </div>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex sm:items-center gap-4 sm:gap-6 flex-col sm:flex-row">
             <div className="flex flex-col gap-1.5">
               <Label>Date</Label>
               <Popover>
@@ -182,7 +182,7 @@ function ExpenseTransactionCard() {
                     variant={"outline"}
                     type="button"
                     className={cn(
-                      "w-[140px] justify-start text-left font-normal",
+                      "sm:w-[140px] justify-start text-left font-normal",
                       !date && "text-muted-foreground"
                     )}
                   >

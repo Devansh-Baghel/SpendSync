@@ -126,7 +126,7 @@ function IncomeTransactionCard() {
             />
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex sm:items-center gap-4 sm:gap-6 flex-col sm:flex-row">
             <div className="flex-1 space-y-1 mb-[5px]">
               <Label htmlFor="amount">Amount</Label>
               <Input
@@ -146,7 +146,7 @@ function IncomeTransactionCard() {
                     variant={"outline"}
                     type="button"
                     className={cn(
-                      "w-[160px] justify-start text-left font-normal",
+                      "sm:w-[160px] justify-start text-left font-normal",
                       !date && "text-muted-foreground"
                     )}
                   >
