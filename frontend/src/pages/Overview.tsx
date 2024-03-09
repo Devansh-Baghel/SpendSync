@@ -11,7 +11,7 @@ function Overview() {
   console.log(userData);
 
   return (
-    <div className="bg-primary rounded-[25px] min-w-[330px] md:w-screen py-6 px-8 mt-[-100px] md:mt-0">
+    <div className="bg-primary rounded-[25px] md:w-screen py-6 px-5 sm:px-8 mt-[-100px] md:mt-0">
       <h1 className="text-3xl font-bold text-background mb-5">Overview</h1>
       {userData.user.currentBalance === 0 ? (
         <InitialDeposit />

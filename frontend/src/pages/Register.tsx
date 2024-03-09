@@ -67,7 +67,7 @@ function Register() {
 
   return (
     <form
-      className="flex justify-center items-center h-screen"
+      className="flex justify-center items-center h-screen mx-4"
       onSubmit={(e) => {
         handleSubmit(e);
       }}

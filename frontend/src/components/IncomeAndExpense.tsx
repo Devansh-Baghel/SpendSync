@@ -17,14 +17,14 @@ function IncomeAndExpense() {
         of your income
       </h3>
       <div className="flex gap-4">
-        <div className="bg-primary w-28 md:w-32 h-20 rounded-xl text-center text-background p-2">
+        <div className="bg-primary sm:min-w-32 h-20 rounded-xl text-center text-background p-2">
           <p className="">Income</p>
           <p className="font-bold text-2xl">
             {userData.user.currency}
             {formatter.format(userData.user.income)}
           </p>
         </div>
-        <div className="bg-primary w-28 md:w-32 h-20 rounded-xl text-center text-background p-2">
+        <div className="bg-primary  sm:min-w-32 h-20 rounded-xl text-center text-background p-2">
           <p className="">Expense</p>
           <p className="font-bold text-2xl">
             {userData.user.currency}
