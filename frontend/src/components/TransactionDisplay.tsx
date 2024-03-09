@@ -38,14 +38,14 @@ function TransactionDisplay() {
 
   return (
     <div className="flex flex-col h-[75vh]">
-      <ScrollArea className="rounded-xl bg-background p-5 max-h-[450px]">
+      <ScrollArea className="rounded-xl bg-background p-5 flex-1">
         <Table>
           {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[150px]">Type</TableHead>
-              <TableHead className="w-[150px]">Method</TableHead>
-              <TableHead className="w-[400px]">Title</TableHead>
+              <TableHead className="md:w-[150px]">Type</TableHead>
+              <TableHead className="md:w-[150px]">Method</TableHead>
+              <TableHead className="lg:w-[400px]">Title</TableHead>
               <TableHead className="">Amount</TableHead>
             </TableRow>
           </TableHeader>
@@ -72,10 +72,10 @@ function TransactionDisplay() {
         </Table>
       </ScrollArea>
 
-      <div className="absolute bottom-6 right-10">
+      <div className="">
         <Link to={"/create-transaction"}>
           <Button
-            className="font-bold h-14 text-md w-72 flex gap-2"
+            className="font-bold h-14 text-md md:w-72 flex gap-2 w-full mt-6"
             variant={"outline"}
           >
             <PlusIcon className="w-5 h-5" />

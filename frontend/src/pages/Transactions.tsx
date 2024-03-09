@@ -17,7 +17,7 @@ function Transactions() {
   }, []);
 
   return (
-    <div className="bg-primary rounded-[25px] w-screen h-[92vh] py-8 px-12 relative">
+    <div className="bg-primary rounded-[25px] md:w-screen py-6 px-5 sm:px-8 mt-[-100px] md:mt-0 relative">
       <h1 className="text-3xl font-bold text-background mb-5">Transactions</h1>
 
       {/*  */}
