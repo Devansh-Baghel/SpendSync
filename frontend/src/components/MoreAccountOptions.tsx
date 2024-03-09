@@ -8,10 +8,10 @@ import toast from "react-hot-toast";
 
 function MoreAccountOptions() {
   return (
-    <Card className="px-10 pt-6 flex-1">
+    <Card className="sm:px-10 pt-6 flex-1 pl-5">
       <CardTitle className="text-xl font-medium">More Options</CardTitle>
       <CardContent className="flex flex-col ml-0 pl-0 mt-6 gap-6">
-        <div className="flex gap-6">
+        <div className="flex gap-6 flex-col sm:flex-row">
           <UpdateAccountBalance />
           <Button
             variant={"outline"}
@@ -21,7 +21,7 @@ function MoreAccountOptions() {
             Export Transactions Data
           </Button>
         </div>
-        <div className="flex gap-6">
+        <div className="flex gap-6 flex-col sm:flex-row">
           {/* <Button variant={"outline"}>Update Income and Expense</Button> */}
           <UpdateIncomeAndExpense />
           <Button

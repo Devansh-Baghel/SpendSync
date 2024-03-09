@@ -63,7 +63,7 @@ function DatePicker() {
   return (
     <div className="">
       <div className="">
-        <form onSubmit={updateDate} className="flex gap-4">
+        <form onSubmit={updateDate} className="flex gap-4 flex-col sm:flex-row">
           <div className="flex flex-col gap-1.5">
             <Label className="text-sm font-semibold">Date of Birth</Label>
             <Popover>
@@ -72,7 +72,7 @@ function DatePicker() {
                   variant={"outline"}
                   type="button"
                   className={cn(
-                    "w-[240px] justify-start text-left font-normal h-9",
+                    "sm:w-[240px] justify-start text-left font-normal h-9",
                     !date && "text-muted-foreground"
                   )}
                 >
@@ -91,7 +91,7 @@ function DatePicker() {
               </PopoverContent>
             </Popover>
           </div>
-          <Button className="self-end h-9" type="submit">
+          <Button className="sm:mt-[26px] h-9" type="submit">
             Save
           </Button>
         </form>

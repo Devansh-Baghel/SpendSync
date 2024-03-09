@@ -90,12 +90,12 @@ function Account() {
   }
 
   return (
-    <div className="bg-primary rounded-[25px] w-screen h-[92vh] py-8 px-12 flex flex-col">
+    <div className="bg-primary rounded-[25px] md:w-screen py-6 px-5 sm:px-8 mt-[-100px] md:mt-0">
       <h1 className="text-3xl font-bold text-background mb-5">Account</h1>
-      <div className="flex flex-1 gap-6">
-        <Card className="">
+      <div className="flex flex-1 gap-6 md:flex-row flex-col">
+        <Card className="md:max-w-[350px] px-5 md:px-0 flex flex-col items-center">
           <form
-            className="w-[350px] py-8 flex flex-col items-center gap-5"
+            className="max-w-[350px] md:w-[350px] py-8 flex flex-col items-center gap-5"
             onSubmit={handleSubmit}
           >
             <Avatar className="w-32 h-32">
@@ -105,7 +105,7 @@ function Account() {
               </AvatarFallback>
             </Avatar>
             {!userData.user.avatar ? (
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1.5 w-full md:w-[290px]">
                 <Label htmlFor="avatar" className="tex-md">
                   Upload Avatar
                 </Label>
@@ -121,7 +121,7 @@ function Account() {
                 />
               </div>
             ) : (
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1.5 w-full md:w-[290px]">
                 <Label htmlFor="avatar" className="text-md">
                   Change Avatar
                 </Label>
@@ -138,7 +138,7 @@ function Account() {
               </div>
             )}
 
-            <div className="w-[290px] flex flex-col gap-1.5">
+            <div className="w-full md:w-[290px] flex flex-col gap-1.5">
               <Label htmlFor="fullName" className="txt-md">
                 Full Name
               </Label>
@@ -153,7 +153,7 @@ function Account() {
               />
             </div>
 
-            <div className="w-[290px] flex flex-col gap-1.5">
+            <div className="w-full md:w-[290px] flex flex-col gap-1.5">
               <Label htmlFor="bio" className="txt-md">
                 Bio
               </Label>
@@ -167,13 +167,16 @@ function Account() {
               />
             </div>
 
-            <Button className="mt-2 self-center w-[290px]" type="submit">
+            <Button
+              className="mt-2 self-center w-full md:w-[290px]"
+              type="submit"
+            >
               Save Changes
             </Button>
           </form>
         </Card>
         <div className="flex-1 flex flex-col gap-6">
-          <Card className="p-10">
+          <Card className="sm:p-10 py-6 px-5">
             <DatePicker />
             <SidebarPreferences />
           </Card>
