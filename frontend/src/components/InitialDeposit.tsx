@@ -45,7 +45,7 @@ function InitialDeposit() {
   }
 
   return (
-    <div className="bg-card w-80 h-60 rounded-[20px] p-5 flex flex-col items-center gap-10">
+    <div className="bg-card sm:w-80 h-60 rounded-[20px] p-5 flex flex-col items-center gap-10">
       <h3 className="text-center text-md">Your account is empty</h3>
       <h2 className="text-4xl"> $0 </h2>
 
@@ -63,8 +63,8 @@ function InitialDeposit() {
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="deposit" className="text-right">
+              <div className="flex flex-col grid-cols-4 gap-1.5">
+                <Label htmlFor="deposit" className="">
                   Initial Deposit
                 </Label>
                 <Input

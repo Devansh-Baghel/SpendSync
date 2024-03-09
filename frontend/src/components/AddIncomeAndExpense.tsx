@@ -44,7 +44,7 @@ function AddIncomeAndExpense() {
   }
 
   return (
-    <div className="bg-card w-80 h-48 rounded-[20px] p-5 flex flex-col items-center gap-10">
+    <div className="bg-card sm:w-80 h-48 rounded-[20px] p-5 flex flex-col items-center gap-10">
       <h3 className="text-center text-md">
         You haven't set your income and expenses yet.
       </h3>
