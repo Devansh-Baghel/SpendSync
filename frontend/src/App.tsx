@@ -28,7 +28,7 @@ function App() {
 
   const [selectedGoal, setSelectedGoal] = useState({});
 
-  axios.defaults.baseURL = "http://localhost:3000/api/v1";
+  axios.defaults.baseURL = "https://spendsync.up.railway.app/api/v1";
   axios.defaults.withCredentials = true;
 
   return (
