@@ -46,6 +46,7 @@
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
+    "@unlighthouse/vite": "^0.10.6",
     "@vitejs/plugin-react-swc": "^3.6.0",
     "autoprefixer": "^10.4.17",
     "eslint": "^8.57.0",
