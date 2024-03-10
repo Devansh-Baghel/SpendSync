@@ -50,7 +50,7 @@
 - [x] update date-of-birth controller
 - [x] delete goal option w/ alert dialog shadcn
 - [x] delete goal controller
-- [ ] register component immideatly logges user in
+- [x] register component immideatly logges user in
 - [ ] stripe integration w/ upgrade to pro
   <!-- - [ ] max 5 goals for free user, unlimited goals for paid user -->
   <!-- - [ ] add more categories for goals, user model: categories-default [1, 2, 3, 4, 5 ] -->

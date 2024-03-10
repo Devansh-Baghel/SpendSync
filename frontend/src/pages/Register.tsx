@@ -21,7 +21,7 @@ function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { isLoggedIn } = useContext(AppContext);
+  const { isLoggedIn, setIsLoggedIn, setUserData } = useContext(AppContext);
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -41,9 +41,44 @@ function Register() {
         password,
         fullName: name,
       })
-      .then((response) => {
-        navigate("/login");
-        return response.data;
+      .then(() => {
+        axios
+          .post("/users/login", {
+            email,
+            password,
+          })
+          .then((response) => {
+            localStorage.setItem("userStatus", "loggedIn");
+            setIsLoggedIn(true);
+            localStorage.setItem(
+              "userData",
+              JSON.stringify(response.data.data)
+            );
+            setUserData(response.data.data);
+            navigate("/");
+          })
+          .catch((error) => {
+            if (error.response?.status === 404) {
+              toast({
+                title: "User does not exist",
+                description: "Did you mean to sign up?",
+                action: (
+                  <ToastAction
+                    altText="register"
+                    onClick={() => {
+                      navigate("/register");
+                    }}
+                  >
+                    Sign up
+                  </ToastAction>
+                ),
+              });
+            }
+
+            if (error.response?.status === 401) {
+              toast({ description: "Incorrect password" });
+            }
+          });
       })
       .catch((error) => {
         if (error.response?.status === 409) {
