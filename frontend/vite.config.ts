@@ -4,10 +4,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [
-    react(),
-    Unlighthouse({
-      // config
-    }),
+    react()
   ],
   resolve: {
     alias: {
