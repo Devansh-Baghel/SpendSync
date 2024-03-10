@@ -9,7 +9,7 @@ app.use(
     origin: [
       process.env.CORS_ORIGIN,
       "http://localhost:5173",
-      "https://spendsync.baghel.dev/",
+      "https://spendsync.baghel.dev",
     ],
     credentials: true,
   })
