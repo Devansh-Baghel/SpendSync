@@ -13,6 +13,7 @@ import Goals from "./pages/Goals";
 import Account from "./pages/Account";
 import SingularGoalView from "./components/SingularGoalView";
 import NewTransaction from "./pages/NewTransaction";
+import ResetDemo from "./pages/ResetDemo";
 
 function Routing() {
   const { isLoggedIn } = useContext(AppContext);
@@ -61,6 +62,10 @@ function Routing() {
     {
       path: "login",
       element: <Login />,
+    },
+    {
+      path: "reset-demo",
+      element: <ResetDemo />,
     },
   ]);
 

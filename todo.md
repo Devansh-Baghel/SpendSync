@@ -69,3 +69,12 @@
 - [ ] insights page: only for paid users, has the ui blurred, says "Upgrade to premium or login as a paid user"
 - [ ] goals tabluar view : check mantine ui table
 - [ ] a little "i" in the Wallet label in add expense that tells user that selecting cash would deduct this ammount from their account balance
+- [ ] Issue: Stripe Integration
+- [ ] Issue: Doesn't work in brave browser
+- [ ] Issue: repo link in project
+- [ ] Issue: Logout toast notifications
+- [ ] Issue: loading icons in GoalsDisplay & transactionDisplay
+- [ ] filetype check in frontend when uploading avatar
+- [ ] Issue: refreshing causes app to crash - vercel.json
+- [ ] change html title and metadata to spendsync!
+- [ ] add a password to protect the reset demo user thing

@@ -28,7 +28,7 @@ function App() {
 
   const [selectedGoal, setSelectedGoal] = useState({});
 
-  axios.defaults.baseURL = "https://spendsync.up.railway.app/api/v1";
+  axios.defaults.baseURL = import.meta.env.VITE_API_URI;
   axios.defaults.withCredentials = true;
 
   return (
