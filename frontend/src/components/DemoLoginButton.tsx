@@ -13,7 +13,7 @@ function DemoLoginButton() {
     const toastPromise = axios
       .post("/users/login", {
         email: "demo@demo.demo",
-        password: "demo123",
+        password: import.meta.env.VITE_DEMO_PASS,
       })
       .then((response) => {
         localStorage.setItem("userStatus", "loggedIn");
