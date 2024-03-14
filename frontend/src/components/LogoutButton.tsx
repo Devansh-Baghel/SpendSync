@@ -2,14 +2,22 @@ import { AppContext } from "@/App";
 import { useContext } from "react";
 import axios from "axios";
 import { HiOutlineLogout as LogoutIcon } from "react-icons/hi";
+import { toast } from "react-hot-toast";
 
 function LogoutButton() {
   const { setIsLoggedIn } = useContext(AppContext);
 
   async function handleLogout() {
-    await axios.post("/users/logout");
-    localStorage.removeItem("userStatus");
-    setIsLoggedIn(false);
+    const toastPromise = axios.post("/users/logout").then(() => {
+      localStorage.removeItem("userStatus");
+      setIsLoggedIn(false);
+    });
+
+    toast.promise(toastPromise, {
+      success: "Logged out",
+      loading: "Logging out",
+      error: "Unable to log out",
+    });
   }
 
   return (
@@ -19,7 +27,7 @@ function LogoutButton() {
         handleLogout();
       }}
     >
-      <LogoutIcon className="w-6 h-6 text-accent-foreground"/>
+      <LogoutIcon className="w-6 h-6 text-accent-foreground" />
       Log out
     </button>
   );
