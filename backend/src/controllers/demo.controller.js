@@ -1,8 +1,8 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
+import { Goal } from "../models/goal.model.js";
 // import { User } from "../models/user.model.js";
-// import { Goal } from "../models/goal.model.js";
 // import { Transaction } from "../models/transaction.model.js";
 
 export const resetDemoUser = asyncHandler(async (req, res) => {
@@ -14,6 +14,27 @@ export const resetDemoUser = asyncHandler(async (req, res) => {
   user.avatar =
     "https://res.cloudinary.com/dmg2vyybm/image/upload/v1710250663/ttvr7uqkb46z3eciwjjp.jpg";
   user.goals = ["65eaf9361c84f48b0bb5fcc9", "65eafa831c84f48b0bb5fcd8"];
+  const { deletedCount } = await Goal.deleteMany({ madeBy: user._id });
+  console.log(`${deletedCount} goals made by demo user deleted`);
+  const goals = await Goal.create([
+    {
+      madeBy: user._id,
+      title: "Europe Vacation",
+      finalAmount: 8000,
+      currentAmount: 6200,
+      category: "Travel",
+      description: "The best vacation ever",
+    },
+    {
+      madeBy: user._id,
+      title: "Save For a New Car",
+      finalAmount: 35000,
+      currentAmount: 5600,
+      category: "Savings",
+      description: "Long way to go!",
+    },
+  ]);
+  user.goals = [goals[0]._id, goals[1]._id];
   user.transactionHistory = [
     "65eb1b1e1c84f48b0bb5fcf9",
     "65eb1b991c84f48b0bb5fd05",
