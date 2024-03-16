@@ -23,7 +23,7 @@ import { AppContext } from "@/App";
 import { FaPlus as PlusIcon } from "react-icons/fa";
 
 function AddNewGoal() {
-  const { setUserData } = useContext(AppContext);
+  const { setUserData, setSelectedGoal } = useContext(AppContext);
   const [title, setTitle] = useState<string>();
   const [amount, setAmount] = useState<number>();
   const [category, setCategory] = useState<string | null>();
@@ -46,6 +46,7 @@ function AddNewGoal() {
         localStorage.setItem("userData", JSON.stringify(res.data.data));
         setUserData(res.data.data);
         setSheetOpen(false);
+        setSelectedGoal(res.data.data.goal);
       });
   }
 
