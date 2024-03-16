@@ -78,3 +78,5 @@
 - [ ] Issue: refreshing causes app to crash - vercel.json
 - [ ] change html title and metadata to spendsync!
 - [ ] add a password to protect the reset demo user thing
+- [ ] get current user controller in backend
+- [ ] get the latest user data in the App component

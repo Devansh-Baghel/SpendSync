@@ -86,7 +86,7 @@ function GoalsDisplay() {
       )}
       <div className="flex flex-col justify-between flex-1">
         {goalId === selectedGoal._id && goalId !== undefined ? (
-          <SingularGoalView />
+          <SingularGoalView setIsSelected={setIsSelected} />
         ) : (
           <div className="flex flex-col justify-center items-center gap-6 flex-1">
             <h2 className="text-2xl text-primary-foreground font-bold">

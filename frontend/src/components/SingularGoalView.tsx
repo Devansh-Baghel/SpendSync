@@ -27,7 +27,11 @@ import {
 
 const formatter = new Intl.NumberFormat("en-US");
 
-function SingularGoalView() {
+type PropTypes = {
+  setIsSelected: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function SingularGoalView({ setIsSelected }: PropTypes) {
   const { userData, selectedGoal, setUserData, setSelectedGoal } =
     useContext(AppContext);
 
@@ -44,6 +48,7 @@ function SingularGoalView() {
         setUserData(res.data.data);
         localStorage.setItem("userData", JSON.stringify(res.data.data));
         setSelectedGoal({});
+        setIsSelected(false);
       });
   }
 
