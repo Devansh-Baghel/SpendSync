@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import AddNewGoal from "./AddNewGoal";
 import SingularGoalView from "./SingularGoalView";
+import GoalsSkeleton from "./GoalsSkeleton";
 import { useParams, useNavigate } from "react-router-dom";
 
 const formatter = new Intl.NumberFormat("en-US");
@@ -24,6 +25,7 @@ function GoalsDisplay() {
   const [goals, setGoals] = useState([]);
   const { userData, selectedGoal, setSelectedGoal } = useContext(AppContext);
   const [isSelected, setIsSelected] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { goalId } = useParams();
   const navigate = useNavigate();
 
@@ -35,6 +37,7 @@ function GoalsDisplay() {
     axios.get("/goals/get-goals").then((res) => {
       setGoals(res.data.data.goals.reverse());
       console.log(res.data);
+      setLoading(false);
     });
   }, [selectedGoal]);
 
@@ -46,37 +49,41 @@ function GoalsDisplay() {
 
   return (
     <div className="flex gap-6 flex-col md:flex-row">
-      <ScrollArea className="h-[75vh] sm:w-[400px] rounded-xl">
-        {goals.map((goal: GoalType) => (
-          <Card
-            className="mt-4 sm:mr-4 hover:bg-accent hover:cursor-pointer"
-            key={goal._id}
-            onClick={() => {
-              setSelectedGoal(goal);
-              setIsSelected(true);
-              navigate(`/goals/${goal._id}`);
-            }}
-          >
-            <CardHeader>
-              <CardTitle className="text-lg">{goal.title}</CardTitle>
-              <div>
-                <Badge className="text-xs">{goal.category}</Badge>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="flex justify-center items-center gap-2 sm:gap-6 font-semibold">
-                {userData.user.currency}
-                {formatter.format(goal.currentAmount)}
-                <Progress
-                  value={(goal.currentAmount * 100) / goal.finalAmount}
-                />
-                {userData.user.currency}
-                {formatter.format(goal.finalAmount)}
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </ScrollArea>
+      {loading ? (
+        <GoalsSkeleton />
+      ) : (
+        <ScrollArea className="h-[75vh] sm:w-[400px] rounded-xl">
+          {goals.map((goal: GoalType) => (
+            <Card
+              className="mt-4 sm:mr-4 hover:bg-accent hover:cursor-pointer"
+              key={goal._id}
+              onClick={() => {
+                setSelectedGoal(goal);
+                setIsSelected(true);
+                navigate(`/goals/${goal._id}`);
+              }}
+            >
+              <CardHeader>
+                <CardTitle className="text-lg">{goal.title}</CardTitle>
+                <div>
+                  <Badge className="text-xs">{goal.category}</Badge>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="flex justify-center items-center gap-2 sm:gap-6 font-semibold">
+                  {userData.user.currency}
+                  {formatter.format(goal.currentAmount)}
+                  <Progress
+                    value={(goal.currentAmount * 100) / goal.finalAmount}
+                  />
+                  {userData.user.currency}
+                  {formatter.format(goal.finalAmount)}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </ScrollArea>
+      )}
       <div className="flex flex-col justify-between flex-1">
         {goalId === selectedGoal._id && goalId !== undefined ? (
           <SingularGoalView />
