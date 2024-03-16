@@ -155,7 +155,7 @@ export const deleteGoal = asyncHandler(async (req, res) => {
     throw new ApiError(401, "User doesn't have any goals");
 
   if (!goalId) throw new ApiError(400, "Goal id is required to delete goal");
-  if (!goalCurrentAmount)
+  if (goalCurrentAmount === undefined)
     throw new ApiError(400, "Current goal amount is required");
 
   if (!user.goals.includes(goalId))
