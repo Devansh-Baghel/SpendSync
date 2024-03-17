@@ -13,7 +13,6 @@ export const resetDemoUser = asyncHandler(async (req, res) => {
 
   user.avatar =
     "https://res.cloudinary.com/dmg2vyybm/image/upload/v1710250663/ttvr7uqkb46z3eciwjjp.jpg";
-  user.goals = ["65eaf9361c84f48b0bb5fcc9", "65eafa831c84f48b0bb5fcd8"];
   const { deletedCount } = await Goal.deleteMany({ madeBy: user._id });
   console.log(`${deletedCount} goals made by demo user deleted`);
   const goals = await Goal.create([

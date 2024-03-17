@@ -40,6 +40,17 @@ function TransactionDisplay() {
     });
   }, []);
 
+  // Make the table-row-element to behave like a real button, can't use a real Link element or button to wrap the table-row as that messes up default shadcn table styling
+  const onKeyDown = (
+    event: React.KeyboardEvent<HTMLTableRowElement>,
+    id: string
+  ) => {
+    if (event.key === "Enter" || event.key === " ") {
+      navigate(`/transactions/${id}`);
+    }
+    return;
+  };
+
   return (
     <div className="flex flex-col h-[75vh]">
       <ScrollArea className="rounded-xl bg-background p-5 flex-1">
@@ -59,7 +70,14 @@ function TransactionDisplay() {
           ) : (
             <TableBody>
               {transactions.map((transaction: TransactionType) => (
-                <TableRow key={transaction._id}>
+                <TableRow
+                  key={transaction._id}
+                  onClick={() => navigate(`/transactions/${transaction._id}`)}
+                  className="cursor-pointer"
+                  role="button"
+                  onKeyDown={(e) => onKeyDown(e, transaction._id)}
+                  tabIndex={0}
+                >
                   <TableCell className="font-medium">
                     {transaction.type}
                   </TableCell>

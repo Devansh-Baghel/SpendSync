@@ -1,11 +1,12 @@
 import { AppContext } from "@/App";
 import TransactionDisplay from "@/components/TransactionDisplay";
 import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, Outlet } from "react-router-dom";
 
 function Transactions() {
   const { userData } = useContext(AppContext);
   const navigate = useNavigate();
+  const { transactionId } = useParams();
 
   useEffect(() => {
     if (
@@ -15,6 +16,8 @@ function Transactions() {
       navigate("/create-transaction");
     }
   }, []);
+
+  if (transactionId) return <Outlet />;
 
   return (
     <div className="bg-primary rounded-[25px] md:w-screen py-6 px-5 sm:px-8 mt-[-100px] md:mt-0 relative">

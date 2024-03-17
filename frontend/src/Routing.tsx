@@ -14,6 +14,7 @@ import Account from "./pages/Account";
 import SingularGoalView from "./components/SingularGoalView";
 import NewTransaction from "./pages/NewTransaction";
 import ResetDemo from "./pages/ResetDemo";
+import SingleTransaction from "./components/SingleTransaction";
 
 function Routing() {
   const { isLoggedIn } = useContext(AppContext);
@@ -34,6 +35,12 @@ function Routing() {
         {
           path: "transactions",
           element: <Transactions />,
+          children: [
+            {
+              path: ":transactionId",
+              element: <SingleTransaction />,
+            },
+          ],
         },
         {
           path: "account",
