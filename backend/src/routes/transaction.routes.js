@@ -4,6 +4,7 @@ import {
   createExpense,
   createIncome,
   getTransactions,
+  getTransaction,
 } from "../controllers/transaction.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 
@@ -19,5 +20,6 @@ router
   .post(verifyJWT, upload.single("receipt"), createIncome);
 
 router.route("/get-transactions").get(verifyJWT, getTransactions);
+router.route("/get-transaction").get(verifyJWT, getTransaction);
 
 export default router;
