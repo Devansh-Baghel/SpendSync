@@ -56,6 +56,11 @@ function Account() {
     }
 
     if (avatar !== userData.user.avatar) {
+      if (!["image/jpeg", "image/png"].includes(avatar?.type)) {
+        toast.error("Only jpeg and png files are allowed");
+        return;
+      }
+
       const formData = new FormData();
       formData.append("avatar", avatar);
 
@@ -114,6 +119,7 @@ function Account() {
                   type="file"
                   name="avatar"
                   className="file:text-primary h-10 file:mt-1 cursor-pointer"
+                  accept="image/png, image/jpeg"
                   onChange={(e) => {
                     if (!e.target.files) return;
                     setAvatar(e.target.files[0]);
@@ -130,6 +136,7 @@ function Account() {
                   type="file"
                   name="avatar"
                   className="file:text-primary h-12 file:mt-2"
+                  accept="image/png, image/jpeg"
                   onChange={(e) => {
                     if (!e.target.files) return;
                     setAvatar(e.target.files[0]);
