@@ -50,6 +50,11 @@ function IncomeTransactionCard() {
     }
 
     if (receipt) {
+      if (!["image/jpeg", "image/png"].includes(receipt?.type)) {
+        toast.error("Only jpeg and png files are allowed");
+        return;
+      }
+
       const formData = new FormData();
       formData.append("receipt", receipt);
       formData.append("title", title);
@@ -195,6 +200,7 @@ function IncomeTransactionCard() {
               type="file"
               name="receipt"
               className="file:text-primary h-10 file:mt-1 cursor-pointer"
+              accept="image/png, image/jpeg"
               onChange={(e) => {
                 if (!e.target.files) return;
                 setReceipt(e.target.files[0]);
