@@ -20,6 +20,6 @@ router
   .post(verifyJWT, upload.single("receipt"), createIncome);
 
 router.route("/get-transactions").get(verifyJWT, getTransactions);
-router.route("/get-transaction").get(verifyJWT, getTransaction);
+router.route("/get-transaction").post(verifyJWT, getTransaction);
 
 export default router;
