@@ -1,10 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 import { FaPlus as PlusIcon } from "react-icons/fa";
 import { FaArrowLeft as LeftArrow } from "react-icons/fa6";
+import { TbError404 as NotFoundIcon } from "react-icons/tb";
+import { IoReceipt as ReceiptIcon } from "react-icons/io5";
 import {
   Card,
   CardContent,
@@ -18,33 +20,16 @@ import { formatter } from "@/utils/formatter";
 import { AppContext } from "@/App";
 import { useQuery } from "@tanstack/react-query";
 
-type TransactionType = {
-  amount: number;
-  category: string;
-  date: string;
-  receipt: string;
-  title: string;
-  type: string;
-  wallet: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
 function SingleTransaction() {
   const { transactionId } = useParams();
-  const [transaction, setTransaction] = useState<TransactionType>();
   const { userData } = useContext(AppContext);
   const navigate = useNavigate();
   const { data, isPending, error } = useQuery({
-    queryKey: ["transaction"],
-    queryFn: () => {
+    queryKey: [transactionId],
+    queryFn: async () => {
       return axios
         .post("/transaction/get-transaction", { transactionId })
-        .then((res) => {
-          setTransaction(res.data.data.transaction);
-          console.log(res.data);
-          return res.data.data.transaction;
-        });
+        .then((res) => res.data.data.transaction);
     },
   });
 
@@ -60,20 +45,12 @@ function SingleTransaction() {
         <LeftArrow className="inline mb-1" /> Back{" "}
       </Link>
 
-      <div>
-        {transaction?.receipt ? (
-          <a href={transaction.receipt} target="_blank">
-            <img src={transaction.receipt} alt="" />
-          </a>
-        ) : (
-          <span>Nothing here</span>
-        )}
-
-        <Card className="mt-10 relative border-0 flex-1">
+      <div className="flex flex-col gap-6 md:flex-row flex-1">
+        <Card className="mt-4 relative border-0 flex-1">
           <CardHeader>
-            <CardTitle className="text-xl mt-1">{transaction?.title}</CardTitle>
+            <CardTitle className="text-xl mt-1">{data?.title}</CardTitle>
             <CardDescription>
-              {new Date(transaction?.createdAt).toLocaleDateString("en-US", {
+              {new Date(data?.createdAt).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -81,43 +58,58 @@ function SingleTransaction() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {transaction?.type === "Expense" ? (
+            {data?.type === "Expense" ? (
               <div
                 className="bg-red-500 text-stone-900 font-bold px-4 text-center absolute top-[-16px] left-0 w-full"
                 style={{ borderRadius: "20px 20px 0 0" }}
               >
-                <p>{transaction?.type}</p>
+                <p>{data?.type}</p>
               </div>
             ) : (
               <div
                 className="bg-green-600 text-stone-800 font-bold px-4 text-center absolute top-[-16px] left-0 w-full"
                 style={{ borderRadius: "20px 20px 0 0" }}
               >
-                <p>{transaction?.type}</p>
+                <p>{data?.type}</p>
               </div>
             )}
 
-            <Badge>Wallet: {transaction?.wallet}</Badge>
+            <Badge>Wallet: {data?.wallet}</Badge>
             <br />
-            {transaction?.category ? (
-              <Badge>Category: {transaction?.category}</Badge>
+            {data?.category ? (
+              <Badge>Category: {data?.category}</Badge>
             ) : (
               <span></span>
             )}
             <Badge className="block w-40 h-10 text-xl text-center pt-1 mt-4">
-              {transaction?.type === "Expense" ? (
+              {data?.type === "Expense" ? (
                 <span className="">&minus; </span>
               ) : (
                 <span className="">+ </span>
               )}
               {userData.user.currency}
-              {formatter.format(transaction?.amount)}
-
-              {/* {transaction?.} */}
+              {formatter.format(data?.amount)}
             </Badge>
           </CardContent>
-          <CardFooter>{/* <p>Card Footer</p> */}</CardFooter>
+          <CardFooter>{/* Delete goal button will go here */}</CardFooter>
         </Card>
+
+        {data?.receipt ? (
+          <Card className="h-52 xl:w-[350px] md:h-full p-2">
+            <a href={data.receipt} target="_blank">
+              <img
+                src={data.receipt}
+                alt=""
+                className="h-full rounded-[20px]"
+              />
+            </a>
+          </Card>
+        ) : (
+          <Card className="h-52 xl:w-[350px] md:h-full flex justify-center items-center flex-col gap-2">
+            <ReceiptIcon className="w-14 h-14 text-primary" />
+            <p className="text-primary font-bold">No receipt</p>
+          </Card>
+        )}
       </div>
 
       <Button

@@ -6,7 +6,6 @@ import { createContext, useState } from "react";
 import axios from "axios";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-// import { IconContext } from "react-icons";
 
 const queryClient = new QueryClient();
 
@@ -51,8 +50,6 @@ function App() {
           setShowTransactions,
         }}
       >
-        {/* <IconContext.Provider value={{ size: "2em" }}> */}
-        {/* <ModeToggle /> */}
         <QueryClientProvider client={queryClient}>
           <Routing />
           <Toaster />
@@ -65,7 +62,6 @@ function App() {
             }}
           />
         </QueryClientProvider>
-        {/* </IconContext.Provider> */}
       </AppContext.Provider>
     </ThemeProvider>
   );
