@@ -9,8 +9,8 @@ import AddNewGoal from "./AddNewGoal";
 import SingularGoalView from "./SingularGoalView";
 import GoalsSkeleton from "./GoalsSkeleton";
 import { useParams, useNavigate } from "react-router-dom";
-
-const formatter = new Intl.NumberFormat("en-US");
+import { useQuery } from "@tanstack/react-query";
+import { formatter } from "@/utils/formatter";
 
 type GoalType = {
   _id: string;
@@ -22,38 +22,37 @@ type GoalType = {
 };
 
 function GoalsDisplay() {
-  const [goals, setGoals] = useState([]);
   const { userData, selectedGoal, setSelectedGoal } = useContext(AppContext);
   const [isSelected, setIsSelected] = useState(false);
-  const [loading, setLoading] = useState(true);
   const { goalId } = useParams();
   const navigate = useNavigate();
 
-  // const {data, error, isError, isLoading} = useQuery("get-goals", () => {
-  //   return axios.get("/goals/get-goals")
-  // })
+  const { data, isPending, error, refetch } = useQuery({
+    queryKey: ["get-goals"],
+    queryFn: async () => {
+      return axios
+        .get("/goals/get-goals")
+        .then((res) => res.data.data.goals.reverse());
+    },
+  });
 
   useEffect(() => {
-    axios.get("/goals/get-goals").then((res) => {
-      setGoals(res.data.data.goals.reverse());
-      console.log(res.data);
-      setLoading(false);
-    });
-  }, [selectedGoal]);
+    refetch();
+  }, [selectedGoal]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!goalId) setIsSelected(false);
   }, [goalId]);
 
-  // if (isLoading) return <h1>Loading...</h1>
+  if (error) return "Error";
 
   return (
     <div className="flex gap-6 flex-col md:flex-row">
-      {loading ? (
+      {isPending ? (
         <GoalsSkeleton />
       ) : (
         <ScrollArea className="h-[75vh] sm:w-[400px] rounded-xl">
-          {goals.map((goal: GoalType) => (
+          {data.map((goal: GoalType) => (
             <Card
               className="mt-4 sm:mr-4 hover:bg-accent hover:cursor-pointer"
               key={goal._id}
