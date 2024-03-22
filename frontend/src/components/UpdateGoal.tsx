@@ -40,7 +40,6 @@ function UpdateGoal() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(title, amount, category, description);
     if (title === undefined || amount === undefined) return;
 
     if (
@@ -65,7 +64,6 @@ function UpdateGoal() {
         description,
       })
       .then((res) => {
-        console.log(res);
         localStorage.setItem("userData", JSON.stringify(res.data.data));
         setUserData(res.data.data);
         setSelectedGoal(res.data.data.goal);

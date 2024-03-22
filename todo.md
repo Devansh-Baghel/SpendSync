@@ -72,12 +72,12 @@
 - [ ] Issue: Stripe Integration
 - [ ] Issue: Doesn't work in brave browser
 - [ ] Issue: repo link in project
-- [ ] Issue: Logout toast notifications
-- [ ] Issue: loading icons in GoalsDisplay & transactionDisplay
-- [ ] filetype check in frontend when uploading avatar
-- [ ] Issue: refreshing causes app to crash - vercel.json
+- [x] Issue: Logout toast notifications
+- [x] Issue: loading icons in GoalsDisplay & transactionDisplay
+- [x] filetype check in frontend when uploading avatar
+- [x] Issue: refreshing causes app to crash - vercel.json
 - [ ] change html title and metadata to spendsync!
-- [ ] add a password to protect the reset demo user thing
-- [ ] get current user controller in backend
-- [ ] get the latest user data in the App component
-- [ ] single transaction loading skeleton
+<!-- - [ ] add a password to protect the reset demo user thing -->
+- [x] get current user controller in backend
+- [x] get the latest user data in the App component
+- [x] single transaction loading skeleton

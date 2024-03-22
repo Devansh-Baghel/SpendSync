@@ -30,7 +30,6 @@ function FirstGoal() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(title, amount, category, description);
     if (title === undefined || amount === undefined) return;
     await axios
       .post("/goals/create-goal", {
@@ -40,7 +39,6 @@ function FirstGoal() {
         description,
       })
       .then((res) => {
-        console.log(res);
         localStorage.setItem("userData", JSON.stringify(res.data.data));
         setUserData(res.data.data);
       });

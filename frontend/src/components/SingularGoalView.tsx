@@ -44,7 +44,6 @@ function SingularGoalView({ setIsSelected }: PropTypes) {
         goalCurrentAmount: selectedGoal.currentAmount,
       })
       .then((res) => {
-        console.log(res);
         setUserData(res.data.data);
         localStorage.setItem("userData", JSON.stringify(res.data.data));
         setSelectedGoal({});

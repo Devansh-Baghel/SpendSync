@@ -45,7 +45,6 @@ function AddMoneyToGoal() {
         currentAmount: amountToAdd,
       })
       .then((res) => {
-        console.log(res);
         localStorage.setItem("userData", JSON.stringify(res.data.data));
         setUserData(res.data.data);
         setSelectedGoal(res.data.data.goal);
