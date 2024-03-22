@@ -104,7 +104,9 @@ function Account() {
             onSubmit={handleSubmit}
           >
             <Avatar className="w-32 h-32">
-              <AvatarImage src={userData.user.avatar} />
+              <a href={userData.user.avatar} target="_blank">
+                <AvatarImage src={userData.user.avatar} />
+              </a>
               <AvatarFallback className="text-3xl">
                 {getAvatarFallback(userData.user.fullName)}
               </AvatarFallback>
