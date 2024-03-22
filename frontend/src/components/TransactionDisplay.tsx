@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import axios from "axios";
 import {
   Table,
@@ -14,6 +14,7 @@ import { Button } from "./ui/button";
 import { FaPlus as PlusIcon } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import TransactionSkeleton from "./TransactionSkeleton";
+import { useQuery } from "@tanstack/react-query";
 
 const formatter = new Intl.NumberFormat("en-US");
 
@@ -27,18 +28,16 @@ type TransactionType = {
 };
 
 function TransactionDisplay() {
-  const [transactions, setTransactions] = useState([]);
   const { userData } = useContext(AppContext);
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    axios.get("/transaction/get-transactions").then((res) => {
-      setTransactions(res.data.data.transactions.reverse());
-      console.log(res.data);
-      setLoading(false);
-    });
-  }, []);
+  const { data, isPending, error } = useQuery({
+    queryKey: ["get-transactions"],
+    queryFn: async () => {
+      return axios
+        .get("/transaction/get-transactions")
+        .then((res) => res.data.data.transactions.reverse());
+    },
+  });
 
   // Make the table-row-element to behave like a real button, can't use a real Link element or button to wrap the table-row as that messes up default shadcn table styling
   const onKeyDown = (
@@ -51,11 +50,12 @@ function TransactionDisplay() {
     return;
   };
 
+  if (error) return "Error";
+
   return (
     <div className="flex flex-col h-[75vh]">
       <ScrollArea className="rounded-xl bg-background p-5 flex-1">
         <Table>
-          {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
           <TableHeader>
             <TableRow>
               <TableHead className="md:w-[150px]">Type</TableHead>
@@ -65,11 +65,11 @@ function TransactionDisplay() {
             </TableRow>
           </TableHeader>
 
-          {loading ? (
+          {isPending ? (
             <TransactionSkeleton />
           ) : (
             <TableBody>
-              {transactions.map((transaction: TransactionType) => (
+              {data.map((transaction: TransactionType) => (
                 <TableRow
                   key={transaction._id}
                   onClick={() => navigate(`/transactions/${transaction._id}`)}
