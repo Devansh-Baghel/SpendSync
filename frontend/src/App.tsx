@@ -2,7 +2,7 @@ import Routing from "./Routing";
 import { ThemeProvider } from "./components/theme-provider";
 import { Toaster } from "./components/ui/toaster";
 import { Toaster as RHToaster } from "react-hot-toast";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -30,6 +30,15 @@ function App() {
   );
 
   const [selectedGoal, setSelectedGoal] = useState({});
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      axios.get("/users/get-current-user").then((res) => {
+        setUserData(res.data.data);
+        localStorage.setItem("userData", JSON.stringify(res.data.data));
+      });
+    }
+  }, []);
 
   axios.defaults.baseURL = import.meta.env.VITE_API_URI;
   axios.defaults.withCredentials = true;

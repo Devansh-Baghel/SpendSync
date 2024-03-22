@@ -18,7 +18,7 @@ import axios from "axios";
 const formatter = new Intl.NumberFormat("en-US");
 
 function UpdateIncomeAndExpense() {
-  const { setUserData } = useContext(AppContext);
+  const { userData, setUserData } = useContext(AppContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [income, setIncome] = useState<number>();
   const [expense, setExpense] = useState<number>();
@@ -43,9 +43,11 @@ function UpdateIncomeAndExpense() {
         setUserData(res.data.data);
         setModalOpen(false);
         toast.success(
-          `Income and expenses updated to $${formatter.format(
-            income
-          )} and $${formatter.format(expense)}`
+          `Income and expenses updated to ${
+            userData.user.currency
+          }${formatter.format(income)} and ${
+            userData.user.currency
+          }${formatter.format(expense)}`
         );
       });
   }
