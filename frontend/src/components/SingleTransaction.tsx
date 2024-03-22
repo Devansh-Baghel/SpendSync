@@ -5,7 +5,6 @@ import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 import { FaPlus as PlusIcon } from "react-icons/fa";
 import { FaArrowLeft as LeftArrow } from "react-icons/fa6";
-import { TbError404 as NotFoundIcon } from "react-icons/tb";
 import { IoReceipt as ReceiptIcon } from "react-icons/io5";
 import {
   Card,
@@ -19,6 +18,7 @@ import { Badge } from "@/components/ui/badge";
 import { formatter } from "@/utils/formatter";
 import { AppContext } from "@/App";
 import { useQuery } from "@tanstack/react-query";
+import SingleTransactionSkeleton from "./SingleTransactionSkeleton";
 
 function SingleTransaction() {
   const { transactionId } = useParams();
@@ -33,7 +33,7 @@ function SingleTransaction() {
     },
   });
 
-  if (isPending) return "Pending";
+  if (isPending) return <SingleTransactionSkeleton />;
   if (error) return "Error";
 
   return (
