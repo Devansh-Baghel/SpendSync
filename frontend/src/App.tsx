@@ -4,7 +4,11 @@ import { Toaster } from "./components/ui/toaster";
 import { Toaster as RHToaster } from "react-hot-toast";
 import { createContext, useState } from "react";
 import axios from "axios";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 // import { IconContext } from "react-icons";
+
+const queryClient = new QueryClient();
 
 // adding this any just for now, gonna remove this later
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -49,15 +53,18 @@ function App() {
       >
         {/* <IconContext.Provider value={{ size: "2em" }}> */}
         {/* <ModeToggle /> */}
-        <Routing />
-        <Toaster />
-        <RHToaster
-          toastOptions={{
-            success: {
-              duration: 3000,
-            },
-          }}
-        />
+        <QueryClientProvider client={queryClient}>
+          <Routing />
+          <Toaster />
+          <ReactQueryDevtools />
+          <RHToaster
+            toastOptions={{
+              success: {
+                duration: 3000,
+              },
+            }}
+          />
+        </QueryClientProvider>
         {/* </IconContext.Provider> */}
       </AppContext.Provider>
     </ThemeProvider>
