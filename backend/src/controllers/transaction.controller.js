@@ -16,7 +16,7 @@ export const createExpense = asyncHandler(async (req, res) => {
   if (amount > user.currentBalance && wallet === "Cash") {
     throw new ApiError(
       400,
-      "You don't have enough balance to make this transaction",
+      "You don't have enough balance to make this transaction"
     );
   }
 
@@ -53,7 +53,7 @@ export const createExpense = asyncHandler(async (req, res) => {
   if (!updatedUser)
     throw new ApiError(
       500,
-      "Something went wrong while creating the transaction",
+      "Something went wrong while creating the transaction"
     );
 
   return res
@@ -62,8 +62,8 @@ export const createExpense = asyncHandler(async (req, res) => {
       new ApiResponse(
         200,
         { user: updatedUser },
-        "Created transaction successfully",
-      ),
+        "Created transaction successfully"
+      )
     );
 });
 
@@ -115,13 +115,13 @@ export const createIncome = asyncHandler(async (req, res) => {
     },
     {
       new: true,
-    },
+    }
   ).select("-password -refreshToken");
 
   if (!updatedUser)
     throw new ApiError(
       500,
-      "Something went wrong while creating the transaction",
+      "Something went wrong while creating the transaction"
     );
 
   return res
@@ -130,8 +130,8 @@ export const createIncome = asyncHandler(async (req, res) => {
       new ApiResponse(
         200,
         { user: updatedUser },
-        "Created transaction successfully",
-      ),
+        "Created transaction successfully"
+      )
     );
 });
 
@@ -147,4 +147,26 @@ export const getTransaction = asyncHandler(async (req, res) => {
   return res
     .status(200)
     .json(new ApiResponse(200, { transaction }, "Here is your transaction"));
+});
+
+export const deleteTransaction = asyncHandler(async (req, res) => {
+  const { transactionId } = req.body;
+  const user = req.user;
+
+  if (!transactionId) throw new ApiError(400, "Transaction id is required");
+  if (!user.transactionHistory.includes(transactionId))
+    throw new ApiError(400, "This transaction isn't created by this user");
+
+  user.transactionHistory = user.transactionHistory.filter(
+    (item) => item.toString() !== transactionId
+  );
+
+  const transaction = await Transaction.deleteOne({ _id: transactionId });
+  if (!transaction) throw new ApiError(404, "This transaction doesn't exist");
+
+  await user.save();
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, { user }, "Transaction deleted successfully"));
 });
