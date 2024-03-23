@@ -1,8 +1,7 @@
 import { useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button } from "./ui/button";
-import { useNavigate } from "react-router-dom";
 import { FaPlus as PlusIcon } from "react-icons/fa";
 import { FaArrowLeft as LeftArrow } from "react-icons/fa6";
 import { IoReceipt as ReceiptIcon } from "react-icons/io5";
@@ -19,10 +18,22 @@ import { formatter } from "@/utils/formatter";
 import { AppContext } from "@/App";
 import { useQuery } from "@tanstack/react-query";
 import SingleTransactionSkeleton from "./SingleTransactionSkeleton";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import toast from "react-hot-toast";
 
 function SingleTransaction() {
   const { transactionId } = useParams();
-  const { userData } = useContext(AppContext);
+  const { userData, setUserData } = useContext(AppContext);
   const navigate = useNavigate();
   const { data, isPending, error } = useQuery({
     queryKey: [transactionId],
@@ -32,6 +43,22 @@ function SingleTransaction() {
         .then((res) => res.data.data.transaction);
     },
   });
+
+  function deleteTransaction() {
+    const toastPromise = axios
+      .post("/transaction/delete-transaction", { transactionId })
+      .then((res) => {
+        setUserData(res.data.data);
+        localStorage.setItem("userData", JSON.stringify(res.data.data));
+        navigate("/transactions");
+      });
+
+    toast.promise(toastPromise, {
+      loading: "Deleting transaction...",
+      success: "Transaction deleted",
+      error: "Unable to delete transaction",
+    });
+  }
 
   if (isPending) return <SingleTransactionSkeleton />;
   if (error) return "Error";
@@ -91,7 +118,33 @@ function SingleTransaction() {
               {formatter.format(data?.amount)}
             </Badge>
           </CardContent>
-          <CardFooter>{/* Delete goal button will go here */}</CardFooter>
+          <CardFooter>
+            <AlertDialog>
+              <AlertDialogTrigger>
+                <Button
+                  variant={"destructive"}
+                  className="md:absolute bottom-6 right-6"
+                >
+                  Delete Transaction
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone. This will permanently delete
+                    your transaction.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={deleteTransaction}>
+                    Continue
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </CardFooter>
         </Card>
 
         {data?.receipt ? (

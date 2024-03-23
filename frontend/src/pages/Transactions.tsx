@@ -8,6 +8,8 @@ function Transactions() {
   const navigate = useNavigate();
   const { transactionId } = useParams();
 
+  console.log(userData.user);
+
   useEffect(() => {
     if (
       !userData.user?.transactionHistory ||
