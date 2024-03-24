@@ -81,3 +81,5 @@
 - [x] get current user controller in backend
 - [x] get the latest user data in the App component
 - [x] single transaction loading skeleton
+- [ ] searching in transactions
+- [ ] sorting in transactions
