@@ -33,6 +33,7 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    stripeSessionId: { type: String },
     password: {
       type: String,
       required: [true, "Password is required"],

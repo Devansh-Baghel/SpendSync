@@ -38,6 +38,13 @@ function App() {
         localStorage.setItem("userData", JSON.stringify(res.data.data));
       });
     }
+
+    if (!userData.user.isPaidUser) {
+      axios.post("/pay/confirm-payment").then((res) => {
+        setUserData(res.data.data);
+        localStorage.setItem("userData", JSON.stringify(res.data.data));
+      });
+    }
   }, []);
 
   axios.defaults.baseURL = import.meta.env.VITE_API_URI;

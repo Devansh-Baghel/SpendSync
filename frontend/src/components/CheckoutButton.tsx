@@ -5,7 +5,7 @@ import { AppContext } from "@/App";
 import { PiCrown as ProIcon } from "react-icons/pi";
 
 function CheckoutButton() {
-  const { setUserData } = useContext(AppContext);
+  const { userData, setUserData } = useContext(AppContext);
 
   function handleCheckout() {
     axios
@@ -21,15 +21,17 @@ function CheckoutButton() {
         console.error(e.error);
       });
   }
-  return (
-    <Button
-      onClick={handleCheckout}
-      className="w-full md:w-80 h-14 bg-green-600 rounded-[20px] text-lg flex justify-center items-center gap-4 text-white font-semibold hover:bg-green-700"
-    >
-      <ProIcon className="w-8 h-8" />
-      Upgrade to premium
-    </Button>
-  );
+
+  if (!userData.user.isPaidUser)
+    return (
+      <Button
+        onClick={handleCheckout}
+        className="w-full md:w-80 h-14 bg-green-600 rounded-[20px] text-lg flex justify-center items-center gap-4 text-white font-semibold hover:bg-green-700"
+      >
+        <ProIcon className="w-8 h-8" />
+        Upgrade to premium
+      </Button>
+    );
 }
 
 export default CheckoutButton;

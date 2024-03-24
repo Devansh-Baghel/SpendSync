@@ -29,6 +29,9 @@ export const createCheckout = asyncHandler(async (req, res) => {
     cancel_url: process.env.CLIENT_URL,
   });
 
+  user.stripeSessionId = session.id;
+  await user.save();
+
   return res
     .status(200)
     .json(
@@ -38,11 +41,10 @@ export const createCheckout = asyncHandler(async (req, res) => {
 
 export const confirmPayment = asyncHandler(async (req, res) => {
   const user = req.user;
-  const { sessionId } = req.body;
 
-  if (!sessionId) throw new ApiError(400, "Session id is required");
+  if (!user.stripeSessionId) throw new ApiError(400, "Session id is required");
 
-  const session = await stripe.checkout.sessions.retrieve(sessionId);
+  const session = await stripe.checkout.sessions.retrieve(user.stripeSessionId);
 
   if (!session) throw new ApiError(404, "Session doesn't exist");
 
