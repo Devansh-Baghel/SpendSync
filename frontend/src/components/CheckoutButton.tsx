@@ -5,7 +5,7 @@ import { AppContext } from "@/App";
 import { PiCrown as ProIcon } from "react-icons/pi";
 
 function CheckoutButton() {
-  const { userData, setUserData } = useContext(AppContext);
+  const { setUserData } = useContext(AppContext);
 
   function handleCheckout() {
     axios
