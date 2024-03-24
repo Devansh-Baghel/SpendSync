@@ -4,27 +4,12 @@ import AccountBalance from "@/components/AccountBalance";
 import InitialDeposit from "@/components/InitialDeposit";
 import IncomeAndExpense from "@/components/IncomeAndExpense";
 import AddIncomeAndExpense from "@/components/AddIncomeAndExpense";
-import { PiCrown as ProIcon } from "react-icons/pi";
-import axios from "axios";
-import { Button } from "@/components/ui/button";
+import CheckoutButton from "@/components/CheckoutButton";
 
 function Overview() {
-  const { userData, setUserData } = useContext(AppContext);
+  const { userData } = useContext(AppContext);
 
-  function handleCheckout() {
-    axios
-      .post("/pay/checkout")
-      .then((res) => {
-        if (res.status === 200) {
-          setUserData(res.data.data);
-          localStorage.setItem("userData", JSON.stringify(res.data.data));
-          window.location = res.data.data.url;
-        }
-      })
-      .catch((e) => {
-        console.error(e.error);
-      });
-  }
+  console.log(userData.user.isPaidUser);
 
   return (
     <div className="bg-primary rounded-[25px] md:w-screen py-6 px-5 sm:px-8 mt-[-100px] md:mt-0">
@@ -45,14 +30,7 @@ function Overview() {
             <AddIncomeAndExpense />
           )}
         </div>
-
-        <Button
-          onClick={handleCheckout}
-          className="w-full md:w-80 h-14 bg-green-600 rounded-[20px] text-lg flex justify-center items-center gap-4 text-white font-semibold hover:bg-green-700"
-        >
-          <ProIcon className="w-8 h-8" />
-          Upgrade to premium
-        </Button>
+        {!userData.user.isPaidUser && <CheckoutButton />}
       </div>
     </div>
   );
