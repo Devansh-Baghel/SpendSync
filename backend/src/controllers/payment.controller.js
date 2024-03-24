@@ -35,3 +35,25 @@ export const createCheckout = asyncHandler(async (req, res) => {
       new ApiResponse(200, { user, url: session.url }, "Payment successfull")
     );
 });
+
+export const confirmPayment = asyncHandler(async (req, res) => {
+  const user = req.user;
+  const { sessionId } = req.body;
+
+  if (!sessionId) throw new ApiError(400, "Session id is required");
+
+  const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+  if (!session) throw new ApiError(404, "Session doesn't exist");
+
+  if (session.payment_status !== "paid") {
+    throw new ApiError(400, "User hasn't paid yet");
+  }
+
+  user.isPaidUser = true;
+  await user.save();
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, { user }, "Updated user payment status"));
+});
