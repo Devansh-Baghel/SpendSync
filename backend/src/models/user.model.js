@@ -29,6 +29,10 @@ const userSchema = mongoose.Schema(
         ref: "Goal",
       },
     ],
+    isPaidUser: {
+      type: Boolean,
+      default: false,
+    },
     password: {
       type: String,
       required: [true, "Password is required"],
