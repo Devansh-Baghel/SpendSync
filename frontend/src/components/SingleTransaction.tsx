@@ -148,12 +148,11 @@ function SingleTransaction() {
         </Card>
 
         {data?.receipt ? (
-          <Card className="h-52 xl:w-[350px] md:h-full p-2">
+          <Card className="h-52 md:w-[300px] xl:w-[350px] md:h-full p-2">
             <a href={data.receipt} target="_blank">
-              <img
-                src={data.receipt}
-                alt=""
-                className="h-full rounded-[20px]"
+              <div
+                style={{ backgroundImage: `url(${data.receipt})` }}
+                className={`h-full rounded-[20px] bg-cover bg-center bg-no-repeat`}
               />
             </a>
           </Card>

@@ -83,3 +83,4 @@
 - [x] single transaction loading skeleton
 - [ ] searching in transactions
 - [ ] sorting in transactions
+- [ ] fix issue w/ going to transaction page when there are no transactions
