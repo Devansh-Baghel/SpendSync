@@ -12,7 +12,7 @@
 <!-- - [ ] Add attachment feature in sidebar -->
 - [ ] filter Transactions feature
 - [x] Demo user in register/login
-- [ ] Pro version of the thing with stripe integration
+- [x] Pro version of the thing with stripe integration
 <!-- - [ ] Oauth? -->
 - [x] DashBoard
 
@@ -41,8 +41,8 @@
 - [x] change password
 - [x] add date of birth
 - [x] update income and expense
-- [ ] export all transaction data as a csv
-- [ ] export all transaction data as a csv
+- [x] export all transaction data as a csv
+- [x] export all goals data as a csv
 - [ ] in overview add option to control + k andd add "Tip: try ctrl + k"
 - [x] update account balance
 - [x] overview: you can update this in /account ; incomeAndExpense / accountBalance
@@ -51,7 +51,7 @@
 - [x] delete goal option w/ alert dialog shadcn
 - [x] delete goal controller
 - [x] register component immideatly logges user in
-- [ ] stripe integration w/ upgrade to pro
+- [x] stripe integration w/ upgrade to pro
   <!-- - [ ] max 5 goals for free user, unlimited goals for paid user -->
   <!-- - [ ] add more categories for goals, user model: categories-default [1, 2, 3, 4, 5 ] -->
 - [x] submit feedback button will open a shadcn drawer
