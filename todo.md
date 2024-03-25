@@ -83,5 +83,5 @@
 - [x] single transaction loading skeleton
 - [ ] searching in transactions
 - [ ] sorting in transactions
-- [ ] fix issue w/ going to transaction page when there are no transactions
-- [ ] fix feedback styling
+- [x] fix issue w/ going to transaction page when there are no transactions, screen flickering
+- [x] fix feedback styling
