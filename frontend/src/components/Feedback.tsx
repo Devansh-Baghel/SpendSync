@@ -6,7 +6,7 @@ import {
   DrawerTitle,
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import {
   Select,
   SelectContent,
@@ -21,10 +21,10 @@ import { toast } from "react-hot-toast";
 
 function Feedback() {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [rating, setRating] = useState();
-  const [description, setDescription] = useState();
+  const [rating, setRating] = useState<string>();
+  const [description, setDescription] = useState<string>();
 
-  async function submitFeedback(e) {
+  async function submitFeedback(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!rating) return;
 

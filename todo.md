@@ -69,7 +69,7 @@
 - [ ] insights page: only for paid users, has the ui blurred, says "Upgrade to premium or login as a paid user"
 - [ ] goals tabluar view : check mantine ui table
 - [ ] a little "i" in the Wallet label in add expense that tells user that selecting cash would deduct this ammount from their account balance
-- [ ] Issue: Stripe Integration
+- [x] Issue: Stripe Integration
 - [ ] Issue: Doesn't work in brave browser
 - [ ] Issue: repo link in project
 - [x] Issue: Logout toast notifications
@@ -84,3 +84,4 @@
 - [ ] searching in transactions
 - [ ] sorting in transactions
 - [ ] fix issue w/ going to transaction page when there are no transactions
+- [ ] fix feedback styling
