@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { LuLayoutDashboard as OverviewIcon } from "react-icons/lu";
 import { GrTransaction as TransactionsIcon } from "react-icons/gr";
 // import { FaMoneyBillTransfer as HomeIcon } from "react-icons/fa6";
@@ -15,11 +15,16 @@ import {
   // CommandSeparator,
   // CommandShortcut,
 } from "@/components/ui/command";
+import { HiOutlineLogout as LogoutIcon } from "react-icons/hi";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { AppContext } from "@/App";
+import toast from "react-hot-toast";
 
 export default function Command({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
+  const { setIsLoggedIn } = useContext(AppContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,6 +42,19 @@ export default function Command({ children }: { children: React.ReactNode }) {
   function handleSelect(page: string) {
     navigate(page);
     setOpen(false);
+  }
+
+  function handleLogout() {
+    const toastPromise = axios.post("/users/logout").then(() => {
+      localStorage.removeItem("userStatus");
+      setIsLoggedIn(false);
+    });
+
+    toast.promise(toastPromise, {
+      success: "Logged out",
+      loading: "Logging out",
+      error: "Unable to log out",
+    });
   }
 
   return (
@@ -67,25 +85,11 @@ export default function Command({ children }: { children: React.ReactNode }) {
               <SettingsIcon className="mr-2 h-4 w-4" />
               <span>Settings</span>
             </CommandItem>
+            <CommandItem onSelect={handleLogout}>
+              <LogoutIcon className="mr-2 h-4 w-4" />
+              <span>Log out</span>
+            </CommandItem>
           </CommandGroup>
-          {/* <CommandSeparator />
-          <CommandGroup heading="Settings">
-            <CommandItem>
-              <PersonIcon className="mr-2 h-4 w-4" />
-              <span>Profile</span>
-              <CommandShortcut>⌘P</CommandShortcut>
-            </CommandItem>
-            <CommandItem>
-              <EnvelopeClosedIcon className="mr-2 h-4 w-4" />
-              <span>Mail</span>
-              <CommandShortcut>⌘B</CommandShortcut>
-            </CommandItem>
-            <CommandItem>
-              <GearIcon className="mr-2 h-4 w-4" />
-              <span>Settings</span>
-              <CommandShortcut>⌘S</CommandShortcut>
-            </CommandItem>
-          </CommandGroup> */}
         </CommandList>
       </CommandDialog>
     </>
