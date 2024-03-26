@@ -14,6 +14,7 @@ SpendSync is an all in one financial planning and money tracking tool with a sle
 - Component Library - [shadcn](https://ui.shadcn.com/)
 - UI Theme - [ui.jln.dev](https://ui.jln.dev/)
 - Styling - [tailwindcss](https://tailwindcss.com/)
+- Data fetching - [Tanstack Query](https://tanstack.com/query/latest)
 - Toast notifications - [react-hot-toast](https://react-hot-toast.com/)
 - Icons - [react-icons](https://react-icons.github.io/react-icons/)
 - State management - Context Api
