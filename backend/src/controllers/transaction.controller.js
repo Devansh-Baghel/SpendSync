@@ -71,7 +71,7 @@ export const getTransactions = asyncHandler(async (req, res) => {
   const userTransactions = req.user.transactionHistory;
 
   if (!userTransactions || userTransactions.length === 0)
-    throw new ApiError(404, "User doesn't have any goals");
+    throw new ApiError(404, "User doesn't have any transactions");
 
   const transactions = await Transaction.find({
     _id: { $in: userTransactions },
@@ -79,7 +79,9 @@ export const getTransactions = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .json(new ApiResponse(200, { transactions }, "Goals sent successfully"));
+    .json(
+      new ApiResponse(200, { transactions }, "Transactions sent successfully")
+    );
 });
 
 export const createIncome = asyncHandler(async (req, res) => {
@@ -169,4 +171,23 @@ export const deleteTransaction = asyncHandler(async (req, res) => {
   return res
     .status(200)
     .json(new ApiResponse(200, { user }, "Transaction deleted successfully"));
+});
+
+export const recentTransactions = asyncHandler(async (req, res) => {
+  const userTransactions = req.user.transactionHistory;
+
+  if (!userTransactions || userTransactions.length === 0)
+    throw new ApiError(404, "User doesn't have any transactions");
+
+  const transactions = await Transaction.find({
+    _id: { $in: userTransactions },
+  });
+
+  transactions = transactions.slice(0, 5);
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(200, { transactions }, "Transactions sent successfully")
+    );
 });
