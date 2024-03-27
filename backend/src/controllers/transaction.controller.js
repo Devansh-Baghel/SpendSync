@@ -183,11 +183,15 @@ export const recentTransactions = asyncHandler(async (req, res) => {
     _id: { $in: userTransactions },
   });
 
-  transactions = transactions.slice(0, 5);
+  const recentTransaction = transactions.reverse().slice(0, 5);
 
   return res
     .status(200)
     .json(
-      new ApiResponse(200, { transactions }, "Transactions sent successfully")
+      new ApiResponse(
+        200,
+        { transactions: recentTransaction },
+        "Transactions sent successfully"
+      )
     );
 });

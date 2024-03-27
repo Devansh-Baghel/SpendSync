@@ -5,6 +5,7 @@ import InitialDeposit from "@/components/InitialDeposit";
 import IncomeAndExpense from "@/components/IncomeAndExpense";
 import AddIncomeAndExpense from "@/components/AddIncomeAndExpense";
 import CheckoutButton from "@/components/CheckoutButton";
+import RecentTransactions from "@/components/RecentTransactions";
 
 function Overview() {
   const { userData } = useContext(AppContext);
@@ -30,7 +31,17 @@ function Overview() {
             <AddIncomeAndExpense />
           )}
         </div>
-        {!userData.user.isPaidUser && <CheckoutButton />}
+        <div className="flex gap-6 flex-col">
+          {!userData.user.isPaidUser && <CheckoutButton />}
+          <RecentTransactions />
+          <p className="text-xl text-background font-bold self-center justify-self-end">
+            Try using{" "}
+            <span className="bg-background text-primary rounded-lg py-1 px-3 text-sm">
+              ctrl + k
+            </span>{" "}
+            for faster navigation
+          </p>
+        </div>
       </div>
     </div>
   );

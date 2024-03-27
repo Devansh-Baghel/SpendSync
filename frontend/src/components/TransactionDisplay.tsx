@@ -18,7 +18,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const formatter = new Intl.NumberFormat("en-US");
 
-type TransactionType = {
+export type TransactionType = {
   _id: string;
   title: string;
   wallet: string;
