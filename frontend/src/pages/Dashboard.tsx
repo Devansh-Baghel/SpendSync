@@ -21,10 +21,14 @@ function Dashboard() {
         <HamburgerMenu />
         <aside className="text-accent-foreground md:flex flex-col pl-10 w-52 justify-between h-[90vh] hidden">
           <div className="flex flex-col gap-8">
-            <Link to={"/"} className="flex items-center gap-2 mt-5 mb-10">
+            <a
+              target="_blank"
+              href="https://github.com/Devansh-Baghel/SpendSync"
+              className="flex items-center gap-2 mt-5 mb-10"
+            >
               <HomeIcon className="w-12 h-12 text-primary" />
               <h2 className="text-xl font-bold">SpendSync</h2>
-            </Link>
+            </a>
 
             <Link to={"/"} className="flex items-center gap-6">
               <OverviewIcon className="w-6 h-6" />

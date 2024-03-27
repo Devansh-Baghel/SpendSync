@@ -7,10 +7,10 @@ function GoalsSkeleton() {
   const { userData } = useContext(AppContext);
   return (
     <div className="h-[75vh] sm:w-[400px]">
-      {userData.user.goals.map((goal: { _id: string }) => (
+      {userData.user.goals.map((goalId: string) => (
         <Card
           className="mt-4 sm:mr-4 hover:bg-accent hover:cursor-pointer"
-          key={goal._id}
+          key={goalId}
         >
           <CardHeader>
             <CardTitle className="text-lg">
