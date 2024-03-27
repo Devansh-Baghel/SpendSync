@@ -25,7 +25,7 @@ function CheckoutButton() {
   return (
     <Button
       onClick={handleCheckout}
-      className="w-full md:w-80 h-14 bg-green-600 rounded-[20px] text-lg flex justify-center items-center gap-4 text-white font-semibold hover:bg-green-700"
+      className="w-full md:w-full h-14 bg-green-600 rounded-[20px] text-lg flex justify-center items-center gap-4 text-white font-semibold hover:bg-green-700"
     >
       <ProIcon className="w-8 h-8" />
       Upgrade to premium

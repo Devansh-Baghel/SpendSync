@@ -20,6 +20,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { formatter } from "@/utils/formatter";
 import { useContext } from "react";
 import { AppContext } from "@/App";
+import { Button } from "./ui/button";
 
 function RecentTransactions() {
   const { userData } = useContext(AppContext);
@@ -27,6 +28,11 @@ function RecentTransactions() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["recent-transactions"],
     queryFn: async () => {
+      if (
+        !userData.user?.transactionHistory ||
+        userData.user.transactionHistory?.length === 0
+      )
+        return null;
       return axios
         .get("/transaction/recent-transactions")
         .then((res) => res.data.data.transactions);
@@ -43,6 +49,27 @@ function RecentTransactions() {
     }
     return;
   };
+
+  if (
+    !userData.user?.transactionHistory ||
+    userData.user.transactionHistory?.length === 0
+  ) {
+    return (
+      <Card className="">
+        <CardHeader>
+          <CardTitle>Recent Transactions</CardTitle>
+        </CardHeader>
+        <CardContent className="lg:w-[500px] flex flex-col justify-center items-center gap-6 pt-8 pb-12">
+          <h3 className="text-primary font-bold text-lg">
+            You don't have any transactions
+          </h3>
+          <Link to={"/create-transaction"}>
+            <Button className="">Make a transaction</Button>
+          </Link>
+        </CardContent>
+      </Card>
+    );
+  }
 
   if (isLoading) return "loading";
   if (error) return "error";
