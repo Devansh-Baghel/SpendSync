@@ -21,6 +21,7 @@ import { formatter } from "@/utils/formatter";
 import { useContext } from "react";
 import { AppContext } from "@/App";
 import { Button } from "./ui/button";
+import { Skeleton } from "./ui/skeleton";
 
 function RecentTransactions() {
   const { userData } = useContext(AppContext);
@@ -71,7 +72,6 @@ function RecentTransactions() {
     );
   }
 
-  if (isLoading) return "loading";
   if (error) return "error";
   return (
     <Card className="rounded-xl bg-background">
@@ -88,32 +88,50 @@ function RecentTransactions() {
             </TableRow>
           </TableHeader>
 
-          <TableBody className="text-xs sm:text-sm">
-            {data.map((transaction: TransactionType) => (
-              <TableRow
-                key={transaction._id}
-                onClick={() => navigate(`/transactions/${transaction._id}`)}
-                className="cursor-pointer"
-                role="button"
-                onKeyDown={(e) => onKeyDown(e, transaction._id)}
-                tabIndex={0}
-              >
-                <TableCell className="font-medium">
-                  {transaction.type}
-                </TableCell>
-                <TableCell>{transaction.title}</TableCell>
-                <TableCell className="">
-                  {transaction.type === "Expense" ? (
-                    <span>&minus; </span>
-                  ) : (
-                    <span>+ </span>
-                  )}
-                  {userData.user.currency}
-                  {formatter.format(transaction.amount)}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
+          {isLoading ? (
+            <TableBody className="text-xs sm:text-sm">
+              {[1, 2, 3, 4, 5].map((index) => (
+                <TableRow key={index} className="cursor-pointer">
+                  <TableCell className="font-medium">
+                    <Skeleton className="h-6 rounded-xl" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton className="h-6 rounded-xl" />
+                  </TableCell>
+                  <TableCell className="">
+                    <Skeleton className="h-6 rounded-xl" />
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          ) : (
+            <TableBody className="text-xs sm:text-sm">
+              {data.map((transaction: TransactionType) => (
+                <TableRow
+                  key={transaction._id}
+                  onClick={() => navigate(`/transactions/${transaction._id}`)}
+                  className="cursor-pointer"
+                  role="button"
+                  onKeyDown={(e) => onKeyDown(e, transaction._id)}
+                  tabIndex={0}
+                >
+                  <TableCell className="font-medium">
+                    {transaction.type}
+                  </TableCell>
+                  <TableCell>{transaction.title}</TableCell>
+                  <TableCell className="">
+                    {transaction.type === "Expense" ? (
+                      <span>&minus; </span>
+                    ) : (
+                      <span>+ </span>
+                    )}
+                    {userData.user.currency}
+                    {formatter.format(transaction.amount)}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          )}
         </Table>
       </CardContent>
 
