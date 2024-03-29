@@ -39,7 +39,7 @@ function App() {
       });
     }
 
-    if (!userData.user.isPaidUser) {
+    if (!userData?.user?.isPaidUser) {
       axios.post("/pay/confirm-payment").then((res) => {
         setUserData(res.data.data);
         localStorage.setItem("userData", JSON.stringify(res.data.data));
