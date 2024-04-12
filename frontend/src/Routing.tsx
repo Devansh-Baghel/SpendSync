@@ -15,6 +15,7 @@ import SingularGoalView from "./components/SingularGoalView";
 import NewTransaction from "./pages/NewTransaction";
 import ResetDemo from "./pages/ResetDemo";
 import SingleTransaction from "./components/SingleTransaction";
+import NotFound from "./components/NotFound";
 
 function Routing() {
   const { isLoggedIn } = useContext(AppContext);
@@ -73,6 +74,10 @@ function Routing() {
     {
       path: "reset-demo",
       element: <ResetDemo />,
+    },
+    {
+      path: "*",
+      element: <NotFound />,
     },
   ]);
 
