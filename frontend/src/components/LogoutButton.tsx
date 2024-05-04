@@ -22,12 +22,12 @@ function LogoutButton() {
 
   return (
     <button
-      className="flex items-center gap-6"
+      className="flex items-center gap-6 hover:text-red-500"
       onClick={() => {
         handleLogout();
       }}
     >
-      <LogoutIcon className="w-6 h-6 text-accent-foreground" />
+      <LogoutIcon className="w-6 h-6 " />
       Log out
     </button>
   );

@@ -22,11 +22,11 @@ function Dashboard() {
       <div className="m-5 mt-7 flex flex-col md:flex-row gap-32">
         <HamburgerMenu />
         <aside className="text-accent-foreground md:flex flex-col pl-10 w-52 justify-between h-[90vh] hidden">
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-7">
             <a
               target="_blank"
               href="https://github.com/Devansh-Baghel/SpendSync"
-              className="flex items-center gap-2 mt-5 mb-10"
+              className="flex items-center gap-2 mt-5 mb-5"
             >
               <HomeIcon className="w-14 h-14 text-primary" />
               <h2 className="text-xl font-bold">
@@ -40,13 +40,19 @@ function Dashboard() {
               </h2>
             </a>
 
-            <Link to={"/"} className="flex items-center gap-6">
+            <Link
+              to={"/"}
+              className="flex items-center gap-6 hover:text-primary"
+            >
               <OverviewIcon className="w-6 h-6" />
               <h2 className="text-md">Overview</h2>
             </Link>
 
             {showTransactions ? (
-              <Link to={"/transactions"} className="flex items-center gap-6">
+              <Link
+                to={"/transactions"}
+                className="flex items-center gap-6 hover:text-primary"
+              >
                 <TransactionsIcon className="w-6 h-6" />
                 <h2 className="text-md">Transactions</h2>
               </Link>
@@ -55,7 +61,10 @@ function Dashboard() {
             )}
 
             {showGoals ? (
-              <Link to={"/goals"} className="flex items-center gap-6">
+              <Link
+                to={"/goals"}
+                className="flex items-center gap-6 hover:text-primary"
+              >
                 <GoalsIcon className="w-6 h-6" />
                 <h2 className="text-md">Goals</h2>
               </Link>
@@ -63,17 +72,26 @@ function Dashboard() {
               ""
             )}
 
-            <Link to={"/statistics"} className="flex items-center gap-6">
+            <Link
+              to={"/statistics"}
+              className="flex items-center gap-6 hover:text-primary"
+            >
               <StatsIcon className="w-6 h-6" />
               <h2 className="text-md">Statistics</h2>
             </Link>
 
-            <Link to={"/account"} className="flex items-center gap-6">
+            <Link
+              to={"/account"}
+              className="flex items-center gap-6 hover:text-primary"
+            >
               <AccountIcon className="w-6 h-6" />
               <h2 className="text-md">Account</h2>
             </Link>
 
-            <Link to={"/settings"} className="flex items-center gap-6">
+            <Link
+              to={"/settings"}
+              className="flex items-center gap-6 hover:text-primary"
+            >
               <SettingsIcon className="w-6 h-6" />
               <h2 className="text-md">Settings</h2>
             </Link>
