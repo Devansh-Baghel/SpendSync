@@ -65,12 +65,11 @@ function SingleTransaction() {
 
   return (
     <div className="bg-primary rounded-[25px] md:w-screen py-6 px-5 sm:px-8 mt-[-100px] md:mt-0 relative flex flex-col">
-      <Link
-        to={"/transactions"}
-        className="text-3xl font-bold text-background mb-5"
-      >
-        <LeftArrow className="inline mb-1" /> Back{" "}
-      </Link>
+      <h2 className="text-3xl font-bold text-background mb-5">
+        <Link to={"/transactions"}>
+          <LeftArrow className="inline mb-1" /> Back{" "}
+        </Link>
+      </h2>
 
       <div className="flex flex-col gap-6 md:flex-row flex-1">
         <Card className="mt-4 relative border-0 flex-1">
