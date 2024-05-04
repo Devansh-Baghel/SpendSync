@@ -21,7 +21,7 @@ function Statistics() {
         <div className="relative" id="hidden-stats">
           <HiddenStats />
           <div className="absolute w-full top-40 left-0 flex justify-center items-center flex-col">
-            <div className="bg-primary rounded-[20px] p-6 flex justify-center items-center flex-col gap-6 border-4 border-background">
+            <div className="bg-primary rounded-[20px] p-6 flex justify-center items-center flex-col gap-6 border-4 border-background shadow-inner">
               <h3 className="text-2xl text-background font-bold">
                 This is a premium feature
               </h3>

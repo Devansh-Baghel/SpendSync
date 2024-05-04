@@ -8,7 +8,7 @@ function IncomeAndExpense() {
   const { userData } = useContext(AppContext);
 
   return (
-    <div className="bg-card max-w-80 h-52 rounded-[20px] p-5 flex flex-col items-center gap-4 justify-center text-center">
+    <div className="bg-card max-w-80 h-52 rounded-[20px] p-5 flex flex-col items-center gap-4 justify-center text-center shadow-md">
       <h3>
         Your expenses are{" "}
         <span className="font-bold text-primary">

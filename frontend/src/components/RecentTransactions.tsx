@@ -74,7 +74,7 @@ function RecentTransactions() {
 
   if (error) return "error";
   return (
-    <Card className="rounded-xl bg-background">
+    <Card className="rounded-xl bg-background shadow-md">
       <CardHeader className="text-lg">
         <CardTitle>Recent Transactions</CardTitle>
       </CardHeader>
