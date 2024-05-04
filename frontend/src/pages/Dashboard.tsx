@@ -4,6 +4,7 @@ import { LuLayoutDashboard as OverviewIcon } from "react-icons/lu";
 import { GrTransaction as TransactionsIcon } from "react-icons/gr";
 import { FaMoneyBillTransfer as HomeIcon } from "react-icons/fa6";
 import { IoSettingsOutline as SettingsIcon } from "react-icons/io5";
+import { VscGraph as StatsIcon } from "react-icons/vsc";
 import { TbTargetArrow as GoalsIcon } from "react-icons/tb";
 import { IoPerson as AccountIcon } from "react-icons/io5";
 import { Link } from "react-router-dom";
@@ -52,6 +53,11 @@ function Dashboard() {
             ) : (
               ""
             )}
+
+            <Link to={"/statistics"} className="flex items-center gap-6">
+              <StatsIcon className="w-6 h-6" />
+              <h2 className="text-md">Statistics</h2>
+            </Link>
 
             <Link to={"/account"} className="flex items-center gap-6">
               <AccountIcon className="w-6 h-6" />
