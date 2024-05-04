@@ -5,6 +5,7 @@ import { GrTransaction as TransactionsIcon } from "react-icons/gr";
 import { FaMoneyBillTransfer as HomeIcon } from "react-icons/fa6";
 import { IoSettingsOutline as SettingsIcon } from "react-icons/io5";
 import { VscGraph as StatsIcon } from "react-icons/vsc";
+import { PiCrown as ProIcon } from "react-icons/pi";
 import { TbTargetArrow as GoalsIcon } from "react-icons/tb";
 import { IoPerson as AccountIcon } from "react-icons/io5";
 import { Link } from "react-router-dom";
@@ -14,7 +15,7 @@ import HamburgerMenu from "@/components/HamburgerMenu";
 import Command from "@/components/Command";
 
 function Dashboard() {
-  const { showGoals, showTransactions } = useContext(AppContext);
+  const { showGoals, showTransactions, userData } = useContext(AppContext);
 
   return (
     <Command>
@@ -27,8 +28,16 @@ function Dashboard() {
               href="https://github.com/Devansh-Baghel/SpendSync"
               className="flex items-center gap-2 mt-5 mb-10"
             >
-              <HomeIcon className="w-12 h-12 text-primary" />
-              <h2 className="text-xl font-bold">SpendSync</h2>
+              <HomeIcon className="w-14 h-14 text-primary" />
+              <h2 className="text-xl font-bold">
+                SpendSync
+                {userData.user.isPaidUser && (
+                  <div className="flex gap-2 items-center text-yellow-300">
+                    <ProIcon className="w-6 h-6" />
+                    <span className="text-sm font-semibold">Premium</span>
+                  </div>
+                )}
+              </h2>
             </a>
 
             <Link to={"/"} className="flex items-center gap-6">
