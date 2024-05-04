@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "./App";
 import HiddenStats from "./components/stats/HiddenStats";
+import CheckoutButton from "./components/CheckoutButton";
 
 function Statistics() {
   const { userData } = useContext(AppContext);
@@ -15,15 +16,20 @@ function Statistics() {
           {/* // TODO: Display stats */}
         </h2>
       ) : (
-        <div className="flex flex-wrap gap-6">
+        <div className="relative" id="hidden-stats">
           {/* You aren't a premium member */}
           {/* TODO: Blur the bg and show the button to get premium*/}
           <HiddenStats />
-          <HiddenStats />
-          <HiddenStats />
-          <HiddenStats />
-          <HiddenStats />
-          <HiddenStats />
+          <div className="absolute w-full top-40 left-0 flex justify-center items-center flex-col">
+            <div className="bg-primary rounded-[20px] p-6 flex justify-center items-center flex-col gap-6 border-4 border-background">
+              <h3 className="text-2xl text-background font-bold">
+                This is a premium feature
+              </h3>
+              <div className="md:w-80">
+                <CheckoutButton />
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
