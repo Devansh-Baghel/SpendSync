@@ -16,6 +16,7 @@ import NewTransaction from "./pages/NewTransaction";
 import ResetDemo from "./pages/ResetDemo";
 import SingleTransaction from "./components/SingleTransaction";
 import NotFound from "./components/NotFound";
+import Statistics from "./Statistics";
 
 function Routing() {
   const { isLoggedIn } = useContext(AppContext);
@@ -46,6 +47,10 @@ function Routing() {
         {
           path: "account",
           element: <Account />,
+        },
+        {
+          path: "statistics",
+          element: <Statistics />,
         },
         {
           path: "goals",
