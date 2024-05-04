@@ -8,6 +8,7 @@ import { VscGraph as StatsIcon } from "react-icons/vsc";
 import { PiCrown as ProIcon } from "react-icons/pi";
 import { TbTargetArrow as GoalsIcon } from "react-icons/tb";
 import { IoPerson as AccountIcon } from "react-icons/io5";
+import { FaCodeBranch as CodeIcon } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "@/App";
@@ -23,11 +24,7 @@ function Dashboard() {
         <HamburgerMenu />
         <aside className="text-accent-foreground md:flex flex-col pl-10 w-52 justify-between h-[90vh] hidden">
           <div className="flex flex-col gap-7">
-            <a
-              target="_blank"
-              href="https://github.com/Devansh-Baghel/SpendSync"
-              className="flex items-center gap-2 mt-5 mb-5"
-            >
+            <Link to={"/"} className="flex items-center gap-2 mt-5 mb-5">
               <HomeIcon className="w-14 h-14 text-primary" />
               <h2 className="text-xl font-bold">
                 SpendSync
@@ -38,7 +35,7 @@ function Dashboard() {
                   </div>
                 )}
               </h2>
-            </a>
+            </Link>
 
             <Link
               to={"/"}
@@ -95,6 +92,14 @@ function Dashboard() {
               <SettingsIcon className="w-6 h-6" />
               <h2 className="text-md">Settings</h2>
             </Link>
+            <a
+              href="https://github.com/Devansh-Baghel/SpendSync"
+              target="_blank"
+              className="flex items-center gap-6 hover:text-primary"
+            >
+              <CodeIcon className="w-6 h-6" />
+              <h2 className="text-md">Source Code</h2>
+            </a>
           </div>
           <LogoutButton />
         </aside>

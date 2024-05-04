@@ -10,6 +10,7 @@ import { PiCrown as ProIcon } from "react-icons/pi";
 import { IoPerson as AccountIcon } from "react-icons/io5";
 import { IoIosMenu as MenuIcon } from "react-icons/io";
 import { IoClose as CloseIcon } from "react-icons/io5";
+import { FaCodeBranch as CodeIcon } from "react-icons/fa6";
 import LogoutButton from "./LogoutButton";
 import { useContext } from "react";
 import { AppContext } from "@/App";
@@ -85,17 +86,6 @@ function HamburgerMenu() {
             )}
 
             <Link
-              to={"/account"}
-              className="flex items-center gap-6"
-              onClick={() => {
-                setMenuOpen(false);
-              }}
-            >
-              <AccountIcon className="w-6 h-6" />
-              <h2 className="text-md">Account</h2>
-            </Link>
-
-            <Link
               to={"/statistics"}
               className="flex items-center gap-6"
               onClick={() => {
@@ -107,8 +97,19 @@ function HamburgerMenu() {
             </Link>
 
             <Link
+              to={"/account"}
+              className="flex items-center gap-6"
+              onClick={() => {
+                setMenuOpen(false);
+              }}
+            >
+              <AccountIcon className="w-6 h-6" />
+              <h2 className="text-md">Account</h2>
+            </Link>
+
+            <Link
               to={"/settings"}
-              className="flex items-center gap-6 mb-10"
+              className="flex items-center gap-6"
               onClick={() => {
                 setMenuOpen(false);
               }}
@@ -116,6 +117,15 @@ function HamburgerMenu() {
               <SettingsIcon className="w-6 h-6" />
               <h2 className="text-md">Settings</h2>
             </Link>
+
+            <a
+              href="https://github.com/Devansh-Baghel/SpendSync"
+              target="_blank"
+              className="flex items-center gap-6 hover:text-primary mb-10"
+            >
+              <CodeIcon className="w-6 h-6" />
+              <h2 className="text-md">Source Code</h2>
+            </a>
           </div>
           <LogoutButton />
         </nav>
@@ -140,6 +150,7 @@ function HamburgerMenu() {
           className="absolute top-8 right-4"
           onClick={() => {
             setMenuOpen(true);
+            window.scrollTo(0, 0);
           }}
         >
           <MenuIcon className="w-12 h-12 text-primary" />
