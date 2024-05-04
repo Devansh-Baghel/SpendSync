@@ -1,14 +1,15 @@
 [![SpendSync](https://github.com/Devansh-Baghel/SpendSync/assets/77718741/f8f5f3a3-ff72-4192-901d-c613419ee1c5)](https://spendsync.baghel.dev/)
+
 # SpendSync 💸✨
+
 [Live Demo](https://spendsync.baghel.dev/)
 
 SpendSync is an all in one financial planning and money tracking tool with a sleek and intuitive user interface.
 
-> [!IMPORTANT]  
-> This project is under active development.
-
 ## Tech Stack
+
 ### Frontend
+
 - Laguage - [Typescript](https://www.typescriptlang.org/)
 - Framework - [React](https://react.dev/)
 - Component Library - [shadcn](https://ui.shadcn.com/)
@@ -20,6 +21,7 @@ SpendSync is an all in one financial planning and money tracking tool with a sle
 - State management - Context Api
 
 ### Backend
+
 - Laguage - Javascript
 - Runtime - [Nodejs](https://nodejs.org/en)
 - Framework - [Express](https://expressjs.com/)
@@ -28,6 +30,7 @@ SpendSync is an all in one financial planning and money tracking tool with a sle
 - File upload - [multer](https://github.com/expressjs/multer) + [cloudinary](https://cloudinary.com/)
 
 ## Screenshots
+
 ![Screenshot from 2024-03-10 15-35-45](https://github.com/Devansh-Baghel/SpendSync/assets/77718741/adfe2fc5-5a3f-483a-961e-2a0d8fb40377)
 
 ![Screenshot from 2024-03-10 15-35-56](https://github.com/Devansh-Baghel/SpendSync/assets/77718741/328fab2a-95f5-43af-8296-c1336a59c44e)
@@ -45,4 +48,5 @@ SpendSync is an all in one financial planning and money tracking tool with a sle
 ![Screenshot from 2024-03-10 15-38-08](https://github.com/Devansh-Baghel/SpendSync/assets/77718741/04355411-3b03-4209-a026-4a1673ffa438)
 
 ## License
+
 SpendSync is licensed under the MIT License. Feel free to use, modify, and distribute this software according to the terms of the license.
