@@ -2,8 +2,10 @@ import FirstGoal from "@/components/FirstGoal";
 import { useContext } from "react";
 import { AppContext } from "@/App";
 import GoalsDisplay from "@/components/GoalsDisplay";
+import useTitle from "@/hooks/useTitle";
 
 function Goals() {
+  useTitle("Goals");
   const { userData } = useContext(AppContext);
 
   return (

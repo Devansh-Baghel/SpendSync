@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { AppContext } from "./App";
 import HiddenStats from "./components/stats/HiddenStats";
 import CheckoutButton from "./components/CheckoutButton";
+import useTitle from "./hooks/useTitle";
 
 function Statistics() {
+  useTitle("Statistics");
   const { userData } = useContext(AppContext);
 
   return (
@@ -17,8 +19,6 @@ function Statistics() {
         </h2>
       ) : (
         <div className="relative" id="hidden-stats">
-          {/* You aren't a premium member */}
-          {/* TODO: Blur the bg and show the button to get premium*/}
           <HiddenStats />
           <div className="absolute w-full top-40 left-0 flex justify-center items-center flex-col">
             <div className="bg-primary rounded-[20px] p-6 flex justify-center items-center flex-col gap-6 border-4 border-background">

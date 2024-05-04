@@ -6,8 +6,10 @@ import IncomeAndExpense from "@/components/IncomeAndExpense";
 import AddIncomeAndExpense from "@/components/AddIncomeAndExpense";
 import CheckoutButton from "@/components/CheckoutButton";
 import RecentTransactions from "@/components/RecentTransactions";
+import useTitle from "@/hooks/useTitle";
 
 function Overview() {
+  useTitle("Dashboard");
   const { userData } = useContext(AppContext);
 
   console.log(userData.user.isPaidUser);

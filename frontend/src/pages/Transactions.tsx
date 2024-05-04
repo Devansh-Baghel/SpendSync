@@ -3,8 +3,10 @@ import TransactionDisplay from "@/components/TransactionDisplay";
 import { useContext } from "react";
 import { useParams, Outlet } from "react-router-dom";
 import NewTransaction from "./NewTransaction";
+import useTitle from "@/hooks/useTitle";
 
 function Transactions() {
+  useTitle("Transactions");
   const { userData } = useContext(AppContext);
   const { transactionId } = useParams();
 

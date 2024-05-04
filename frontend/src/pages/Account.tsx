@@ -11,6 +11,7 @@ import DatePicker from "@/components/DatePicker";
 import SidebarPreferences from "@/components/SidebarPreferences";
 import MoreAccountOptions from "@/components/MoreAccountOptions";
 import axios from "axios";
+import useTitle from "@/hooks/useTitle";
 
 const getAvatarFallback = (name: string) =>
   name
@@ -19,6 +20,7 @@ const getAvatarFallback = (name: string) =>
     .join("");
 
 function Account() {
+  useTitle("Account");
   const { userData, setUserData } = useContext(AppContext);
   const [name, setName] = useState<string>(userData.user.fullName);
   const [bio, setBio] = useState<string>(userData.user.bio || undefined);
