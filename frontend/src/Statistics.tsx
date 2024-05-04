@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AppContext } from "./App";
+import HiddenStats from "./components/stats/HiddenStats";
 
 function Statistics() {
   const { userData } = useContext(AppContext);
@@ -14,9 +15,15 @@ function Statistics() {
           {/* // TODO: Display stats */}
         </h2>
       ) : (
-        <div>
-          You aren't a premium member
+        <div className="flex flex-wrap gap-6">
+          {/* You aren't a premium member */}
           {/* TODO: Blur the bg and show the button to get premium*/}
+          <HiddenStats />
+          <HiddenStats />
+          <HiddenStats />
+          <HiddenStats />
+          <HiddenStats />
+          <HiddenStats />
         </div>
       )}
     </div>
