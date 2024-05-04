@@ -25,7 +25,7 @@ export const createCheckout = asyncHandler(async (req, res) => {
         quantity: 1,
       },
     ],
-    success_url: process.env.CLIENT_URL,
+    success_url: `${process.env.CLIENT_URL}/payment-success`,
     cancel_url: process.env.CLIENT_URL,
   });
 
@@ -35,7 +35,11 @@ export const createCheckout = asyncHandler(async (req, res) => {
   return res
     .status(200)
     .json(
-      new ApiResponse(200, { user, url: session.url }, "Payment successfull")
+      new ApiResponse(
+        200,
+        { user, url: session.url },
+        "Checkout session created"
+      )
     );
 });
 

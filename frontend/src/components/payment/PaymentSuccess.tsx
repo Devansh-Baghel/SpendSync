@@ -1,6 +1,7 @@
 import { FcOk as CheckIcon } from "react-icons/fc";
 import { Button } from "../ui/button";
 import { PiCrown as ProIcon } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 function PaymentSuccess() {
   return (
@@ -19,8 +20,12 @@ function PaymentSuccess() {
           </span>{" "}
           member now!
         </p>
-        <Button className="mt-4">Continue to Dashboard</Button>
-        <Button variant="outline">Continue to Statistics</Button>
+        <Link to={"/"}>
+          <Button className="mt-4">Continue to Dashboard</Button>
+        </Link>
+        <Link to={"/statistics"}>
+          <Button variant="outline">Continue to Statistics</Button>
+        </Link>
       </div>
     </div>
   );
