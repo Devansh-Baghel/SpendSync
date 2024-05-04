@@ -121,7 +121,7 @@ function SingleTransaction() {
             <AlertDialog>
               <AlertDialogTrigger>
                 <Button
-                  variant={"destructive"}
+                  variant={"outline"}
                   className="md:absolute bottom-6 right-6"
                 >
                   Delete Transaction
@@ -137,7 +137,10 @@ function SingleTransaction() {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={deleteTransaction}>
+                  <AlertDialogAction
+                    onClick={deleteTransaction}
+                    className="bg-red-500 text-white hover:bg-red-600"
+                  >
                     Continue
                   </AlertDialogAction>
                 </AlertDialogFooter>
