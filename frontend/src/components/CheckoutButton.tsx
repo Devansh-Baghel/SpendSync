@@ -3,11 +3,13 @@ import { Button } from "./ui/button";
 import axios from "axios";
 import { AppContext } from "@/App";
 import { PiCrown as ProIcon } from "react-icons/pi";
+import toast from "react-hot-toast";
 
 function CheckoutButton() {
   const { setUserData } = useContext(AppContext);
 
   function handleCheckout() {
+    toast.loading("Creating checkout session...");
     axios
       .post("/pay/create-checkout")
       .then((res) => {

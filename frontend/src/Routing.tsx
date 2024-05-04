@@ -17,6 +17,7 @@ import ResetDemo from "./pages/ResetDemo";
 import SingleTransaction from "./components/SingleTransaction";
 import NotFound from "./components/NotFound";
 import Statistics from "./Statistics";
+import PaymentSuccess from "./components/payment/PaymentSuccess";
 
 function Routing() {
   const { isLoggedIn } = useContext(AppContext);
@@ -51,6 +52,10 @@ function Routing() {
         {
           path: "statistics",
           element: <Statistics />,
+        },
+        {
+          path: "payment-success",
+          element: <PaymentSuccess />,
         },
         {
           path: "goals",

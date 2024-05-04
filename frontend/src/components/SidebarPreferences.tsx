@@ -28,7 +28,7 @@ function SidebarPreferences() {
 
   return (
     <div className="flex flex-col mt-6">
-      <h3 className="font-semibold mb-3">Sidebar Preferences</h3>
+      <h3 className="font-semibold mb-3 text-sm">Sidebar Preferences</h3>
       <div className="flex gap-10">
         <div className="flex items-center gap-2">
           <Checkbox id="goals" onClick={changeGoalState} checked={showGoals} />
