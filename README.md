@@ -13,6 +13,7 @@ SpendSync is an all in one financial planning and money tracking tool with a sle
 - Laguage - [Typescript](https://www.typescriptlang.org/)
 - Framework - [React](https://react.dev/)
 - Component Library - [shadcn](https://ui.shadcn.com/)
+- Charts - [Chart.js](https://www.chartjs.org/)
 - UI Theme - [ui.jln.dev](https://ui.jln.dev/)
 - Styling - [tailwindcss](https://tailwindcss.com/)
 - Data fetching - [Tanstack Query](https://tanstack.com/query/latest)
@@ -31,7 +32,11 @@ SpendSync is an all in one financial planning and money tracking tool with a sle
 
 ## Screenshots
 
-![Screenshot from 2024-03-10 15-35-45](https://github.com/Devansh-Baghel/SpendSync/assets/77718741/adfe2fc5-5a3f-483a-961e-2a0d8fb40377)
+![Screenshot from 2024-05-06 00-48-56](https://github.com/Devansh-Baghel/SpendSync/assets/77718741/f6c09f0d-b947-470b-b0b4-26f1eeed3e34)
+![Screenshot from 2024-05-06 00-49-12](https://github.com/Devansh-Baghel/SpendSync/assets/77718741/45a24d8b-45d1-425d-b527-9f6d5a9e4f55)
+![Screenshot from 2024-05-06 00-49-54](https://github.com/Devansh-Baghel/SpendSync/assets/77718741/1074b62f-a3e0-464e-a82c-3d5969cbac1c)
+![Screenshot from 2024-05-06 00-50-17](https://github.com/Devansh-Baghel/SpendSync/assets/77718741/5734b842-6458-419f-91b5-ad89b98a6a1d)
+
 
 ![Screenshot from 2024-03-10 15-35-56](https://github.com/Devansh-Baghel/SpendSync/assets/77718741/328fab2a-95f5-43af-8296-c1336a59c44e)
 
