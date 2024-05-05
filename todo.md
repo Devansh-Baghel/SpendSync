@@ -43,7 +43,7 @@
 - [x] update income and expense
 - [x] export all transaction data as a csv
 - [x] export all goals data as a csv
-- [ ] in overview add option to control + k andd add "Tip: try ctrl + k"
+- [x] in overview add option to control + k andd add "Tip: try ctrl + k"
 - [x] update account balance
 - [x] overview: you can update this in /account ; incomeAndExpense / accountBalance
 - [x] give feedback controller
@@ -66,12 +66,12 @@
 - [x] add react-hot-toast
 - [x] remove password from all findByIdAndUpdateQueries
 - [ ] Demo user - as a paid user
-- [ ] insights page: only for paid users, has the ui blurred, says "Upgrade to premium or login as a paid user"
+- [x] insights page: only for paid users, has the ui blurred, says "Upgrade to premium or login as a paid user"
 - [ ] goals tabluar view : check mantine ui table
 - [ ] a little "i" in the Wallet label in add expense that tells user that selecting cash would deduct this ammount from their account balance
 - [x] Issue: Stripe Integration
 - [ ] Issue: Doesn't work in brave browser
-- [ ] Issue: repo link in project
+- [x] Issue: repo link in project
 - [x] Issue: Logout toast notifications
 - [x] Issue: loading icons in GoalsDisplay & transactionDisplay
 - [x] filetype check in frontend when uploading avatar
