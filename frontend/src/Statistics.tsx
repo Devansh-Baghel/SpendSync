@@ -3,6 +3,7 @@ import { AppContext } from "./App";
 import HiddenStats from "./components/stats/HiddenStats";
 import CheckoutButton from "./components/CheckoutButton";
 import useTitle from "./hooks/useTitle";
+import FixedIncomeExpenseGraph from "./components/stats/FixedIncomeExpenseGraph";
 
 function Statistics() {
   useTitle("Statistics");
@@ -15,6 +16,7 @@ function Statistics() {
       {userData.user.isPaidUser ? (
         <h2>
           Here are your stats
+          <FixedIncomeExpenseGraph />
           {/* // TODO: Display stats */}
         </h2>
       ) : (
