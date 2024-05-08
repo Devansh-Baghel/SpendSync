@@ -85,3 +85,16 @@
 - [ ] sorting in transactions
 - [x] fix issue w/ going to transaction page when there are no transactions, screen flickering
 - [x] fix feedback styling
+
+#### Statistics
+
+- [ ] Fixed income and expense
+- [ ] Income this week
+- [ ] Income this month
+- [ ] Income this year
+
+- [ ] Expense this week
+- [ ] Expense this month
+- [ ] Expense this year
+
+- [ ]

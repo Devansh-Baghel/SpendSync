@@ -15,7 +15,6 @@ function Statistics() {
 
       {userData.user.isPaidUser ? (
         <h2>
-          Here are your stats
           <FixedIncomeExpenseGraph />
           {/* // TODO: Display stats */}
         </h2>

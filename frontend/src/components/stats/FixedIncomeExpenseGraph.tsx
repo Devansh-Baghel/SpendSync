@@ -3,6 +3,13 @@ import "chart.js/auto";
 import { useContext } from "react";
 import { Doughnut } from "react-chartjs-2";
 import AddIncomeAndExpense from "../AddIncomeAndExpense";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import { FaInfoCircle as InfoIcon } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function FixedIncomeExpenseGraph() {
   const { userData } = useContext(AppContext);
@@ -22,7 +29,21 @@ function FixedIncomeExpenseGraph() {
   return (
     <>
       {userData.user.hasSetIncomeAndExpense ? (
-        <div className="bg-card max-w-80 h-60 rounded-[20px] p-5 flex flex-col items-center gap-10">
+        <div className="bg-card max-w-[300px] rounded-[20px] p-5 flex flex-col items-center gap-4">
+          <p className="font-medium text-center flex items-center">
+            Fixed Income and Expense
+            <HoverCard>
+              <HoverCardTrigger>
+                <InfoIcon className="inline ml-2 mb-[2px] cursor-pointer" />
+              </HoverCardTrigger>
+              <HoverCardContent className="text-sm">
+                This is the fixed income and expense that you can update in{" "}
+                <Link to="/account" className="underline text-primary">
+                  your account page.
+                </Link>
+              </HoverCardContent>
+            </HoverCard>
+          </p>
           <Doughnut data={data} />
         </div>
       ) : (
