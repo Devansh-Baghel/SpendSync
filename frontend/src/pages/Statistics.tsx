@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { AppContext } from "./App";
-import HiddenStats from "./components/stats/HiddenStats";
-import CheckoutButton from "./components/CheckoutButton";
-import useTitle from "./hooks/useTitle";
-import FixedIncomeExpenseGraph from "./components/stats/FixedIncomeExpenseGraph";
-import TimeRangeIncomeAndExpense from "./components/stats/TimeRangeIncomeAndExpense";
+import { AppContext } from "@/App";
+import HiddenStats from "../components/stats/HiddenStats";
+import CheckoutButton from "../components/CheckoutButton";
+import useTitle from "../hooks/useTitle";
+import FixedIncomeExpenseGraph from "../components/stats/FixedIncomeExpenseGraph";
+import TimeRangeIncomeAndExpense from "../components/stats/TimeRangeIncomeAndExpense";
 
 function Statistics() {
   useTitle("Statistics");

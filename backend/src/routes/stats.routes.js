@@ -7,6 +7,6 @@ const router = Router();
 // secure routes
 router
   .route("/get-income-expense-by-time-range")
-  .post(verifyJWT, getIncomeAndExpenseByTimeRange);
+  .get(verifyJWT, getIncomeAndExpenseByTimeRange);
 
 export default router;
