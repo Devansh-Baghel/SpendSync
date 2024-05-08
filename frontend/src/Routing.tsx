@@ -11,12 +11,12 @@ import Transactions from "./pages/Transactions";
 import Overview from "./pages/Overview";
 import Goals from "./pages/Goals";
 import Account from "./pages/Account";
-import SingularGoalView from "./components/SingularGoalView";
+import Statistics from "./pages/Statistics";
 import NewTransaction from "./pages/NewTransaction";
+import SingularGoalView from "./components/SingularGoalView";
 import ResetDemo from "./pages/ResetDemo";
 import SingleTransaction from "./components/SingleTransaction";
 import NotFound from "./components/NotFound";
-import Statistics from "./Statistics";
 import PaymentSuccess from "./components/payment/PaymentSuccess";
 
 function Routing() {

@@ -4,6 +4,7 @@ import HiddenStats from "./components/stats/HiddenStats";
 import CheckoutButton from "./components/CheckoutButton";
 import useTitle from "./hooks/useTitle";
 import FixedIncomeExpenseGraph from "./components/stats/FixedIncomeExpenseGraph";
+import TimeRangeIncomeAndExpense from "./components/stats/TimeRangeIncomeAndExpense";
 
 function Statistics() {
   useTitle("Statistics");
@@ -14,10 +15,15 @@ function Statistics() {
       <h1 className="text-3xl font-bold text-background mb-5">Statistics</h1>
 
       {userData.user.isPaidUser ? (
-        <h2>
+        <div className="flex gap-4">
           <FixedIncomeExpenseGraph />
+          <div className="flex flex-wrap">
+            <TimeRangeIncomeAndExpense timeRange="week" />
+            <TimeRangeIncomeAndExpense timeRange="month" />
+            <TimeRangeIncomeAndExpense timeRange="year" />
+          </div>
           {/* // TODO: Display stats */}
-        </h2>
+        </div>
       ) : (
         <div className="relative" id="hidden-stats">
           <HiddenStats />
