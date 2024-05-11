@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AppContext } from "@/App";
 import HiddenStats from "../components/stats/HiddenStats";
 import CheckoutButton from "../components/CheckoutButton";
@@ -8,6 +8,12 @@ import TimeRangeIncomeAndExpense from "../components/stats/TimeRangeIncomeAndExp
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import { FaInfoCircle as InfoIcon } from "react-icons/fa";
 
 function Statistics() {
   useTitle("Statistics");
@@ -21,8 +27,6 @@ function Statistics() {
     },
   });
 
-  console.log(data);
-
   return (
     <div className="bg-primary rounded-[25px] md:w-screen py-5 px-5 sm:px-5 mt-[-100px] md:mt-0">
       <h1 className="text-3xl font-bold text-background mb-5">Statistics</h1>
@@ -34,6 +38,15 @@ function Statistics() {
 
             <h2 className="text-2xl font-semibold text-background">
               Income and expense by week / month / year
+              <HoverCard>
+                <HoverCardTrigger>
+                  <InfoIcon className="inline ml-2 mb-[2px] cursor-pointer w-5 h-5" />
+                </HoverCardTrigger>
+                <HoverCardContent className="text-sm font-normal">
+                  This is calculated based on the transactions that you have
+                  made.
+                </HoverCardContent>
+              </HoverCard>
             </h2>
             {isLoading ? (
               // TODO: Add loading skeletons here
@@ -48,7 +61,6 @@ function Statistics() {
                 <TimeRangeIncomeAndExpense timeRange="year" data={data.year} />
               </div>
             )}
-            {/* // TODO: Display stats */}
           </div>
         ) : (
           <div className="relative" id="hidden-stats">

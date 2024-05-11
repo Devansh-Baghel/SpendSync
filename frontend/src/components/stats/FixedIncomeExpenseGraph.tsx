@@ -36,7 +36,7 @@ function FixedIncomeExpenseGraph() {
               <HoverCardTrigger>
                 <InfoIcon className="inline ml-2 mb-[2px] cursor-pointer" />
               </HoverCardTrigger>
-              <HoverCardContent className="text-sm">
+              <HoverCardContent className="text-sm font-normal">
                 This is the fixed income and expense that you can update in{" "}
                 <Link to="/account" className="underline text-primary">
                   your account page.
