@@ -1,4 +1,6 @@
 import { Bar } from "react-chartjs-2";
+import { Link } from "react-router-dom";
+import { Button } from "../ui/button";
 
 interface TimeRangeProps {
   timeRange: "week" | "month" | "year";
@@ -23,18 +25,21 @@ function TimeRangeIncomeAndExpense({ timeRange, data }: TimeRangeProps) {
 
   if (!data.income && !data.expense) {
     return (
-      <div className="bg-card max-w-[300px] rounded-[20px] p-5 flex flex-col items-center gap-4">
-        <p className="font-medium text-center flex items-center">
+      <div className="bg-card max-w-[230px] rounded-[20px] p-5 flex flex-col justify-center items-center gap-4">
+        <p className="text-sm text-center flex items-center">
           You didn't make any transactions this {timeRange}.
         </p>
+        <Link to={"/create-transaction"}>
+          <Button className="">Make a transaction</Button>
+        </Link>
       </div>
     );
   }
 
   return (
-    <div className="bg-card max-w-[300px] rounded-[20px] p-5 flex flex-col items-center gap-4">
-      <p className="font-medium text-center flex items-center">
-        Income and expense for this {timeRange}
+    <div className="bg-card max-w-[300px] rounded-[20px] p-5 flex flex-col justify-between">
+      <p className="text-sm text-center flex items-center justify-center">
+        {timeRange.toUpperCase()}
       </p>
       <Bar data={chartData} />
     </div>
