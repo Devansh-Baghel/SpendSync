@@ -86,15 +86,19 @@
 - [x] fix issue w/ going to transaction page when there are no transactions, screen flickering
 - [x] fix feedback styling
 
+
+- [ ] Make the sidebar of current page a different background that merges with page on right
+
+
 #### Statistics
 
-- [ ] Fixed income and expense
-- [ ] Income this week
-- [ ] Income this month
-- [ ] Income this year
+- [x] Fixed income and expense
+- [x] Income this week
+- [x] Income this month
+- [x] Income this year
+- [x] Expense this week
+- [x] Expense this month
+- [x] Expense this year
 
-- [ ] Expense this week
-- [ ] Expense this month
-- [ ] Expense this year
+- [ ] Build a way to import test data for new user accounts, or anyone else
 
-- [ ]
